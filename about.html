@@ -50,19 +50,10 @@
     <p>그로우픽의 첫 과정은 숏폼 대행 강의입니다. 강사 문찌언니는 지금도 여러 업체와 월 단위로 숏폼 대행 계약을 맺고 일하고 있습니다. 1기는 2026년 9월에 문을 열었고, 무료 강의와 다음 기수를 준비하고 있습니다.</p>
     <p style="margin-top:18px"><a class="btn" href="classes.html">클래스 보러 가기</a></p>
 
-    <h2>운영사</h2>
-    <table class="info company" id="company"></table>
   </article>
 </main>
 
 <footer id="gf"></footer>
 <script src="layout.js"></script>
-<script>
-(function () {
-  var B = window.GP.BIZ;
-  var rows = [['상호', B.COMPANY], ['대표', B.CEO], ['사업자등록번호', B.BIZ_NO], ['통신판매업 신고번호', B.SALES_NO], ['주소', B.ADDRESS], ['문의', '<span class="nw">' + B.EMAIL + '</span> · <span class="nw">' + B.PHONE + '</span>']];
-  document.getElementById('company').innerHTML = rows.map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + r[1] + '</td></tr>'; }).join('');
-})();
-</script>
 </body>
 </html>

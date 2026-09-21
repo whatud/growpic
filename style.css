@@ -157,6 +157,8 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,25,31,.08
 .box h2{font-size:18px;font-weight:800;margin-bottom:12px}
 .row2{display:flex;justify-content:space-between;gap:12px;font-size:16px;padding:6px 0}
 .row2 b{font-weight:800}
+.row2>:first-child:not(:only-child){flex:0 0 auto;white-space:nowrap} /* 라벨은 한 줄 고정 */
+.row2>:last-child:not(:only-child){text-align:right;min-width:0} /* 긴 값이 줄바꿈돼도 오른쪽 정렬 유지 */
 .total{border-top:1px solid var(--line);margin-top:8px;padding-top:12px;font-size:20px}
 .paym{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .paym label{border:1.5px solid var(--line);border-radius:12px;padding:14px;font-weight:700;cursor:pointer;display:flex;gap:8px;align-items:center}

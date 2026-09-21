@@ -30,10 +30,10 @@
 
   <section class="box">
     <h2>주문자 정보</h2>
-    <p style="font-size:15px;color:var(--ink-3)">회원가입 없이 결제하실 수 있습니다.</p>
+    <p style="font-size:15px;color:var(--ink-3)">회원가입 없이 결제하실 수 있습니다. 결제 링크와 수강 안내는 이 번호의 카카오톡(문자)으로 보내드립니다.</p>
     <div class="fld"><label for="o-n">이름</label><input id="o-n" autocomplete="name"></div>
     <div class="fld"><label for="o-p">휴대폰 번호</label><input id="o-p" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel"></div>
-    <div class="fld"><label for="o-e">이메일</label><input id="o-e" type="email" autocomplete="email"></div>
+    <div class="fld"><label for="o-e">이메일 (선택)</label><input id="o-e" type="email" autocomplete="email"></div>
   </section>
 
   <section class="box">
@@ -53,7 +53,32 @@
   </section>
 
   <button class="btn block" id="pay" type="button" style="margin-top:22px;height:60px;font-size:18px"></button>
+  <p id="pay-sub" style="font-size:14px;color:var(--ink-3);text-align:center;margin-top:10px"></p>
   <p class="msg" id="msg"></p>
+</main>
+
+<!-- 신청 완료 화면 (결제 신청 후 주문서 대신 보인다) -->
+<main class="order" id="done" style="display:none">
+  <div class="done-ico" style="margin-bottom:16px"><svg width="28" height="28" viewBox="0 0 22 22"><path d="M6 11.5l3.2 3.2L16 8" fill="none" stroke="#007A51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <h1 id="d-title">결제 신청이 접수됐습니다</h1>
+  <p id="d-desc" style="font-size:17px;color:var(--ink-2);margin-top:10px"></p>
+  <section class="box" id="d-bank" style="display:none">
+    <h2>입금 계좌</h2>
+    <div class="row2"><span>은행</span><b id="b-name"></b></div>
+    <div class="row2"><span>계좌번호</span><b id="b-num"></b></div>
+    <div class="row2"><span>예금주</span><b id="b-holder"></b></div>
+    <div class="row2 total"><b>입금 금액</b><b id="b-amt"></b></div>
+    <p style="font-size:14px;color:var(--ink-3);margin-top:8px">신청하신 분 이름으로 입금해 주세요. 입금 확인 후 카카오톡(문자)으로 수강 안내를 보내드립니다. 현금영수증이 필요하시면 이메일로 알려주세요.</p>
+  </section>
+  <section class="box">
+    <h2>신청 내역</h2>
+    <div class="row2"><span>과정</span><b id="d-course"></b></div>
+    <div class="row2"><span>결제 수단</span><b id="d-method"></b></div>
+    <div class="row2"><span>금액</span><b id="d-amt"></b></div>
+    <div class="row2"><span>신청 번호</span><b id="d-id"></b></div>
+  </section>
+  <p style="font-size:14px;color:var(--ink-3);margin-top:16px" id="d-help"></p>
+  <a class="btn line block" href="index.html" style="margin-top:20px">홈으로</a>
 </main>
 <footer id="gf"></footer>
 <script src="layout.js"></script>
@@ -71,26 +96,80 @@
     document.getElementById('o-list').textContent = F.won(pl.LIST);
     document.getElementById('o-off').textContent = '- ' + F.won(pl.LIST - pl.PRICE);
     document.getElementById('o-total').textContent = F.won(pl.PRICE);
-    document.getElementById('pay').textContent = F.won(pl.PRICE) + ' 결제하기';
+    document.getElementById('pay').textContent = F.won(pl.PRICE) + ' 결제 신청하기';
+    document.getElementById('pay-sub').textContent = method() === 'bank'
+      ? '신청 후 다음 화면에 입금 계좌가 나옵니다'
+      : '신청하시면 ' + G.PAY.LINK_ETA + ' 안에 카카오톡으로 카드 결제 링크를 보내드립니다';
     document.getElementById('o-mon').textContent = G.INSTALL_MONTHS + '개월 할부 시 월 ' + F.monthly(pl.PRICE) + ' (카드사 할부 수수료 별도)';
   }
   /* 정가·할인 줄은 SHOW_LIST 일 때만 (제안서 R3) */
   document.querySelectorAll('.listrow').forEach(function (r) { r.style.display = G.SHOW_LIST ? '' : 'none'; });
   sel.addEventListener('change', draw); draw();
 
+  function method() { var r = document.querySelector('.paym input:checked'); return r ? r.value : 'card'; }
   document.querySelectorAll('.paym input').forEach(function (r) {
-    r.addEventListener('change', function () { document.querySelectorAll('.paym label').forEach(function (l) { l.classList.toggle('on', l.querySelector('input').checked); }); });
+    r.addEventListener('change', function () { document.querySelectorAll('.paym label').forEach(function (l) { l.classList.toggle('on', l.querySelector('input').checked); }); draw(); });
   });
   var all = document.getElementById('a-all'), each = document.querySelectorAll('.a');
   all.addEventListener('change', function () { each.forEach(function (c) { c.checked = all.checked; }); });
   each.forEach(function (c) { c.addEventListener('change', function () { all.checked = Array.prototype.every.call(each, function (x) { return x.checked; }); }); });
 
+  /* 결제 신청: 기존 문찌언니 수강신청 서버로 보낸다 (form_type course_apply, 항목 이름은 munzzi-class/apply.html 과 동일해야 한다)
+     PG 승인 후에는 이 자리에서 PG 결제창을 부르면 된다 */
+  var LOCAL = location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);   // 내 PC 미리보기에선 전송 안 함
   document.getElementById('pay').addEventListener('click', function () {
-    var msg = document.getElementById('msg'); msg.style.display = 'block';
-    if (!document.getElementById('o-n').value.trim() || document.getElementById('o-p').value.replace(/\D/g, '').length < 10) { msg.textContent = '이름과 휴대폰 번호를 입력해 주세요.'; return; }
+    var btn = this, msg = document.getElementById('msg'); msg.style.display = 'block';
+    var name = document.getElementById('o-n').value.trim();
+    var phone = document.getElementById('o-p').value.replace(/\D/g, '');
+    if (name.length < 2) { msg.textContent = '이름을 입력해 주세요.'; return; }
+    if (!/^01[016789][0-9]{7,8}$/.test(phone)) { msg.textContent = '휴대폰 번호를 다시 확인해 주세요.'; return; }
     if (!Array.prototype.every.call(each, function (x) { return x.checked; })) { msg.textContent = '필수 약관에 모두 동의해 주세요.'; return; }
-    /* PG 연동 자리: 승인 후 결제창 호출 코드를 여기에 넣는다 */
-    msg.textContent = '결제 시스템 연결을 준비하고 있습니다. 수강 문의는 ' + G.BIZ.EMAIL + ' 로 보내주세요.';
+    msg.style.display = 'none';
+    btn.disabled = true; btn.textContent = '신청 접수 중';
+
+    var pl = P.PLANS.filter(function (x) { return x.ID === sel.value; })[0];
+    var d = new Date(), pad = function (n) { return String(n).padStart(2, '0'); };
+    var applyId = 'GP' + String(d.getFullYear()).slice(2) + pad(d.getMonth() + 1) + pad(d.getDate()) + '-' + pad(d.getHours()) + pad(d.getMinutes()) + '-' + Math.random().toString(36).slice(2, 5).toUpperCase();
+    var ph = phone.length === 11 ? phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7) : phone.slice(0, 3) + '-' + phone.slice(3, 6) + '-' + phone.slice(6);
+    var qs = new URLSearchParams(location.search);
+    var payload = {
+      form_type: 'course_apply', apply_id: applyId,
+      course_id: G.PAY.COURSE_ID, course_name: P.TITLE + ' ' + P.COHORT + ' ' + pl.NAME, plan_id: pl.ID, list_price: pl.LIST,
+      pay_method: method() === 'bank' ? 'cash' : 'card', amount: pl.PRICE,
+      name: name, phone: ph, email: document.getElementById('o-e').value.trim(),
+      agree_privacy: 'Y', agree_marketing: 'N', agree_refund: 'Y',
+      form_location: 'growpick', submitted_at: d.toISOString(),
+      utm_source: qs.get('utm_source') || '', utm_medium: qs.get('utm_medium') || '', utm_campaign: qs.get('utm_campaign') || '', referrer: document.referrer || ''
+    };
+
+    function done() {
+      document.querySelector('main.order').style.display = 'none';
+      var D = document.getElementById('done'); D.style.display = '';
+      var cash = payload.pay_method === 'cash';
+      document.getElementById('d-desc').textContent = cash
+        ? '아래 계좌로 입금해 주시면 확인 후 수강 안내를 보내드립니다.'
+        : G.PAY.LINK_ETA + ' 안에 ' + ph + ' 번호의 카카오톡으로 카드 결제 링크를 보내드립니다. 링크에서 결제하시면 수강 등록이 끝납니다.';
+      document.getElementById('d-bank').style.display = cash ? '' : 'none';
+      document.getElementById('b-name').textContent = G.PAY.BANK.NAME;
+      document.getElementById('b-num').textContent = G.PAY.BANK.NUMBER;
+      document.getElementById('b-holder').textContent = G.PAY.BANK.HOLDER;
+      document.getElementById('b-amt').textContent = F.won(pl.PRICE);
+      document.getElementById('d-course').textContent = payload.course_name;
+      document.getElementById('d-method').textContent = cash ? '계좌이체' : '신용 · 체크카드 (카카오톡 결제 링크)';
+      document.getElementById('d-amt').textContent = F.won(pl.PRICE);
+      document.getElementById('d-id').textContent = applyId;
+      document.getElementById('d-help').textContent = (cash ? '' : G.PAY.LINK_ETA + ' 안에 링크가 오지 않으면 ') + '문의: ' + G.BIZ.PHONE + ' · ' + G.BIZ.EMAIL;
+      window.scrollTo(0, 0);
+    }
+    if (LOCAL) { console.log('[미리보기] 전송 생략', payload); done(); return; }
+    var body = JSON.stringify(payload), sent = false;
+    try { if (navigator.sendBeacon) sent = navigator.sendBeacon(G.PAY.ENDPOINT, new Blob([body], { type: 'text/plain;charset=utf-8' })); } catch (e) {}
+    if (!sent) {
+      fetch(G.PAY.ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body })
+        .then(done, function () { btn.disabled = false; draw(); msg.style.display = 'block'; msg.textContent = '접수가 안 됐습니다. 잠시 후 다시 시도하시거나 ' + G.BIZ.PHONE + ' 로 연락 주세요.'; });
+      return;
+    }
+    done();
   });
 })();
 </script>

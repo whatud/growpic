@@ -17,6 +17,16 @@ window.GP = {
   SHOW_LIST: false,
   INSTALL_MONTHS: 12,             /* 수강료 옆 '월 ○원' 할부 안내 (S5). 카드사 할부 수수료는 별도 */
 
+  /* 결제 (2026-09-21 JY 지시: PG 승인 전까지 기존 문찌언니 강의와 같은 방식으로 실제 결제를 받는다)
+     주문서 → 기존 수강신청 서버(munzzi-class 의 Apps Script, '수강신청' 탭) → 카드는 결제선생 카톡 결제 링크, 계좌이체는 입금 안내.
+     PG 연동 후에는 order.html 의 결제 버튼만 PG 결제창 호출로 바꾼다 */
+  PAY: {
+    ENDPOINT: 'https://script.google.com/macros/s/AKfycbzwNuDWeM9JX8LW1bjf0E6cZHc6wFeq-_k0leH9nYnhzK7dwFKLVj3r_7oQFBOHz-eu/exec',
+    COURSE_ID: 'shortform_agency_2',        // 시트 '과정ID' 칸에 남는 값 (1기는 shortform_agency_1)
+    LINK_ETA: '10분',
+    BANK: { NAME: '국민은행', NUMBER: '61250101461028', HOLDER: '문지영' }
+  },
+
   /* 알림 신청을 받을 주소 (Apps Script 웹앱). 비어 있으면 화면에서만 완료 처리되고 아무 데도 저장되지 않는다 */
   NOTIFY_ENDPOINT: '',
 

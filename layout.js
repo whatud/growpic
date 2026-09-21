@@ -63,7 +63,7 @@
       '<span>고객센터 ' + need(B.PHONE) + '</span><span>이메일 ' + esc(B.EMAIL) + '</span><span>상담 ' + esc(B.CS_HOURS) + '</span><br>' +
       '<span>개인정보보호책임자 ' + esc(B.PRIVACY_OFFICER) + '</span><span>호스팅 서비스 제공자 ' + esc(B.HOSTING) + '</span>' +
       '</div>' +
-      '<p class="copy">' + esc(G.SITE) + '는 ' + esc(B.COMPANY) + '가 운영하는 교육 서비스입니다. © ' + new Date().getFullYear() + ' ' + esc(B.COMPANY) + '. All rights reserved.</p>' +
+      '<p class="copy">© ' + new Date().getFullYear() + ' ' + esc(G.SITE) + '. All rights reserved.</p>' +
       '</div>';
   }
 
