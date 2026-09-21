@@ -1,0 +1,70 @@
+/* ============================================================
+   그로우픽 공통 설정. 모든 페이지가 이 파일 하나를 읽는다.
+   사업자 정보·가격·판매 모드는 여기만 고친다 (페이지 본문에 직접 적지 말 것)
+   ============================================================ */
+window.GP = {
+  SITE: '그로우픽',
+  SLOGAN: '성장을 위한 교육을 선택하다',
+
+  /* 판매 모드
+     'notify' : 가격은 보여주되 버튼은 '다음 기수 알림 신청' (지금)
+     'sale'   : 버튼이 '수강 신청하기' → 주문서(order.html)로 이어진다.
+                ⚠️ PG 심사 기간에는 'sale' 로 두는 것을 권장. 심사자가 결제 흐름을 눌러보기 때문 */
+  MODE: 'sale',     // 2026-09-21 PG 심사 대비 판매 모드. 승인 후 'notify' 로 되돌릴 것
+
+  /* 알림 신청을 받을 주소 (Apps Script 웹앱). 비어 있으면 화면에서만 완료 처리되고 아무 데도 저장되지 않는다 */
+  NOTIFY_ENDPOINT: '',
+
+  /* 법적 필수 표기. 사업자등록증과 한 글자도 다르면 안 된다 (심사 반려 1순위) */
+  BIZ: {
+    COMPANY: '매니샵',
+    CEO: '문지영',
+    BIZ_NO: '351-65-00566',
+    BIZ_NO_RAW: '3516500566',
+    SALES_NO: '2025-별내-2042',
+    ADDRESS: '경기도 남양주시 순화궁로 418 현대그리너리캠퍼스 별내별가람역 1303호',
+    PHONE: '010-9619-6788',          // 2026-09-21 JY 지시로 임시 번호. 정식 번호 생기면 교체
+    EMAIL: 'nany418@naver.com',
+    PRIVACY_OFFICER: '문지영',
+    HOSTING: 'GitHub Pages',
+    CS_HOURS: '평일 10:00 ~ 18:00 (주말·공휴일 휴무)'
+  },
+
+  PRODUCTS: [
+    {
+      ID: 'shortform-agency',
+      STATUS: 'open',                /* open: 판매·알림 / soon: 준비 중 카드만 */
+      CATEGORY: '숏폼 · 부업',
+      TITLE: '숏폼대행 마스터',
+      SUB: '영상 몰라도 시작하는 숏폼 대행 실전 5주 과정',
+      TEACHER: '문찌언니',
+      THUMB: 'assets/teacher.webp',
+      COHORT: '2기',
+      FORMAT: '줌 라이브 5회 + 녹화본 3개월 다시보기',
+      PLANS: [
+        { ID: 'chageun', NAME: '차근차근 오프라인 밀착반', DESC: '온라인 강의 + 챌린지 + 오프라인 실습 2회', LIST: 3590000, PRICE: 3290000 },
+        { ID: 'tantan',  NAME: '탄탄대로 온라인반',       DESC: '온라인 강의 + 챌린지',                   LIST: 3190000, PRICE: 2890000 }
+      ],
+      URL: 'course-shortform.html'
+    },
+    {
+      ID: 'shortsfighter',
+      STATUS: 'soon',
+      CATEGORY: '숏폼 · 챌린지',
+      TITLE: '쇼츠파이터',
+      SUB: '함께 매일 올리며 숏폼 근육을 만드는 챌린지',
+      TEACHER: '문찌언니',
+      THUMB: '',
+      COHORT: '2기',
+      FORMAT: '준비 중',
+      PLANS: [],
+      URL: ''
+    }
+  ]
+};
+
+window.GP_FMT = {
+  won: function (n) { return Number(n).toLocaleString('ko-KR') + '원'; },
+  man: function (n) { return (Number(n) / 10000).toLocaleString('ko-KR') + '만원'; },
+  pct: function (l, p) { return ((l - p) / 10000).toLocaleString('ko-KR') + '만원 할인'; }
+};

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그로우픽 | 성장을 위한 교육을 선택하다</title>
+<meta name="description" content="그로우픽은 실제로 돈을 버는 사람에게 직접 배우는 실전 교육 플랫폼입니다. 숏폼 대행 등 부업·수익화 과정을 운영합니다.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo/favicon.svg?v=20260921c" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png?v=20260921c" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/logo/favicon.ico?v=20260921c" sizes="any">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png?v=20260921c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body>
+<header id="gh"></header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge">성장을 위한 교육을 선택하다</span>
+      <h1 style="margin-top:16px">지금 돈을 버는 사람에게<br><em>직접</em> 배웁니다</h1>
+      <p>이론만 아는 강사가 아니라, 오늘도 그 일로 수익을 내는 현업자가 가르칩니다. 수업이 끝나면 바로 써먹을 결과물이 손에 남습니다.</p>
+      <div class="btns">
+        <a class="btn" href="#classes">클래스 둘러보기</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="classes">
+    <div class="wrap">
+      <p class="eyebrow">CLASS</p>
+      <h2 class="h2">지금 열려 있는 클래스</h2>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <section class="sec gray">
+    <div class="wrap">
+      <p class="eyebrow">WHY GROWPIC</p>
+      <h2 class="h2">그로우픽이 고르는 기준</h2>
+      <div class="promise">
+        <div><b>현업자만 가르칩니다</b><p>지금 그 일로 돈을 벌고 있는지, 실제 계약서와 정산 내역으로 확인한 강사만 모십니다.</p></div>
+        <div><b>결과물이 남습니다</b><p>회차마다 포트폴리오, 견적서, 계약서처럼 바로 쓸 수 있는 산출물을 만듭니다.</p></div>
+        <div><b>환불 기준이 분명합니다</b><p>수업 진행 정도에 따라 환불 금액이 정해져 있습니다. 결제 전에 확인하실 수 있습니다. <a href="refund.html" style="text-decoration:underline">환불규정 보기</a></p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="gf"></footer>
+<script src="layout.js"></script>
+<script>
+(function () {
+  var G = window.GP, F = window.GP_FMT, B = G.BIZ;
+
+  var html = G.PRODUCTS.map(function (p) {
+    if (p.STATUS === 'soon') {
+      return '<div class="card"><div class="card-img soon">' + p.TITLE + '<span class="state">오픈 예정</span></div>' +
+        '<div class="card-body"><span class="card-cat">' + p.CATEGORY + ' · ' + p.TEACHER + '</span><span class="card-title">' + p.TITLE + ' ' + p.COHORT + '</span>' +
+        '<span class="card-sub">' + p.SUB + '</span><div class="card-price"><span class="from">상세 안내 준비 중</span></div></div></div>';
+    }
+    var low = p.PLANS.reduce(function (a, b) { return a.PRICE < b.PRICE ? a : b; });
+    var state = G.MODE === 'notify' ? p.COHORT + ' 알림 신청 중' : p.COHORT + ' 모집 중';
+    return '<a class="card" href="' + p.URL + '"><div class="card-img" style="background-image:url(' + p.THUMB + ');background-position:center 18%"><span class="state">' + state + '</span></div>' +
+      '<div class="card-body"><span class="card-cat">' + p.CATEGORY + ' · ' + p.TEACHER + '</span><span class="card-title">' + p.TITLE + '</span>' +
+      '<span class="card-sub">' + p.SUB + '</span>' +
+      '<div class="card-price"><span class="off">' + F.pct(low.LIST, low.PRICE) + '</span><span class="now">' + F.won(low.PRICE) + '~</span><span class="list">' + F.won(low.LIST) + '</span></div></div></a>';
+  }).join('');
+  document.getElementById('cards').innerHTML = html;
+})();
+</script>
+</body>
+</html>
