@@ -12,6 +12,11 @@ window.GP = {
                 ⚠️ PG 심사 기간에는 'sale' 로 두는 것을 권장. 심사자가 결제 흐름을 눌러보기 때문 */
   MODE: 'sale',     // 2026-09-21 PG 심사 대비 판매 모드. 승인 후 'notify' 로 되돌릴 것
 
+  /* 가격 표기 (2026-09-21 제안서 R3): 정가로 판 적이 없는데 '정가·할인'을 상시로 붙이면 표시광고법 종전가격 기준에 걸릴 수 있어
+     판매가만 보인다. 기간 한정 할인을 할 때만 true 로 바꾸고 기간·사유를 페이지에 함께 적을 것 */
+  SHOW_LIST: false,
+  INSTALL_MONTHS: 12,             /* 수강료 옆 '월 ○원' 할부 안내 (S5). 카드사 할부 수수료는 별도 */
+
   /* 알림 신청을 받을 주소 (Apps Script 웹앱). 비어 있으면 화면에서만 완료 처리되고 아무 데도 저장되지 않는다 */
   NOTIFY_ENDPOINT: '',
 
@@ -33,6 +38,7 @@ window.GP = {
   PRODUCTS: [
     {
       ID: 'shortform-agency',
+      TYPE: 'paid',                  /* paid: 유료 강의 / free: 무료 강의 (클래스 페이지 탭 구분) */
       STATUS: 'open',                /* open: 판매·알림 / soon: 준비 중 카드만 */
       CATEGORY: '숏폼 · 부업',
       TITLE: '숏폼대행 마스터',
@@ -49,14 +55,16 @@ window.GP = {
     },
     {
       ID: 'shortsfighter',
-      STATUS: 'soon',
-      CATEGORY: '숏폼 · 챌린지',
+      TYPE: 'free',
+      STATUS: 'notify',              /* notify: 상세 페이지 없이 카드에서 바로 알림 신청 */
+      CATEGORY: '숏폼 · 무료 라이브',
       TITLE: '쇼츠파이터',
-      SUB: '함께 매일 올리며 숏폼 근육을 만드는 챌린지',
+      SUB: '숏폼으로 첫 수익을 내는 법, 무료 라이브 강의',
       TEACHER: '문찌언니',
       THUMB: '',
       COHORT: '2기',
-      FORMAT: '준비 중',
+      DATE_TEXT: '10월 22일(목) 무료 라이브',   // 2026-09-21 기준 일정표 웹앱의 무료강의 날짜. 바뀌면 여기만
+      FORMAT: '줌 무료 라이브',
       PLANS: [],
       URL: ''
     }
@@ -66,5 +74,6 @@ window.GP = {
 window.GP_FMT = {
   won: function (n) { return Number(n).toLocaleString('ko-KR') + '원'; },
   man: function (n) { return (Number(n) / 10000).toLocaleString('ko-KR') + '만원'; },
+  monthly: function (p) { return Math.floor(p / (window.GP.INSTALL_MONTHS || 12)).toLocaleString('ko-KR') + '원'; },
   pct: function (l, p) { return ((l - p) / 10000).toLocaleString('ko-KR') + '만원 할인'; }
 };

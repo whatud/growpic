@@ -22,9 +22,10 @@
     <h2>주문 상품</h2>
     <div class="row2"><span id="o-name"></span></div>
     <div class="fld"><label for="o-plan">반 선택</label><select id="o-plan"></select></div>
-    <div class="row2" style="margin-top:12px"><span>정가</span><s id="o-list"></s></div>
-    <div class="row2"><span>할인</span><span id="o-off" style="color:var(--sale);font-weight:700"></span></div>
+    <div class="row2 listrow" style="margin-top:12px"><span>정가</span><s id="o-list"></s></div>
+    <div class="row2 listrow"><span>할인</span><span id="o-off" style="color:var(--sale);font-weight:700"></span></div>
     <div class="row2 total"><b>최종 결제 금액</b><b id="o-total"></b></div>
+    <p id="o-mon" style="font-size:14px;color:var(--ink-3);text-align:right;margin-top:4px"></p>
   </section>
 
   <section class="box">
@@ -71,7 +72,10 @@
     document.getElementById('o-off').textContent = '- ' + F.won(pl.LIST - pl.PRICE);
     document.getElementById('o-total').textContent = F.won(pl.PRICE);
     document.getElementById('pay').textContent = F.won(pl.PRICE) + ' 결제하기';
+    document.getElementById('o-mon').textContent = G.INSTALL_MONTHS + '개월 할부 시 월 ' + F.monthly(pl.PRICE) + ' (카드사 할부 수수료 별도)';
   }
+  /* 정가·할인 줄은 SHOW_LIST 일 때만 (제안서 R3) */
+  document.querySelectorAll('.listrow').forEach(function (r) { r.style.display = G.SHOW_LIST ? '' : 'none'; });
   sel.addEventListener('change', draw); draw();
 
   document.querySelectorAll('.paym input').forEach(function (r) {

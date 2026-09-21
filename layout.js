@@ -12,9 +12,43 @@
   var header = document.getElementById('gh');
   if (header) {
     header.className = 'gh';
-    header.innerHTML = '<div class="wrap"><a class="gh-logo" href="index.html">' + LOGO + '</a>' +
-      '<nav><a href="index.html#classes">클래스</a></nav></div>';
+    var here = (location.pathname.split('/').pop() || 'index.html');
+    var NAV = [['classes.html', '클래스', ['classes.html', 'course-shortform.html', 'order.html']],
+               ['about.html', '소개', ['about.html']],
+               ['blog.html', '블로그', ['blog.html', 'post.html']]];
+    header.innerHTML = '<div class="wrap"><a class="gh-logo" href="index.html">' + LOGO + '</a><nav>' +
+      NAV.map(function (n) { return '<a href="' + n[0] + '"' + (n[2].indexOf(here) > -1 ? ' class="on" aria-current="page"' : '') + '>' + n[1] + '</a>'; }).join('') +
+      '</nav></div>';
   }
+
+  /* ---- 클래스 카드 (홈·클래스 페이지 공용) ---- */
+  window.GP_card = function (p) {
+    var F = window.GP_FMT, free = p.TYPE === 'free';
+    var tag = '<span class="ptype ' + (free ? 'free' : 'paid') + '">' + (free ? '무료 강의' : '유료 강의') + '</span>';
+    var img = p.THUMB ? '<div class="card-img" style="background-image:url(' + p.THUMB + ');background-position:center 18%">'
+                      : '<div class="card-img soon">' + esc(p.TITLE) + '<small>' + esc(p.COHORT) + '</small>';
+    if (p.STATUS === 'soon') {
+      return '<div class="card">' + img + '<span class="state">오픈 예정</span></div><div class="card-body">' + tag +
+        '<span class="card-cat">' + esc(p.CATEGORY) + ' · ' + esc(p.TEACHER) + '</span><span class="card-title">' + esc(p.TITLE) + '</span>' +
+        '<span class="card-sub">' + esc(p.SUB) + '</span><div class="card-price"><span class="from">상세 안내 준비 중</span></div></div></div>';
+    }
+    if (free) {
+      return '<button type="button" class="card" data-notify="' + p.ID + '">' + img + '<span class="state">' + esc(p.DATE_TEXT || '알림 신청 중') + '</span></div>' +
+        '<div class="card-body">' + tag + '<span class="card-cat">' + esc(p.CATEGORY) + ' · ' + esc(p.TEACHER) + '</span><span class="card-title">' + esc(p.TITLE) + ' ' + esc(p.COHORT) + '</span>' +
+        '<span class="card-sub">' + esc(p.SUB) + '</span><div class="card-price"><span class="now">0원</span><span class="go">알림 신청 →</span></div></div></button>';
+    }
+    var low = p.PLANS.reduce(function (a, b) { return a.PRICE < b.PRICE ? a : b; });
+    var state = G.MODE === 'notify' ? p.COHORT + ' 알림 신청 중' : p.COHORT + ' 모집 중';
+    return '<a class="card" href="' + p.URL + '">' + img + '<span class="state">' + esc(state) + '</span></div>' +
+      '<div class="card-body">' + tag + '<span class="card-cat">' + esc(p.CATEGORY) + ' · ' + esc(p.TEACHER) + '</span><span class="card-title">' + esc(p.TITLE) + '</span>' +
+      '<span class="card-sub">' + esc(p.SUB) + '</span>' +
+      '<div class="card-price">' + (G.SHOW_LIST ? '<span class="off">' + F.pct(low.LIST, low.PRICE) + '</span>' : '') + '<span class="now">' + F.won(low.PRICE) + '~</span>' +
+      (G.SHOW_LIST ? '<span class="list">' + F.won(low.LIST) + '</span>' : '<span class="from">' + G.INSTALL_MONTHS + '개월 할부 시 월 ' + F.monthly(low.PRICE) + '~</span>') + '</div></div></a>';
+  };
+  document.addEventListener('click', function (e) {
+    var c = e.target.closest && e.target.closest('[data-notify]');
+    if (c) window.GP_openNotify(c.getAttribute('data-notify'));
+  });
 
   var footer = document.getElementById('gf');
   if (footer) {
@@ -62,7 +96,11 @@
     var sel = modal.querySelector('#nf-plan');
     var opts = p.PLANS.length ? p.PLANS.map(function (pl) { return '<option value="' + pl.ID + '"' + (pl.ID === planId ? ' selected' : '') + '>' + esc(pl.NAME) + '</option>'; }).join('') : '';
     sel.innerHTML = opts + '<option value="undecided">아직 모르겠어요</option>';
-    modal.querySelector('#nm-t').textContent = p.TITLE + ' ' + p.COHORT + ' 오픈 알림 신청';
+    sel.closest('.fld').style.display = p.PLANS.length ? '' : 'none';     // 무료 강의는 반 선택 없음
+    modal.querySelector('#nm-t').textContent = p.TYPE === 'free' ? p.TITLE + ' ' + p.COHORT + ' 무료 강의 알림 신청' : p.TITLE + ' ' + p.COHORT + ' 오픈 알림 신청';
+    modal.querySelector('#nf .desc').textContent = p.TYPE === 'free' && p.DATE_TEXT
+      ? p.DATE_TEXT + '. 입장 링크와 시작 전 알림을 카카오톡(문자)으로 보내드립니다.'
+      : '모집이 열리면 카카오톡(문자)으로 가장 먼저 알려드립니다.';
     modal.querySelector('#nf').style.display = '';
     modal.querySelector('#nf-done').style.display = 'none';
     modal.querySelector('#nf-err').textContent = '';

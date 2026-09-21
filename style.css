@@ -181,6 +181,106 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,25,31,.08
 .gf .todo{background:#FFF3C4;color:#7A5B00;padding:0 4px;border-radius:4px;font-weight:700}
 .gf .copy{margin-top:14px}
 
+/* ---- 상단 메뉴 현재 위치 ---- */
+.gh nav a{position:relative;padding:6px 0}
+.gh nav a.on{color:var(--ink);font-weight:800}
+.gh nav a.on::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--accent)}
+
+/* ---- 카드 보강: 무료/유료 표시, 버튼형 카드(무료 강의 알림) ---- */
+button.card{font:inherit;text-align:left;cursor:pointer;padding:0;width:100%;color:inherit}
+button.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,25,31,.08)}
+.card-img.soon{flex-direction:column;gap:4px;background:linear-gradient(135deg,#0B3B2C,#00875A)}
+.card-img.soon small{font-size:16px;font-weight:700;opacity:.85}
+.ptype{align-self:flex-start;font-size:14px;font-weight:800;padding:3px 8px;border-radius:6px;margin-bottom:8px}
+.ptype.free{background:var(--accent-soft);color:var(--accent-ink)}
+.ptype.paid{background:#EEF0F3;color:var(--ink-2)}
+.card-price .go{margin-left:auto;font-size:15px;font-weight:800;color:var(--accent-ink)}
+
+/* ---- 페이지 머리 (클래스·소개·블로그) ---- */
+.phead{padding:56px 0 8px}
+.phead h1{font-size:36px;font-weight:800;letter-spacing:-.04em;line-height:1.3}
+.phead p{font-size:18px;color:var(--ink-2);margin-top:10px}
+.tabs{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.tabs button{height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:16px;font-weight:700;color:var(--ink-2)}
+.tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.group{padding:36px 0 8px}
+.group h2{font-size:22px;font-weight:800;display:flex;align-items:baseline;gap:10px}
+.group h2 small{font-size:15px;font-weight:600;color:var(--ink-3)}
+.group .cards{margin-top:18px}
+.empty{border:1px dashed #CBD2D9;border-radius:var(--r);padding:44px 20px;text-align:center;color:var(--ink-3);font-size:16px}
+.empty b{display:block;color:var(--ink);font-size:18px;margin-bottom:6px}
+
+/* ---- 소개 ---- */
+.story{max-width:760px}
+.story .lede{font-size:26px;font-weight:800;line-height:1.5;letter-spacing:-.03em;margin-top:8px}
+.story h2{font-size:22px;font-weight:800;margin:48px 0 12px}
+.story p{font-size:18px;color:var(--ink-2);margin-top:12px;line-height:1.8}
+.story .quote{margin-top:40px;padding:28px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);font-size:22px;font-weight:800;line-height:1.55;letter-spacing:-.03em}
+.story .quote span{display:block;font-size:15px;font-weight:600;color:var(--ink-3);margin-top:10px;letter-spacing:0}
+.rules{display:grid;gap:0;margin-top:14px;border-top:1px solid var(--line)}
+.rules > div{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:20px 0;border-bottom:1px solid var(--line)}
+.rules b{font-size:15px;font-weight:800;color:var(--accent-ink);padding-top:3px}
+.rules strong{display:block;font-size:19px;font-weight:800}
+.rules p{margin-top:4px;font-size:17px}
+.company{margin-top:18px}
+
+/* ---- 블로그 ---- */
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}
+.post-card{display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff}
+.post-card:hover{box-shadow:0 12px 28px rgba(20,25,31,.08)}
+.post-card .pc-img{aspect-ratio:16/10;background:#E9EDF1 center/cover no-repeat}
+.post-card .pc-body{padding:16px 18px 20px}
+.post-card .pc-cat{font-size:14px;font-weight:800;color:var(--accent-ink)}
+.post-card .pc-title{display:block;font-size:19px;font-weight:800;line-height:1.45;margin-top:6px}
+.post-card .pc-ex{font-size:15px;color:var(--ink-2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-card .pc-meta{font-size:14px;color:var(--ink-3);margin-top:12px}
+.article{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+.article .a-cat{font-size:15px;font-weight:800;color:var(--accent-ink)}
+.article h1{font-size:34px;font-weight:800;line-height:1.35;letter-spacing:-.04em;margin-top:8px}
+.article .a-meta{display:flex;align-items:center;gap:10px;margin-top:18px;padding-bottom:22px;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-3)}
+.article .a-meta .av{width:36px;height:36px;border-radius:50%;background:#DDE3EA center 15%/cover no-repeat}
+.article .a-meta b{color:var(--ink);font-weight:700}
+.article .a-body{margin-top:28px;font-size:18px;line-height:1.85;color:#2B3440}
+.article .a-body p{margin-top:18px}
+.article .a-body h2{font-size:24px;font-weight:800;margin-top:40px;color:var(--ink)}
+.article .a-body figure{margin:28px 0}
+.article .a-body img{width:100%;border-radius:12px}
+.article .a-body figcaption{font-size:14px;color:var(--ink-3);margin-top:8px;text-align:center}
+.article .a-back{display:inline-block;margin-top:44px;font-weight:700;color:var(--ink-2)}
+.preview-flag{background:#FFF3C4;color:#7A5B00;font-size:14px;font-weight:700;padding:8px 12px;border-radius:8px;margin-top:16px;display:inline-block}
+
+/* ---- 홈 증거 띠 (제안서 S1) ---- */
+.proof{background:var(--ink);color:#fff;padding:64px 0 40px}
+.proof > .wrap:first-child{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+.proof .eyebrow{color:#7FE3B4}
+.proof-num strong{display:block;font-size:34px;font-weight:800;line-height:1.35;letter-spacing:-.04em}
+.proof-num strong em{font-style:normal;color:#7FE3B4}
+.proof-num p{font-size:17px;color:#C9D1DA;margin-top:14px}
+.proof-num .more{display:inline-block;margin-top:18px;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px}
+.proof-shots{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.proof-shots img{border-radius:12px;width:100%;background:#fff}
+.proof-shots img:first-child{grid-column:1 / -1}
+.proof .note{color:#A9B3BE;margin-top:22px}
+
+/* ---- 상세: 실제 단가·계약서, 강사 이력, 할부 ---- */
+/* 단가표: 머리줄은 thead th. 첫 칸(업체)만 왼쪽, 숫자 세 칸은 머리줄·값 모두 오른쪽 정렬 + 고정폭 숫자 */
+.price-t{table-layout:fixed}
+.price-t thead th{background:var(--bg-2);font-size:15px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.price-t th:first-child{width:31%}
+.price-t th:not(:first-child){width:auto} /* .info th 의 30% 폭이 숫자 칸 머리에 붙지 않게 */
+.price-t tbody th{background:#fff;color:var(--ink)}
+.price-t th:not(:first-child),.price-t td{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.price-t td:last-child{color:var(--ink);font-weight:700}
+.proof-imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.proof-imgs img{border-radius:10px;border:1px solid var(--line);width:100%}
+.proof-imgs figcaption{font-size:14px;color:var(--ink-3);margin-top:6px}
+.bio{list-style:none;margin-top:18px;border-top:1px solid var(--line)}
+.bio li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--ink-2)}
+.bio li span{font-size:14px;font-weight:800;color:var(--accent-ink);padding-top:2px}
+.mon{display:block;width:100%;font-size:14px;font-weight:600;color:var(--ink-2);margin-top:2px} /* ink-3 는 선택된 옵션(연초록 배경)에서 4.33 → ink-2 */
+.proof-shots img:not(:first-child){aspect-ratio:1100/355;object-fit:cover;object-position:top} /* 입금 캡처 두 장 높이 통일 */
+.card-price .now + .from{flex-basis:100%} /* 할부 줄은 폭과 상관없이 항상 가격 아래 */
+
 /* ---- 반응형 (맨 아래 둘 것) ---- */
 @media (max-width:1000px){
   .detail{grid-template-columns:minmax(0,1fr);gap:0}
@@ -193,6 +293,9 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,25,31,.08
 }
 @media (max-width:860px){
   .promise{grid-template-columns:1fr} /* 태블릿에서 3칸이면 한 칸 190px라 4줄로 늘어진다 */
+  .bgrid{grid-template-columns:1fr 1fr}
+  .proof > .wrap:first-child{grid-template-columns:1fr;gap:28px}
+  .proof-shots{max-width:560px} /* 한 칸 배치에서 계약서가 화면을 다 덮지 않게 */
 }
 @media (max-width:640px){
   body{font-size:16px}
@@ -213,4 +316,28 @@ a.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,25,31,.08
   .teacher{grid-template-columns:84px 1fr}
   .teacher .ph{width:84px;height:84px}
   .paym{grid-template-columns:1fr}
+  .gh nav{gap:16px}
+  .phead{padding:40px 0 4px}
+  .phead h1{font-size:28px}
+  .phead p{font-size:16px}
+  .story .lede{font-size:21px}
+  .story p{font-size:16px}
+  .story .quote{font-size:19px}
+  .rules > div{grid-template-columns:48px 1fr}
+  .bgrid{grid-template-columns:1fr}
+  .article h1{font-size:26px}
+  .article .a-body{font-size:17px}
+  .proof{padding:48px 0 32px}
+  .proof-num strong{font-size:26px}
+  .proof-num p{font-size:16px}
+  .proof-imgs{grid-template-columns:1fr}
+  .proof-shots{grid-template-columns:1fr;gap:10px} /* 입금 캡처를 반폭으로 두면 금액 글씨가 8px 로 안 읽힌다 */
+  .price-t th,.price-t td{padding:11px 8px;font-size:15px}
 }
+
+/* ---- 검수 보강 (2026-09-21 slide-qa) ---- */
+/* 글이 짧은 페이지(블로그 빈 상태 등)에서 푸터 아래 흰 띠가 생기지 않게 푸터를 화면 바닥에 붙인다 */
+body{min-height:100vh;display:flex;flex-direction:column}
+body > *{width:100%;flex-shrink:0}
+body > .gf{margin-top:auto}
+.nw{white-space:nowrap} /* 이메일·전화번호 중간 줄바꿈 방지 */

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>블로그 | 그로우픽</title>
+<meta name="description" content="그로우픽 강사들이 현장에서 직접 쓰는 글.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="그로우픽">
+<meta property="og:title" content="블로그 | 그로우픽">
+<meta property="og:description" content="강사들이 현장에서 겪은 일을 직접 씁니다.">
+<meta property="og:url" content="https://growpick.kr/blog.html">
+<meta property="og:image" content="https://growpick.kr/assets/og/og_home.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg?v=20260921c" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png?v=20260921c" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/logo/favicon.ico?v=20260921c" sizes="any">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png?v=20260921c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="blog-data.js"></script>
+</head>
+<body>
+<header id="gh"></header>
+
+<main class="wrap" style="padding-bottom:80px">
+  <section class="phead">
+    <h1>블로그</h1>
+    <p>강사들이 현장에서 겪은 일을 직접 씁니다.</p>
+    <div id="flag"></div>
+    <div class="tabs" id="cats"></div>
+  </section>
+  <div class="bgrid" id="list"></div>
+</main>
+
+<footer id="gf"></footer>
+<script src="layout.js"></script>
+<script>
+(function () {
+  var posts = window.GP_postsForView();
+  var pv = /[?&]preview=1/.test(location.search);
+  if (pv) document.getElementById('flag').innerHTML = '<span class="preview-flag">미리보기: 예시 글이 함께 보이는 화면입니다 (실제 사이트엔 안 보임)</span>';
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var cats = ['전체'].concat(posts.map(function (p) { return p.cat; }).filter(function (c, i, a) { return a.indexOf(c) === i; }));
+  var catBox = document.getElementById('cats');
+  catBox.innerHTML = posts.length ? cats.map(function (c, i) { return '<button type="button"' + (i ? '' : ' class="on"') + ' data-c="' + esc(c) + '">' + esc(c) + '</button>'; }).join('') : '';
+  function draw(cat) {
+    var list = posts.filter(function (p) { return cat === '전체' || p.cat === cat; });
+    document.getElementById('list').innerHTML = list.length ? list.map(function (p) {
+      return '<a class="post-card" href="post.html?id=' + encodeURIComponent(p.id) + (pv ? '&preview=1' : '') + '">' +
+        '<div class="pc-img"' + (p.cover ? ' style="background-image:url(' + esc(p.cover) + ')"' : '') + '></div>' +
+        '<div class="pc-body"><span class="pc-cat">' + esc(p.cat) + '</span><span class="pc-title">' + esc(p.title) + '</span>' +
+        '<p class="pc-ex">' + esc(p.excerpt || '') + '</p><p class="pc-meta">' + esc(p.author) + ' · ' + esc(p.date.replace(/-/g, '.')) + '</p></div></a>';
+    }).join('') : '<div class="empty" style="grid-column:1/-1"><b>첫 글을 준비하고 있습니다</b>강사들이 현장 이야기를 곧 올립니다.</div>';
+  }
+  catBox.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    catBox.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    draw(b.getAttribute('data-c'));
+  });
+  draw('전체');
+})();
+</script>
+</body>
+</html>

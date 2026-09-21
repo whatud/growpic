@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>클래스 | 그로우픽</title>
+<meta name="description" content="그로우픽의 무료 강의와 유료 강의를 한눈에 확인하세요.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="그로우픽">
+<meta property="og:title" content="클래스 | 그로우픽">
+<meta property="og:description" content="무료 강의로 먼저 맛보고, 맞다 싶으면 유료 과정으로.">
+<meta property="og:url" content="https://growpick.kr/classes.html">
+<meta property="og:image" content="https://growpick.kr/assets/og/og_free.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg?v=20260921c" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png?v=20260921c" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/logo/favicon.ico?v=20260921c" sizes="any">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png?v=20260921c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body>
+<header id="gh"></header>
+
+<main class="wrap" style="padding-bottom:72px">
+  <section class="phead">
+    <h1>클래스</h1>
+    <p>무료 강의로 먼저 맛보고, 맞다 싶으면 유료 과정으로 깊이 들어가세요.</p>
+    <div class="tabs" role="tablist">
+      <button type="button" data-f="all" class="on" role="tab">전체</button>
+      <button type="button" data-f="free" role="tab">무료 강의</button>
+      <button type="button" data-f="paid" role="tab">유료 강의</button>
+    </div>
+  </section>
+
+  <section class="group" data-g="free">
+    <h2>무료 강의 <small id="n-free"></small></h2>
+    <div class="cards" id="c-free"></div>
+  </section>
+  <section class="group" data-g="paid">
+    <h2>유료 강의 <small id="n-paid"></small></h2>
+    <div class="cards" id="c-paid"></div>
+  </section>
+</main>
+
+<footer id="gf"></footer>
+<script src="layout.js"></script>
+<script>
+(function () {
+  var P = window.GP.PRODUCTS;
+  ['free', 'paid'].forEach(function (t) {
+    var list = P.filter(function (p) { return p.TYPE === t; });
+    document.getElementById('n-' + t).textContent = list.length + '개';
+    document.getElementById('c-' + t).innerHTML = list.length ? list.map(window.GP_card).join('')
+      : '<div class="empty" style="grid-column:1/-1"><b>준비 중인 강의가 있습니다</b>새 강의가 열리면 이곳에 가장 먼저 올라옵니다.</div>';
+  });
+  /* 탭: 주소 #free / #paid 로 바로 들어와도 해당 탭이 열린다 */
+  function show(f) {
+    document.querySelectorAll('.tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-f') === f); });
+    document.querySelectorAll('.group').forEach(function (g) { g.style.display = (f === 'all' || g.getAttribute('data-g') === f) ? '' : 'none'; });
+  }
+  document.querySelector('.tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var f = b.getAttribute('data-f'); show(f);
+    history.replaceState(null, '', f === 'all' ? location.pathname : '#' + f);
+  });
+  var h = location.hash.slice(1); show(h === 'free' || h === 'paid' ? h : 'all');
+})();
+</script>
+</body>
+</html>

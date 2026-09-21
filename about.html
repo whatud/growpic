@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>소개 | 그로우픽</title>
+<meta name="description" content="그로우픽은 지금 그 일로 돈을 버는 현업자에게 직접 배우는 교육 서비스입니다.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="그로우픽">
+<meta property="og:title" content="소개 | 그로우픽">
+<meta property="og:description" content="강의는 넘치는데, 믿고 고를 기준은 없었습니다.">
+<meta property="og:url" content="https://growpick.kr/about.html">
+<meta property="og:image" content="https://growpick.kr/assets/og/og_home.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg?v=20260921c" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png?v=20260921c" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/logo/favicon.ico?v=20260921c" sizes="any">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png?v=20260921c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body>
+<header id="gh"></header>
+
+<main class="wrap" style="padding-bottom:80px">
+  <article class="story phead">
+    <span class="badge">성장을 위한 교육을 선택하다</span>
+    <h1 style="margin-top:14px">그로우픽 이야기</h1>
+    <p class="lede">강의는 넘치는데, 믿고 고를 기준은 없었습니다.</p>
+
+    <h2>왜 시작했나요</h2>
+    <p>부업과 수익화를 알려준다는 강의는 매일 새로 생깁니다. 그런데 결제 버튼을 누르기 전에 정작 궁금한 건 잘 보이지 않습니다. 이 강사가 지금도 그 일로 돈을 벌고 있는지, 수업이 끝나면 내 손에 무엇이 남는지, 마음이 바뀌면 얼마를 돌려받는지 같은 것들입니다.</p>
+    <p>그로우픽은 이 세 가지를 결제 전에 먼저 보여주자는 생각에서 출발했습니다. 이름에 담은 뜻도 같습니다. 성장(grow)을 위한 교육을 고르는(pick) 일이 운이 아니라 확인의 결과가 되도록 돕고 싶었습니다.</p>
+
+    <div class="quote">배운 사람보다, 지금 그 일을 하고 있는 사람에게 배우는 게 빠릅니다.<span>그로우픽이 강사를 모시는 첫 번째 이유</span></div>
+
+    <h2>그로우픽이 지키는 기준</h2>
+    <div class="rules">
+      <div><b>기준 1</b><div><strong>지금 하는 사람만 가르칩니다</strong><p>그로우픽은 강의 주제로 지금 실제 돈을 버는 사람만 강사로 모십니다. 계약서와 정산 내역으로 확인한 뒤 강의를 엽니다.</p></div></div>
+      <div><b>기준 2</b><div><strong>결과물이 남는 수업만 엽니다</strong><p>포트폴리오, 견적서, 계약서처럼 수업이 끝난 다음 날 바로 쓸 수 있는 산출물이 커리큘럼에 들어 있어야 합니다.</p></div></div>
+      <div><b>기준 3</b><div><strong>숫자로 과장하지 않습니다</strong><p>"누구나 월 얼마" 같은 수익 보장 문구는 쓰지 않습니다. 성과 사례는 실제 자료만 싣고, 개인의 결과는 노력과 환경에 따라 다르다는 점을 함께 적습니다.</p></div></div>
+      <div><b>기준 4</b><div><strong>환불 기준을 먼저 공개합니다</strong><p>수업이 시작된 뒤에도 해지할 수 있고, 돌려받는 금액을 계산하는 방법까지 모든 강의 상세 페이지에 결제 전에 보이도록 둡니다.</p></div></div>
+    </div>
+
+    <h2>첫 번째 클래스</h2>
+    <p>그로우픽의 첫 과정은 숏폼 대행 강의입니다. 강사 문찌언니는 지금도 여러 업체와 월 단위로 숏폼 대행 계약을 맺고 일하고 있습니다. 1기는 2026년 9월에 문을 열었고, 무료 강의와 다음 기수를 준비하고 있습니다.</p>
+    <p style="margin-top:18px"><a class="btn" href="classes.html">클래스 보러 가기</a></p>
+
+    <h2>운영사</h2>
+    <table class="info company" id="company"></table>
+  </article>
+</main>
+
+<footer id="gf"></footer>
+<script src="layout.js"></script>
+<script>
+(function () {
+  var B = window.GP.BIZ;
+  var rows = [['상호', B.COMPANY], ['대표', B.CEO], ['사업자등록번호', B.BIZ_NO], ['통신판매업 신고번호', B.SALES_NO], ['주소', B.ADDRESS], ['문의', '<span class="nw">' + B.EMAIL + '</span> · <span class="nw">' + B.PHONE + '</span>']];
+  document.getElementById('company').innerHTML = rows.map(function (r) { return '<tr><th>' + r[0] + '</th><td>' + r[1] + '</td></tr>'; }).join('');
+})();
+</script>
+</body>
+</html>
