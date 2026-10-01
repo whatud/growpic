@@ -32,6 +32,12 @@
         '<span class="card-cat">' + esc(p.CATEGORY) + ' · ' + esc(p.TEACHER) + '</span><span class="card-title">' + esc(p.TITLE) + '</span>' +
         '<span class="card-sub">' + esc(p.SUB) + '</span><div class="card-price"><span class="from">상세 안내 준비 중</span></div></div></div>';
     }
+    if (free && p.URL) {
+      /* 랜딩이 있는 무료 강의: 카드가 랜딩으로 이어진다 (쇼츠파이터) */
+      return '<a class="card" href="' + p.URL + '">' + img + '<span class="state">' + esc(p.DATE_TEXT || '무료 라이브') + '</span></div>' +
+        '<div class="card-body">' + tag + '<span class="card-cat">' + esc(p.CATEGORY) + ' · ' + esc(p.TEACHER) + '</span><span class="card-title">' + esc(p.TITLE) + ' ' + esc(p.COHORT) + '</span>' +
+        '<span class="card-sub">' + esc(p.SUB) + '</span><div class="card-price"><span class="now">0원</span><span class="go">무료 라이브 신청 →</span></div></div></a>';
+    }
     if (free) {
       return '<button type="button" class="card" data-notify="' + p.ID + '">' + img + '<span class="state">' + esc(p.DATE_TEXT || '알림 신청 중') + '</span></div>' +
         '<div class="card-body">' + tag + '<span class="card-cat">' + esc(p.CATEGORY) + ' · ' + esc(p.TEACHER) + '</span><span class="card-title">' + esc(p.TITLE) + ' ' + esc(p.COHORT) + '</span>' +

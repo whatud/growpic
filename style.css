@@ -343,3 +343,16 @@ body{min-height:100vh;display:flex;flex-direction:column}
 body > *{width:100%;flex-shrink:0}
 body > .gf{margin-top:auto}
 .nw{white-space:nowrap} /* 이메일·전화번호 중간 줄바꿈 방지 */
+
+/* ---- 검수 보강 (2026-10-01 slide-qa) ---- */
+/* 토스 결제위젯은 iframe 안에 자체 좌우 여백(24px)이 있다. 박스 안쪽 여백과 겹치면 내용이 48px 들어가 모바일에서 결제수단 칸이 좁아지므로 박스 여백만큼 바깥으로 뺀다 */
+.toss-box #payment-method,.toss-box #agreement{margin-left:-22px;margin-right:-22px}
+/* 카드사 심사 기간처럼 카드가 1장뿐일 때: 3칸 격자 왼쪽 1칸에 홀로 있으면 오른쪽 2/3가 비므로 가로형으로 펼친다 */
+@media (min-width:641px){
+  .cards > .card:only-child{grid-column:1 / -1;flex-direction:row;max-width:820px}
+  .cards > .card:only-child .card-img{flex:0 0 46%;aspect-ratio:4/3}
+  .cards > .card:only-child .card-body{padding:28px 30px;justify-content:center}
+  .cards > .card:only-child .card-title{font-size:24px}
+  .cards > .card:only-child .card-price{margin-top:22px;flex:0 0 auto}
+}
+.btn:empty{display:none} /* 결제 정보 없이 들어온 결제확인 화면에서 빈 문의 버튼이 흰 상자로 남지 않게 */

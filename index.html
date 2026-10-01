@@ -33,8 +33,8 @@
       <h1 style="margin-top:16px">배운 사람 말고,<br><em>지금 계약서를 쓰는</em> 사람에게</h1>
       <p>그로우픽 강사는 오늘도 그 일로 돈을 받는 현업자입니다. 수업이 끝나면 포트폴리오, 견적서, 계약서가 손에 남습니다.</p>
       <div class="btns">
-        <a class="btn" href="classes.html#free">무료 강의 먼저 들어보기</a>
-        <a class="btn line" href="classes.html">전체 클래스</a>
+        <a class="btn" href="classes.html#free" id="hero-free">무료 강의 먼저 들어보기</a>
+        <a class="btn line" href="classes.html" id="hero-all">전체 클래스</a>
       </div>
     </div>
   </section>
@@ -85,7 +85,12 @@
 <script>
 (function () {
   /* 카드 모양은 layout.js 의 GP_card 한 곳에서 만든다 (클래스 페이지와 공용). 무료 강의를 먼저 보여준다 */
-  var list = window.GP.PRODUCTS.slice().sort(function (a, b) { return (a.TYPE === 'free' ? 0 : 1) - (b.TYPE === 'free' ? 0 : 1); });
+  /* 무료 강의가 숨겨진 기간(카드사 심사)에는 첫 버튼을 클래스 보기로 */
+  if (!window.GP_visible().some(function (p) { return p.TYPE === 'free'; })) {
+    var hf = document.getElementById('hero-free'); hf.textContent = '클래스 보러 가기'; hf.href = 'classes.html';
+    document.getElementById('hero-all').remove();
+  }
+  var list = window.GP_visible().sort(function (a, b) { return (a.TYPE === 'free' ? 0 : 1) - (b.TYPE === 'free' ? 0 : 1); });
   document.getElementById('cards').innerHTML = list.map(window.GP_card).join('');
 })();
 </script>

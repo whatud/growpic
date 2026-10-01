@@ -51,11 +51,18 @@
 <script src="layout.js"></script>
 <script>
 (function () {
-  var P = window.GP.PRODUCTS;
+  var P = window.GP_visible();
+  /* 보여줄 무료 강의가 없으면(카드사 심사 기간 숨김) 무료 탭과 구역을 통째로 뺀다. 빈 카테고리도 심사 반려 사유 */
+  if (!P.some(function (p) { return p.TYPE === 'free'; })) {
+    document.querySelector('[data-g="free"]').remove();
+    document.querySelector('.tabs').remove();
+    document.querySelector('.phead p').textContent = '지금 수강 신청할 수 있는 과정입니다.';
+  }
   ['free', 'paid'].forEach(function (t) {
+    var box = document.getElementById('c-' + t); if (!box) return;
     var list = P.filter(function (p) { return p.TYPE === t; });
     document.getElementById('n-' + t).textContent = list.length + '개';
-    document.getElementById('c-' + t).innerHTML = list.length ? list.map(window.GP_card).join('')
+    box.innerHTML = list.length ? list.map(window.GP_card).join('')
       : '<div class="empty" style="grid-column:1/-1"><b>준비 중인 강의가 있습니다</b>새 강의가 열리면 이곳에 가장 먼저 올라옵니다.</div>';
   });
   /* 탭: 주소 #free / #paid 로 바로 들어와도 해당 탭이 열린다 */
@@ -63,6 +70,7 @@
     document.querySelectorAll('.tabs button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-f') === f); });
     document.querySelectorAll('.group').forEach(function (g) { g.style.display = (f === 'all' || g.getAttribute('data-g') === f) ? '' : 'none'; });
   }
+  if (!document.querySelector('.tabs')) return;
   document.querySelector('.tabs').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     var f = b.getAttribute('data-f'); show(f);
