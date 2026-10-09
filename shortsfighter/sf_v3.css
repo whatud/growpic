@@ -186,7 +186,12 @@
 .letter p.lt-hi{font-size:2.05rem;color:#111;margin-bottom:2.3rem}
 .letter p.lt-end{font-size:1.85rem;color:#111}
 .letter p.lt-sign{text-align:right;font-size:1.9rem;margin:0;color:#111}
-.letter mark{background:linear-gradient(transparent 58%,rgba(3,199,90,.38) 58%);color:inherit;padding:0 .1em}
+/* 실제 형광펜 느낌: 끝이 비스듬하고, 진하기가 고르지 않고, 글자 아래쪽에 치우침. 줄이 바뀌어도 줄마다 따로 칠해짐 */
+.letter mark{color:inherit;padding:.05em .28em .02em;margin:0 -.12em;border-radius:.6em .25em .7em .3em;
+  background:
+    linear-gradient(100deg,rgba(110,231,160,0) .8%,rgba(110,231,160,.85) 3%,rgba(110,231,160,.55) 7%,rgba(110,231,160,.45) 50%,rgba(110,231,160,.6) 90%,rgba(110,231,160,.9) 96%,rgba(110,231,160,0) 99%) 0 72%/100% 58% no-repeat,
+    linear-gradient(178deg,rgba(110,231,160,0) 30%,rgba(80,210,140,.35) 60%,rgba(110,231,160,0) 95%) 0 80%/100% 70% no-repeat;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
 .lt-photos{display:flex;justify-content:center;gap:1rem;margin:0 0 2.3rem;flex-wrap:wrap}
 .polaroid{margin:0;background:#fff;padding:.5rem .5rem .3rem;width:min(13rem,72%);box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .polaroid.p1{transform:rotate(-2.5deg)}
