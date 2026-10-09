@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>신청 완료 | 쇼츠파이터 무료 라이브 (v3 미리보기)</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/flame.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sf.css?v=20260928d">
+<script src="../config.js"></script>
+<script src="sf-config.js"></script>
+<style>
+  body{padding-bottom:0}
+  footer{padding-bottom:2.75rem}   /* 이 페이지엔 하단 고정 바가 없다 */
+  .todo b{font-size:1.1875rem}
+  .done-hero{background:var(--dark);color:#fff;padding:2.5rem 0 3rem;position:relative;overflow:hidden;text-align:center}
+  .done-hero .check{width:4.5rem;height:4.5rem;border-radius:50%;background:var(--green);display:grid;place-items:center;margin:0 auto 1.2rem;box-shadow:0 0 0 .8rem rgba(3,199,90,.15);animation:pop .5s ease both}
+  @keyframes pop{from{transform:scale(.5);opacity:0}to{transform:none;opacity:1}}
+  .done-hero h1{font-family:var(--title);font-weight:400;font-size:2.6rem;line-height:1.2;letter-spacing:-.03em;margin-bottom:.8rem;word-break:keep-all}
+  .done-hero h1 .g{color:var(--green)}
+  .done-hero .when{display:inline-block;background:rgba(3,199,90,.16);color:var(--green);font-weight:900;font-size:1.0625rem;padding:.5rem 1rem;border-radius:999px;margin-bottom:1rem}
+  .done-hero .sub{color:#B8B8B8;font-weight:700;font-size:1.0625rem;line-height:1.6;word-break:keep-all}
+  .done-hero .count{max-width:20rem;margin:1.2rem auto 0}
+  .todo{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:1.25rem 0 0}
+  .todo li{display:flex;gap:.9rem;align-items:flex-start;background:#fff;border:1.5px solid var(--rule);border-radius:16px;padding:1.1rem 1.05rem}
+  .todo .n{flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--green);color:#04170D;font-weight:900;display:grid;place-items:center}
+  .todo b{display:block;font-size:1.125rem;font-weight:900;line-height:1.4;margin-bottom:.2rem;word-break:keep-all}
+  .todo p{font-size:1rem;color:var(--ink-2);line-height:1.55;font-weight:500;margin:0;word-break:keep-all}
+  .todo .btn{margin-top:.7rem;padding:.8rem 1rem;font-size:1rem}
+  .share{margin-top:1.25rem}
+  .share .btn.ghost{color:var(--ink);border-color:var(--rule);background:#fff}
+  .copied{display:none;text-align:center;color:var(--green-t);font-weight:900;margin-top:.6rem}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="dot"></span><span>쇼츠파이터 무료 라이브 | <span data-live-short>11월 4일 저녁 7시 30분</span></span></div>
+
+<header class="done-hero" data-section="thanks_hero" data-order="1">
+  <span class="glow"></span>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#04170D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+    <h1><span id="whoName"></span>자리 잡아<span class="g">뒀습니다</span></h1>
+    <span class="when" data-live-long>11월 4일 수요일 저녁 7시 30분</span>
+    <p class="sub">라이브 링크는 문자와 카톡으로 보내드립니다.<br>하루 전, 그리고 시작 30분 전에 한 번 더.</p>
+    <div class="count" data-count-box style="display:none"><div class="lab" data-count-lab>라이브 시작까지</div><div class="t" data-count-time>--</div></div>
+  </div>
+</header>
+
+<section class="sec" data-section="thanks_todo" data-order="2">
+  <div class="sec-inner">
+    <span class="eyebrow">라이브 전에 하면 좋은 것</span>
+    <h2>3분이면<br>다 됩니다</h2>
+    <ul class="todo">
+      <li><span class="n">1</span><div><b>캘린더에 넣어두기</b><p>저녁 7시 30분, 잊기 딱 좋은 시간입니다. 한 번 눌러 두시면 됩니다.</p><a class="btn" id="calBtn" href="#" target="_blank" rel="noopener">구글 캘린더에 저장</a></div></li>
+      <li><span class="n">2</span><div><b>엄부장 채널 먼저 보기</b><p>어떤 쇼츠를 만드는 사람인지 미리 보시면 됩니다. 그날 이야기가 훨씬 빨리 들어옵니다.</p><a class="btn" data-teacher-channel href="#" target="_blank" rel="noopener">채널 보러 가기</a><a class="btn" data-tamagotchi href="#" target="_blank" rel="noopener" style="margin-top:.5rem">새 채널 키우는 과정 보기</a><p style="margin-top:.6rem">채널 링크는 카톡으로도 보내드립니다.</p></div></li>
+      <li><span class="n">3</span><div><b>같이 볼 사람에게 보내기</b><p>혼자 보는 것보다 같이 보고 이야기하면 시작하기 쉽습니다.</p><div class="share"><button class="btn ghost" id="shareBtn" type="button">링크 복사하기</button><p class="copied" id="copied">복사됐습니다. 카톡에 붙여넣기 하시면 됩니다.</p></div></div></li>
+    </ul>
+    <a class="btn ghost" data-openchat href="#" target="_blank" rel="noopener" style="margin-top:1.25rem;color:var(--ink);border-color:var(--rule);background:#fff">오픈채팅방 들어가기</a>
+  </div>
+</section>
+
+<section class="sec dark" data-section="thanks_remind" data-order="3">
+  <div class="sec-inner">
+    <p class="closing">그날 라이브에서<br><span class="g">지금 돈 버는 제 채널</span>을 그대로 공개합니다.<br>그날 라이브에서만.</p>
+    <p class="lead">문자가 안 오면 아래 번호로 연락 주시면 됩니다.</p>
+    <p class="lead" id="csLine" style="font-weight:900;color:#fff"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="sec-inner">
+    <span class="wm"><img loading="lazy" decoding="async" src="assets/flame.svg?v=1790520972" alt="">쇼츠파이터<small>by 그로우픽</small></span>
+    <div class="links"><a href="../index.html">그로우픽 홈</a><a href="../terms.html">이용약관</a><a href="../privacy.html">개인정보처리방침</a></div>
+    <p data-biz></p>
+  </div>
+</footer>
+
+<script src="sf_v3.js?v=20261009d"></script>
+<script>
+(function(){
+  var CFG=window.SF, GP=window.GP;
+  /* 이름 */
+  try{ var a=JSON.parse(sessionStorage.getItem('sf_applied')||'null'); if(a&&a.name){ document.getElementById('whoName').textContent=a.name+'님, '; } }catch(e){}
+  /* 고객센터 */
+  if(GP&&GP.BIZ){ var cs=document.getElementById('csLine'); cs.textContent=''; cs.appendChild(document.createTextNode(GP.BIZ.PHONE)); cs.appendChild(document.createElement('br')); cs.appendChild(document.createTextNode('('+GP.BIZ.CS_HOURS+')')); }  /* 390px 에서 괄호 안 가운뎃점에서 줄이 끊겨 번호 뒤에서 줄바꿈 */
+  /* 구글 캘린더 링크: 시작 19:30, 종료 22:30 (KST) */
+  (function(){
+    var s=new Date(CFG.LIVE_DATE), e=new Date(s.getTime()+3*36e5);
+    function f(d){ return d.toISOString().replace(/[-:]|\.\d{3}/g,''); }
+    var u='https://calendar.google.com/calendar/render?action=TEMPLATE'
+      +'&text='+encodeURIComponent('쇼츠파이터 무료 라이브 (엄부장)')
+      +'&dates='+f(s)+'/'+f(e)
+      +'&details='+encodeURIComponent('유튜브 라이브. 링크는 문자와 카톡으로 옵니다. https://growpick.kr/shortsfighter/')
+      +'&ctz=Asia/Seoul';
+    var b=document.getElementById('calBtn'); b.href=u;
+    b.addEventListener('click',function(){ window.SF_track('add_calendar',{}); });
+  })();
+  /* 공유 링크: 공유 유입은 utm_source=share 로 남긴다 */
+  (function(){
+    var link='https://growpick.kr/shortsfighter/?utm_source=share&utm_medium=friend&utm_campaign=sf2_free';
+    var btn=document.getElementById('shareBtn'), ok=document.getElementById('copied');
+    btn.addEventListener('click',function(){
+      window.SF_track('share_click',{});
+      function show(){ ok.style.display='block'; btn.textContent='복사됐습니다'; }
+      if(navigator.share){ navigator.share({title:'쇼츠파이터 무료 라이브',text:'돈 되는 쇼츠는 따로 있어요. 11월 4일 저녁 7시 30분 무료 라이브',url:link}).catch(function(){}); return; }
+      if(navigator.clipboard){ navigator.clipboard.writeText(link).then(show,function(){ prompt('아래 주소를 복사하세요', link); }); }
+      else { prompt('아래 주소를 복사하세요', link); }
+    });
+  })();
+  document.querySelectorAll('[data-openchat]').forEach(function(a){ a.addEventListener('click',function(){ window.SF_track('join_openchat',{}); }); });
+  document.querySelectorAll('[data-teacher-channel],[data-tamagotchi]').forEach(function(a){ a.addEventListener('click',function(){ window.SF_track('view_teacher_channel',{which:a.hasAttribute('data-tamagotchi')?'tamagotchi':'main'}); }); });
+  window.SF_track('signup_complete_view',{});
+})();
+</script>
+</body>
+</html>
