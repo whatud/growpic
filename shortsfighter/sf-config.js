@@ -22,7 +22,7 @@ window.SF = {
 
   /* 신청 저장 서버 (Apps Script). 비우면 화면에서만 완료 처리되고 아무 데도 저장되지 않는다.
      form_type 으로 1기 무료특강 신청과 구분한다 (apps_script 에 분기 추가 필요, 미완이면 '신청자' 탭에 섞여 들어감) */
-  FORM_ENDPOINT: 'https://script.google.com/macros/s/AKfycbzwNuDWeM9JX8LW1bjf0E6cZHc6wFeq-_k0leH9nYnhzK7dwFKLVj3r_7oQFBOHz-eu/exec',
+  FORM_ENDPOINT: 'https://script.google.com/macros/s/AKfycbxDC1s8K_dqJBWCYf8czFi7vuH0gdLrxj5ZhsKV4SxXSmiG0Qu282RxvuogvBl_Oq4XcA/exec',   /* 2026-10-09 쇼츠파이터 전용: 시트 '쇼츠파이터 1기 무료 라이브 신청자'(whatud2026), 서버 '쇼츠파이터 1기 신청 서버' */
   FORM_TYPE: 'sf_free_apply',
 
   /* 이동 주소 */
