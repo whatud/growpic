@@ -29,7 +29,7 @@ window.SF = {
   THANKS_URL: 'thanks.html',
   COURSE_URL: 'course.html',
   ORDER_URL: '../order.html?product=shortsfighter',
-  OPENCHAT_URL: '',                   /* 오픈채팅을 쓰면 주소. 비우면 완료 페이지에서 버튼이 숨는다 */
+  OPENCHAT_URL: 'https://open.kakao.com/o/gURd2wRi',   /* 2026-10-09 JY: 11.4 엄부장의 쇼츠파이터 무료 라이브 오픈채팅. 비우면 완료 페이지에서 버튼이 숨는다 */
   TEACHER_CHANNEL_URL: '',            /* 엄부장 유튜브 채널. 비우면 완료 페이지에서 버튼이 숨는다 */
   TAMAGOTCHI_URL: '',                 /* 다마고치 채널. 비우면 숨김 */
 
