@@ -1,0 +1,179 @@
+/* ============================================================
+   sf_v3.css : 무료 라이브 v3 (2026-10-06 레퍼런스 분석 반영)
+   sf.css 위에 덧붙인다. v2(index.html)는 이 파일을 읽지 않는다.
+   ============================================================ */
+.pen{font-family:"Nanum Pen Script",var(--sans);font-weight:400;letter-spacing:0}
+
+/* ---- 히어로: 실제 사진 ---- */
+.hero-photo{position:absolute;z-index:1;right:-1.5rem;top:2.6rem;width:58%;max-width:20rem;pointer-events:none;user-select:none;animation:v3fade .9s ease .15s both}
+.hero-photo .hp-main{display:block;width:100%;filter:grayscale(1) contrast(1.05) brightness(.82);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 92%);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 92%);mask-composite:intersect;opacity:.62}
+.hp-then{position:absolute;right:1.9rem;top:12.2rem;width:5.4rem;margin:0;transform:rotate(5deg)}
+.hp-then img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;border:3px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.hp-then figcaption{font-family:"Nanum Pen Script",var(--sans);font-size:1.15rem;color:#fff;text-align:center;margin-top:.25rem;text-shadow:0 2px 6px rgba(0,0,0,.8);white-space:nowrap}
+@keyframes v3fade{from{opacity:0;transform:translateX(1rem)}to{opacity:1;transform:none}}
+@media (min-width:480px){ .hero-photo{right:-.5rem} }
+@media (min-width:768px){ .hero-photo{right:2rem;top:3rem;width:19rem} .hp-then{top:13.5rem;right:2.4rem;width:6.5rem} }
+
+/* ---- 히어로 미니 신청 폼 ---- */
+.hero-form{position:relative;margin:.2rem 0 1.2rem}
+.formcard.mini{padding:1rem .95rem 1.05rem;border:0;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+.formcard.mini .field{margin-bottom:.6rem}
+.formcard.mini .field label{font-size:.9375rem;margin-bottom:.25rem}
+.formcard.mini .agree{margin:.6rem 0 .8rem;padding:.6rem .7rem}
+.formcard.mini .agree .all{font-size:1rem;padding-bottom:.45rem;margin-bottom:.45rem}
+.formcard.mini .agree .row{font-size:.9375rem;margin-bottom:.25rem}
+.formcard.mini .btn{animation:ctapulse 2.6s ease-in-out infinite}
+.hero-proof{text-align:center;font-size:.9375rem;font-weight:700;color:#A8A8A8;margin:.75rem 0 0;word-break:keep-all}
+.hero-proof b{color:var(--green);font-weight:900}
+.hero .winrow{margin-top:.2rem}
+
+/* ---- 라이브 안내 카드 ---- */
+.liveinfo{background:var(--soft);padding:1.75rem 0 2rem}
+.li-card{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:1.25rem 1.15rem 1.1rem}
+.li-h{font-size:1.125rem;font-weight:900;letter-spacing:-.04em;margin:0 0 .8rem;display:flex;align-items:center;gap:.45rem}
+.li-h::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:#E62117;box-shadow:0 0 0 .25rem rgba(230,33,23,.18)}
+.li-card dl{margin:0;display:flex;flex-direction:column}
+.li-card dl div{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.6rem 0;border-top:1px solid var(--rule)}
+.li-card dt{font-size:.9375rem;font-weight:900;color:var(--ink-3)}
+.li-card dd{margin:0;font-size:1.0625rem;font-weight:700;line-height:1.45;color:var(--ink);word-break:keep-all}
+.li-card dd b{color:var(--green-t);font-weight:900;font-size:1.25rem}
+.li-note{font-size:1.5rem;line-height:1.25;color:var(--green-t);margin:.7rem 0 0;word-break:keep-all}
+
+/* ---- 수강생 인증 격자 ---- */
+.proofgrid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin:.2rem 0 .4rem}
+.proofgrid img{width:100%;aspect-ratio:9/15;object-fit:cover;object-position:top;border-radius:12px;display:block;border:1px solid rgba(0,0,0,.1);background:#111}
+@media (min-width:1240px){ .proofgrid{grid-template-columns:repeat(4,1fr)} }
+
+/* ---- 없어도 되는 것 (대상 구역 안) ---- */
+.nos{margin:2.2rem 0 0;padding:1.3rem 1.1rem;border-radius:16px;background:#1A1A1A;border:1px solid var(--rule-dark)}
+.nos-h{font-size:1rem;font-weight:900;color:#9A9A9A;margin:0 0 .7rem}
+.nos-row{display:flex;flex-wrap:wrap;gap:.45rem}
+.nos-row span{font-family:var(--title);font-size:1.35rem;color:#fff;padding:.35rem .75rem;border-radius:999px;border:1.5px solid #3A3A3A;position:relative;letter-spacing:-.02em}
+.nos-row span::after{content:"";position:absolute;left:.55rem;right:.55rem;top:52%;height:3px;background:var(--fire);transform:rotate(-4deg);border-radius:2px}
+.nos-d{font-size:1.0625rem;color:#B8B8B8;font-weight:700;margin:.85rem 0 0}
+.nos-d b{color:var(--green);font-weight:900}
+
+/* ---- 혜택 2단 ---- */
+.tier{display:inline-block;font-size:.9375rem;font-weight:900;color:#04170D;background:var(--green);border-radius:999px;padding:.3rem .8rem;margin:.4rem 0 -.6rem}
+.tier + .gifts{margin-top:1.1rem}
+.gift.now{border-color:var(--gold);background:#FFFBEA}
+.gift.now .gn{color:#B7791F}
+
+/* ---- 하단 바 남은 일수 ---- */
+.dock .dday{display:inline-block;background:var(--green);color:#04170D;font-weight:900;font-size:.75rem;border-radius:4px;padding:.05rem .35rem;margin-left:.2rem;vertical-align:1px}
+
+/* ---- 전송 실패 화면 (고객 제출 규칙) ---- */
+.sendfail{display:none;margin-top:.9rem;padding:1rem;border-radius:12px;background:#FFF4EF;border:1.5px solid var(--fire)}
+.sendfail .sf-t{font-size:1.0625rem;font-weight:900;color:var(--fire-t);margin:0 0 .3rem}
+.sendfail .sf-d{font-size:.9375rem;color:var(--ink-2);line-height:1.5;margin:0 0 .7rem;word-break:keep-all}
+.sendfail .btn{margin-top:.45rem}
+.sendfail .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--rule);box-shadow:none;animation:none}
+.sendfail .sf-mine{font-size:.875rem;color:var(--ink-3);margin:.7rem 0 0;word-break:break-all}
+.sendfail .sf-mine b{color:var(--ink)}
+
+/* PC: 사진을 본문 칸 오른쪽으로 (오른쪽 고정 폼 뒤에 가리지 않게) */
+@media (min-width:1240px){
+  .hero-photo{right:calc(50% - 9rem);top:2.5rem;width:17rem;max-width:none}
+  .hp-then{top:12.5rem;right:1.5rem;width:6rem}
+  .li-card{max-width:34rem}
+}
+
+/* ---- 2026-10-06 slide-qa 검수 보정 ---- */
+/* 360~479px: 손글씨 캡션이 부제 첫 줄("소재.")과 겹치던 것 → 사진을 조금 작게, 조금 위로 */
+@media (max-width:479px){
+  .hp-then{top:11rem;right:2.2rem;width:4.8rem}
+  .hp-then figcaption{font-size:1.05rem}
+}
+/* 박OO님 인증: 두 번째 표시("560만원")가 표시 칸 아래로 잘리던 것 → 기준점을 아래로 */
+.review img.shot[src*="rv_park1_mark"]{object-position:50% 60%}
+/* 하단 바 D-day 12px → 13px (최소 글자 크기) */
+.dock .dday{font-size:.8125rem}
+
+/* 320~374px (아이폰 SE 1세대, 갤럭시 폴드 앞화면 등): 풀퍼널 QA 2026-10-09
+   맨 위 띠가 두 줄로 넘치고, 헬멧 사진이 제목에 붙고, 이름 칸이 첫 화면 밖으로 밀리던 것 */
+@media (max-width:374px){
+  .topbar{font-size:.8125rem;letter-spacing:-.03em;white-space:nowrap}
+  .hero{padding-top:1rem}
+  .hero .brand{margin-bottom:.7rem}
+  .hero .eye{font-size:.875rem;padding:.3rem .65rem;margin-bottom:.6rem}
+  .hero .kick{font-size:.8125rem}
+  .hero h1{font-size:2.9rem;margin-bottom:.6rem}
+  .hero .sub{font-size:1rem;margin-bottom:.9rem}
+  .hp-then{display:none}
+  .hero-photo{width:52%;top:3.4rem}
+}
+
+/* 안내 카드: 좁은 화면에서 "저녁 7시 / 30분"처럼 끝만 떨어지지 않게 고르게 나눈다 */
+.li-card dd,.li-note{text-wrap:balance}
+
+/* ---- 2026-10-09 안내 카드를 첫 화면과 이어지는 어두운 톤으로 (흰 카드가 튀던 것) ---- */
+.liveinfo{background:var(--dark);padding:.25rem 0 2.5rem;position:relative}
+.liveinfo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(3,199,90,.35),transparent)}
+.li-card{background:linear-gradient(180deg,#1B1F1C 0%,#151515 100%);border:1px solid #2C3A31;box-shadow:0 18px 44px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)}
+.li-h{color:#fff}
+.li-h::before{animation:livedot 1.6s ease-in-out infinite}
+@keyframes livedot{0%,100%{box-shadow:0 0 0 .2rem rgba(230,33,23,.25)}50%{box-shadow:0 0 0 .5rem rgba(230,33,23,0)}}
+.li-card dl div{border-top-color:#2A2A2A}
+.li-card dt{color:#8B8B8B}
+.li-card dd{color:#F0F0F0}
+.li-card dd b{color:var(--green)}
+.li-note{color:var(--green)}
+
+/* ---- 2026-10-09 애니메이션 (sf_v3.js 가 .anim-on 을 붙일 때만 작동) ---- */
+/* 첫 화면 차례 등장 */
+.anim-on .hero .eye,.anim-on .hero .kick,.anim-on .hero h1,.anim-on .hero .sub,.anim-on .hero-form{animation:v3rise .7s cubic-bezier(.2,.7,.2,1) both}
+.anim-on .hero .kick{animation-delay:.08s}
+.anim-on .hero h1{animation-delay:.16s}
+.anim-on .hero .sub{animation-delay:.32s}
+.anim-on .hero-form{animation-delay:.44s}
+@keyframes v3rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* 목록 차례 등장: 상자가 화면에 들어오면 자식이 하나씩 */
+.anim-on .stag > *{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 90ms)}
+.anim-on .stag.in > *{opacity:1;transform:none}
+.anim-on .proofgrid.stag > *{transform:translateY(16px) scale(.97)}
+.anim-on .proofgrid.stag.in > *{transform:none}
+/* 연표 세로선이 위에서 아래로 */
+.anim-on .life.stag::before{transform:scaleY(0);transform-origin:top;transition:transform 1.3s ease .1s}
+.anim-on .life.stag.in::before{transform:scaleY(1)}
+/* 업로드 기준 3칸: 마지막 칸 살짝 튀기 */
+.anim-on .ladder.stag.in > :last-child{animation:v3pop .5s ease .45s both}
+@keyframes v3pop{0%{transform:scale(.92)}60%{transform:scale(1.04)}100%{transform:none}}
+
+/* ---- 2026-10-09 제목 "돈 되는 쇼츠는 따로 있습니다" + 500만원 강조 띠 ---- */
+.hero h1.h1-v3{font-size:clamp(2.6rem,12.6vw,5rem)}
+.hero-claim{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:.35rem .6rem;margin:.2rem 0 .9rem;padding:.75rem .95rem;border-radius:14px;
+  background:linear-gradient(90deg,rgba(3,199,90,.22),rgba(3,199,90,.06));border:1px solid rgba(3,199,90,.45);width:fit-content;max-width:100%}
+.hero-claim .hc-a{font-size:1.0625rem;font-weight:900;color:#E8E8E8;letter-spacing:-.04em}
+.hero-claim .hc-to{width:1.4rem;height:2px;background:var(--green);position:relative;flex:none}
+.hero-claim .hc-to::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--green);border-right:0}
+.hero-claim .hc-b{font-family:var(--title);font-size:1.6rem;line-height:1.1;color:#fff;letter-spacing:-.03em;white-space:nowrap}
+.hero-claim em{font-style:normal;color:var(--green);font-size:1.25em;text-shadow:0 0 22px rgba(3,199,90,.55)}
+.anim-on .hero .hero-claim{animation:v3rise .7s cubic-bezier(.2,.7,.2,1) .26s both}
+@media (min-width:768px){ .hero-claim .hc-a{font-size:1.1875rem} .hero-claim .hc-b{font-size:2rem} }
+@media (max-width:374px){ .hero h1.h1-v3{font-size:2.45rem} .hero-claim{padding:.6rem .75rem} .hero-claim .hc-a{font-size:.9375rem} .hero-claim .hc-b{font-size:1.35rem} }
+
+/* ---- 2026-10-09 PC 오른쪽 고정 폼: 노트북 화면에서 신청 버튼이 아래로 잘리던 것 ----
+   1) 폼을 촘촘하게 (일정 설명줄은 위 띠와 중복이라 숨김, 카운트다운 한 줄)
+   2) 그래도 넘치면 신청 버튼이 폼 맨 아래에 붙어 항상 보이게 */
+@media (min-width:1240px){
+  .col-side{top:calc(var(--topbar) + 1rem);max-height:calc(100vh - var(--topbar) - 2rem)}
+  .side-head{padding:.75rem 1rem;font-size:1rem}
+  .col-side .formcard{padding:1rem 1.25rem 0}
+  .col-side .count{display:flex !important;align-items:center;justify-content:center;gap:.6rem;padding:.55rem .8rem;margin-bottom:.8rem}
+  .col-side .count .lab{margin:0;font-size:.875rem}
+  .col-side .count .t{font-size:1.125rem}
+  .col-side .formcard h3{font-size:1.125rem;margin-bottom:.6rem}
+  .col-side .formcard .fdesc{display:none}
+  .col-side .field{margin-bottom:.65rem}
+  .col-side .agree{margin:.7rem 0 0;padding:.65rem .8rem}
+  .col-side .agree .all{font-size:1rem;padding-bottom:.45rem;margin-bottom:.45rem}
+  .col-side .agree .row{font-size:.9375rem}
+  .col-side .agree-note{font-size:.75rem;margin-top:.4rem}
+  .col-side form .btn[type=submit]{position:sticky;bottom:0;z-index:2;margin-top:.8rem;box-shadow:0 5px 0 var(--green-dd),0 -14px 18px 6px #fff}
+  .col-side .btnsub{margin:.5rem 0 0;padding-bottom:1rem;font-size:.875rem}
+}
+
+/* 이미지 원래 크기(width/height 속성)는 받기 전 자리 잡기용. 화면 크기는 CSS 가 정한다 (풀퍼널 QA 2026-10-09) */
+:where(img[width][height]){height:auto}
