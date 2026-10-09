@@ -68,8 +68,7 @@
 <section class="sec dark" data-section="thanks_remind" data-order="3">
   <div class="sec-inner">
     <p class="closing">그날 라이브에서<br><span class="g">지금 돈 버는 제 채널</span>을 그대로 공개합니다.<br>그날 라이브에서만.</p>
-    <p class="lead">문자가 안 오면 아래 번호로 연락 주시면 됩니다.</p>
-    <p class="lead" id="csLine" style="font-weight:900;color:#fff"></p>
+    <p class="lead">궁금한 점은 오픈채팅방에 남겨 주시면 됩니다.</p>
   </div>
 </section>
 
@@ -81,14 +80,14 @@
   </div>
 </footer>
 
-<script src="sf_v3.js?v=20261009e"></script>
+<script src="sf_v3.js?v=20261009f"></script>
 <script>
 (function(){
   var CFG=window.SF, GP=window.GP;
   /* 이름 */
   try{ var a=JSON.parse(sessionStorage.getItem('sf_applied')||'null'); if(a&&a.name){ document.getElementById('whoName').textContent=a.name+'님, '; } }catch(e){}
   /* 고객센터 */
-  if(GP&&GP.BIZ){ var cs=document.getElementById('csLine'); cs.textContent=''; cs.appendChild(document.createTextNode(GP.BIZ.PHONE)); cs.appendChild(document.createElement('br')); cs.appendChild(document.createTextNode(GP.BIZ.CS_HOURS)); }  /* 390px 에서 괄호 안 가운뎃점에서 줄이 끊겨 번호 뒤에서 줄바꿈 */
+  /* 고객센터 번호는 본문에 노출 안 함 (2026-10-09 JY: 문의는 오픈채팅으로). 법적 표기는 푸터에 작게 */
   /* 구글 캘린더 링크: 시작 19:30, 종료 22:30 (KST) */
   (function(){
     var s=new Date(CFG.LIVE_DATE), e=new Date(s.getTime()+3*36e5);
@@ -96,7 +95,7 @@
     var u='https://calendar.google.com/calendar/render?action=TEMPLATE'
       +'&text='+encodeURIComponent('쇼츠파이터 무료 라이브 (엄부장)')
       +'&dates='+f(s)+'/'+f(e)
-      +'&details='+encodeURIComponent('유튜브 라이브. 링크는 문자와 카톡으로 옵니다. https://growpick.kr/shortsfighter/')
+      +'&details='+encodeURIComponent('유튜브 라이브. 링크는 카카오톡 오픈채팅방에서 알려드립니다. https://growpick.kr/shortsfighter/')
       +'&ctz=Asia/Seoul';
     var b=document.getElementById('calBtn'); b.href=u;
     b.addEventListener('click',function(){ window.SF_track('add_calendar',{}); });

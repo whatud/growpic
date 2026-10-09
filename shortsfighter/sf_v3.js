@@ -226,13 +226,12 @@
         track('form_error',{error_field:'network', cta_type:'send_fail', fail_reason:reason, form_location:where});
         btn.disabled=false; btn.textContent='무료 라이브 신청하기';
         if(!failBox){ failBox=document.createElement('div'); failBox.className='sendfail'; card.appendChild(failBox); }
-        var B=(GP&&GP.BIZ)||{}, tel=(B.PHONE||'').replace(/\D/g,'');
+        /* 전화번호, 문자로 유도하지 않는다 (2026-10-09 JY). 다른 길은 오픈채팅 하나 */
         failBox.innerHTML =
           '<p class="sf-t">'+(late?'접수 확인이 늦어지고 있습니다':'신청이 아직 접수되지 않았습니다')+'</p>'+
-          '<p class="sf-d">'+(late?'접수됐을 수도 있지만, 확실히 하려면 아래로도 알려 주십시오.':'회사 보안망이나 인터넷 상태 때문에 막혔을 수 있습니다.')+'</p>'+
+          '<p class="sf-d">'+(late?'접수됐을 수도 있지만, 확실히 하려면 오픈채팅방에도 남겨 주세요.':'회사 보안망이나 인터넷 상태 때문에 막혔을 수 있습니다.')+'</p>'+
           '<button type="button" class="btn sf-retry">다시 보내기</button>'+
-          (CFG.OPENCHAT_URL?'<a class="btn ghost sf-alt" href="'+CFG.OPENCHAT_URL+'" target="_blank" rel="noopener">카톡으로 신청하기</a>':'')+
-          (tel?'<a class="btn ghost sf-alt" href="sms:'+tel+'?body='+encodeURIComponent('쇼츠파이터 무료 라이브 신청 '+name+' '+payload.phone)+'">문자로 신청하기 ('+B.PHONE+')</a>':'')+
+          (CFG.OPENCHAT_URL?'<a class="btn ghost sf-alt" href="'+CFG.OPENCHAT_URL+'" target="_blank" rel="noopener">오픈채팅방에서 신청하기</a>':'')+
           '<p class="sf-mine">입력하신 내용: <b>'+name.replace(/</g,'&lt;')+' / '+payload.phone+'</b></p>';
         failBox.style.display='block';
         failBox.querySelector('.sf-retry').addEventListener('click', function(){ failBox.style.display='none'; send(); });
