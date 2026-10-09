@@ -33,6 +33,8 @@
   .share{margin-top:1.25rem}
   .share .btn.ghost{color:var(--ink);border-color:var(--rule);background:#fff}
   .copied{display:none;text-align:center;color:var(--green-t);font-weight:900;margin-top:.6rem}
+  .oc-hero{display:block;max-width:20rem;margin:1.3rem auto 0;background:#FEE500;color:#191919;box-shadow:0 5px 0 #C9B600}
+  .oc-hero:hover,.oc-hero:active{box-shadow:0 3px 0 #C9B600}
 </style>
 </head>
 <body>
@@ -44,7 +46,8 @@
     <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#04170D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
     <h1><span id="whoName"></span>자리 잡아<span class="g">뒀습니다</span></h1>
     <span class="when" data-live-long>11월 4일 수요일 저녁 7시 30분</span>
-    <p class="sub">라이브 링크는 문자와 카톡으로 보내드립니다.<br>하루 전, 그리고 시작 30분 전에 한 번 더.</p>
+    <p class="sub">라이브 링크는 <b style="color:#fff">카카오톡 오픈채팅방</b>에서 알려드립니다.<br>지금 바로 입장해 두세요.</p>
+    <a class="btn oc-hero" data-openchat href="#" target="_blank" rel="noopener">오픈채팅방 입장하기</a>
     <div class="count" data-count-box style="display:none"><div class="lab" data-count-lab>라이브 시작까지</div><div class="t" data-count-time>--</div></div>
   </div>
 </header>
@@ -52,13 +55,13 @@
 <section class="sec" data-section="thanks_todo" data-order="2">
   <div class="sec-inner">
     <span class="eyebrow">라이브 전에 하면 좋은 것</span>
-    <h2>3분이면<br>다 됩니다</h2>
+    <h2>라이브 전에<br>이것만 해 두세요</h2>
     <ul class="todo">
-      <li><span class="n">1</span><div><b>캘린더에 넣어두기</b><p>저녁 7시 30분, 잊기 딱 좋은 시간입니다. 한 번 눌러 두시면 됩니다.</p><a class="btn" id="calBtn" href="#" target="_blank" rel="noopener">구글 캘린더에 저장</a></div></li>
-      <li><span class="n">2</span><div><b>엄부장 채널 먼저 보기</b><p>어떤 쇼츠를 만드는 사람인지 미리 보시면 됩니다. 그날 이야기가 훨씬 빨리 들어옵니다.</p><a class="btn" data-teacher-channel href="#" target="_blank" rel="noopener">채널 보러 가기</a><a class="btn" data-tamagotchi href="#" target="_blank" rel="noopener" style="margin-top:.5rem">새 채널 키우는 과정 보기</a><p style="margin-top:.6rem">채널 링크는 카톡으로도 보내드립니다.</p></div></li>
+      <li><span class="n">1</span><div><b>오픈채팅방 입장</b><p>라이브 링크와 시작 알림을 여기서 드립니다. 입장하지 않으면 링크를 못 받으실 수 있습니다.</p><a class="btn" data-openchat href="#" target="_blank" rel="noopener">오픈채팅방 입장하기</a></div></li>
+      <li><span class="n">2</span><div><b>캘린더에 넣어두기</b><p>저녁 7시 30분, 잊기 딱 좋은 시간입니다. 한 번 눌러 두시면 됩니다.</p><a class="btn" id="calBtn" href="#" target="_blank" rel="noopener">구글 캘린더에 저장</a></div></li>
+      <li class="ch-step"><span class="n">3</span><div><b>엄부장 채널 먼저 보기</b><p>어떤 쇼츠를 만드는 사람인지 미리 보시면 됩니다. 그날 이야기가 훨씬 빨리 들어옵니다.</p><a class="btn" data-teacher-channel href="#" target="_blank" rel="noopener">채널 보러 가기</a><a class="btn" data-tamagotchi href="#" target="_blank" rel="noopener" style="margin-top:.5rem">새 채널 키우는 과정 보기</a><p style="margin-top:.6rem">채널 링크는 카톡으로도 보내드립니다.</p></div></li>
       <li><span class="n">3</span><div><b>같이 볼 사람에게 보내기</b><p>혼자 보는 것보다 같이 보고 이야기하면 시작하기 쉽습니다.</p><div class="share"><button class="btn ghost" id="shareBtn" type="button">링크 복사하기</button><p class="copied" id="copied">복사됐습니다. 카톡에 붙여넣기 하시면 됩니다.</p></div></div></li>
     </ul>
-    <a class="btn ghost" data-openchat href="#" target="_blank" rel="noopener" style="margin-top:1.25rem;color:var(--ink);border-color:var(--rule);background:#fff">오픈채팅방 들어가기</a>
   </div>
 </section>
 
@@ -78,14 +81,14 @@
   </div>
 </footer>
 
-<script src="sf_v3.js?v=20261009d"></script>
+<script src="sf_v3.js?v=20261009e"></script>
 <script>
 (function(){
   var CFG=window.SF, GP=window.GP;
   /* 이름 */
   try{ var a=JSON.parse(sessionStorage.getItem('sf_applied')||'null'); if(a&&a.name){ document.getElementById('whoName').textContent=a.name+'님, '; } }catch(e){}
   /* 고객센터 */
-  if(GP&&GP.BIZ){ var cs=document.getElementById('csLine'); cs.textContent=''; cs.appendChild(document.createTextNode(GP.BIZ.PHONE)); cs.appendChild(document.createElement('br')); cs.appendChild(document.createTextNode('('+GP.BIZ.CS_HOURS+')')); }  /* 390px 에서 괄호 안 가운뎃점에서 줄이 끊겨 번호 뒤에서 줄바꿈 */
+  if(GP&&GP.BIZ){ var cs=document.getElementById('csLine'); cs.textContent=''; cs.appendChild(document.createTextNode(GP.BIZ.PHONE)); cs.appendChild(document.createElement('br')); cs.appendChild(document.createTextNode(GP.BIZ.CS_HOURS)); }  /* 390px 에서 괄호 안 가운뎃점에서 줄이 끊겨 번호 뒤에서 줄바꿈 */
   /* 구글 캘린더 링크: 시작 19:30, 종료 22:30 (KST) */
   (function(){
     var s=new Date(CFG.LIVE_DATE), e=new Date(s.getTime()+3*36e5);
@@ -112,6 +115,8 @@
   })();
   document.querySelectorAll('[data-openchat]').forEach(function(a){ a.addEventListener('click',function(){ window.SF_track('join_openchat',{}); }); });
   document.querySelectorAll('[data-teacher-channel],[data-tamagotchi]').forEach(function(a){ a.addEventListener('click',function(){ window.SF_track('view_teacher_channel',{which:a.hasAttribute('data-tamagotchi')?'tamagotchi':'main'}); }); });
+  (function(){ var li=document.querySelector('.ch-step'); if(li && !(CFG&&CFG.TEACHER_CHANNEL_URL)){ li.style.display='none'; }
+    else { var n=[...document.querySelectorAll('.todo .n')]; if(n[3]) n[3].textContent='4'; } })();
   window.SF_track('signup_complete_view',{});
 })();
 </script>

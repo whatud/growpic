@@ -186,6 +186,8 @@
     if(all){ all.addEventListener('change', function(){ ags.forEach(function(a){ a.checked=all.checked; }); }); }
     ags.forEach(function(a){ a.addEventListener('change', function(){ if(all) all.checked=ags.every(function(x){return x.checked}); }); });
     function bad(sel,is){ var f=form.querySelector(sel); if(f) f.classList.toggle('bad',is); }
+    form.addEventListener('input', function(ev){ var f=ev.target.closest('.field'); if(f) f.classList.remove('bad'); });
+    card.addEventListener('change', function(){ var ae=card.querySelector('.agree-err'); if(ae && $$('.ag.req',card).every(function(a){return a.checked;})) ae.style.display='none'; });
 
     form.addEventListener('submit', function(ev){
       ev.preventDefault();
