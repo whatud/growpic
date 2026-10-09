@@ -175,5 +175,28 @@
   .col-side .btnsub{margin:.5rem 0 0;padding-bottom:1rem;font-size:.875rem}
 }
 
+/* ---- 2026-10-09 엄부장 편지: 손글씨 느낌, 글로만 담백하게 ---- */
+.letter-sec{background:#ECE7DC}
+.letter{position:relative;background:#FFFDF7;border-radius:6px;padding:2.2rem 1.4rem 2rem;
+  box-shadow:0 1px 0 rgba(0,0,0,.04),0 18px 40px rgba(60,45,20,.16);
+  background-image:repeating-linear-gradient(180deg,transparent 0,transparent calc(2.3rem - 1px),rgba(70,110,150,.13) calc(2.3rem - 1px),rgba(70,110,150,.13) 2.3rem);
+  background-position:0 1.95rem}
+.letter::before{content:"";position:absolute;left:50%;top:-.7rem;width:6.5rem;height:1.5rem;transform:translateX(-50%) rotate(-2deg);background:rgba(3,199,90,.28);border-radius:2px}
+.letter p{font-family:"Nanum Pen Script",var(--sans);font-size:1.6rem;line-height:2.3rem;color:#262626;margin:0 0 2.3rem;letter-spacing:0;word-break:keep-all}
+.letter p.lt-hi{font-size:2.05rem;color:#111;margin-bottom:2.3rem}
+.letter p.lt-end{font-size:1.85rem;color:#111}
+.letter p.lt-sign{text-align:right;font-size:1.9rem;margin:0;color:#111}
+.letter mark{background:linear-gradient(transparent 58%,rgba(3,199,90,.38) 58%);color:inherit;padding:0 .1em}
+.lt-photos{display:flex;justify-content:center;gap:1rem;margin:0 0 2.3rem;flex-wrap:wrap}
+.polaroid{margin:0;background:#fff;padding:.5rem .5rem .3rem;width:min(13rem,72%);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.polaroid.p1{transform:rotate(-2.5deg)}
+.polaroid.p2{transform:rotate(2deg)}
+.polaroid img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.polaroid figcaption{font-family:"Nanum Pen Script",var(--sans);font-size:1.35rem;text-align:center;color:#333;padding:.35rem 0 .1rem}
+.lt-photos .polaroid + .polaroid{width:min(11rem,44%)}
+.lt-photos:has(.p2) .polaroid{width:min(11rem,44%)}
+@media (min-width:768px){ .letter{padding:2.6rem 2.4rem 2.3rem} .letter p{font-size:1.75rem} }
+@media (max-width:374px){ .letter{padding:2rem 1.05rem 1.8rem} .letter p{font-size:1.42rem} .letter p.lt-hi{font-size:1.8rem} }
+
 /* 이미지 원래 크기(width/height 속성)는 받기 전 자리 잡기용. 화면 크기는 CSS 가 정한다 (풀퍼널 QA 2026-10-09) */
 :where(img[width][height]){height:auto}
