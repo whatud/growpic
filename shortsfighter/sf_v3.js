@@ -224,7 +224,7 @@
       function fail(reason){
         var late = reason === 'timeout';
         track('form_error',{error_field:'network', cta_type:'send_fail', fail_reason:reason, form_location:where});
-        btn.disabled=false; btn.textContent='무료 라이브 신청하기';
+        btn.disabled=false; btn.textContent=btn.dataset.label||'무료 라이브 신청하기';
         if(!failBox){ failBox=document.createElement('div'); failBox.className='sendfail'; card.appendChild(failBox); }
         /* 전화번호, 문자로 유도하지 않는다 (2026-10-09 JY). 다른 길은 오픈채팅 하나 */
         failBox.innerHTML =
@@ -239,6 +239,7 @@
       }
       var failBox=card.querySelector('.sendfail');
       function send(){
+        if(!btn.dataset.label) btn.dataset.label=btn.textContent;   /* 실패 후 원래 버튼 문구로 되돌리기 위해 */
         btn.disabled=true; btn.textContent='보내는 중...';
         if(LOCAL && !window.SF_TEST_ENDPOINT){ console.warn('[SF] 로컬 미리보기. 전송 생략', payload); success(); return; }
         confirmedSubmit({ endpoint: window.SF_TEST_ENDPOINT || CFG.FORM_ENDPOINT, payload: payload, timeout: 20000,
