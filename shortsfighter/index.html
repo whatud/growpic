@@ -25,6 +25,13 @@
 <script src="../config.js"></script>
 <script src="sf-config.js?v=20261009b"></script>
 <script>window.SF.THANKS_URL = 'thanks_v3.html';</script>
+<style>
+/* v4: 히어로 버튼 하나 */
+.hero-cta{position:relative;margin:.4rem 0 .4rem}
+.hero-cta .btn{width:100%;font-size:1.1875rem;padding:1.05rem 1rem}
+.hero-cta .btnsub{margin-top:.6rem;text-align:center;font-size:.875rem;font-weight:700}
+.anim-on .hero-cta{animation:v3rise .7s cubic-bezier(.2,.7,.2,1) .44s both}
+</style>
 </head>
 <body>
 <div class="topbar"><span class="dot"></span><span>쇼츠파이터 무료 라이브 | <span data-live-short>11월 4일 저녁 7시 30분</span></span></div>
@@ -45,23 +52,9 @@
     <h1 class="h1-v3">돈 되는<br>쇼츠는<br><span class="g">따로</span> 있습니다</h1>
     <p class="hero-claim"><span class="hc-a">9월에 만든 채널</span><span class="hc-to" aria-hidden="true"></span><span class="hc-b">한 달 만에 <em>500</em>만원</span></p>
     <p class="sub">정지 안 당하는 소재가 답이었습니다.<br><b>라이브에서 실시간으로 찾아 보여드립니다.</b></p>
-    <div class="hero-form mobile-form">
-      <div class="formcard mini" id="formcard-hero">
-        <form class="applyForm" data-form="hero" novalidate>
-          <div class="field f-name"><label for="nameH">이름</label><input id="nameH" name="name" type="text" placeholder="홍길동" autocomplete="name"><p class="err">이름을 입력해 주세요</p></div>
-          <div class="field f-phone"><label for="p2H">연락처</label>
-            <div class="phone-row"><select name="p1" aria-label="앞자리"><option>010</option><option>011</option><option>016</option><option>017</option><option>018</option><option>019</option></select><input id="p2H" name="p2" type="tel" inputmode="numeric" placeholder="1234" aria-label="가운데"><input name="p3" type="tel" inputmode="numeric" placeholder="5678" aria-label="끝자리"></div>
-            <p class="err">연락처를 정확히 입력해 주세요</p></div>
-          <div class="agree">
-            <div class="all"><input type="checkbox" class="agree-all" id="allH"><label for="allH">전체 동의하기</label></div>
-            <div class="row"><input type="checkbox" class="ag req" id="ag1H"><label for="ag1H"><span class="tag">[필수]</span> 개인정보 수집과 이용 (<a href="../privacy.html" target="_blank" rel="noopener">보기</a>)</label></div>
-            <div class="row"><input type="checkbox" class="ag req" id="ag2H"><label for="ag2H"><span class="tag">[필수]</span> 라이브 안내와 강의 소식 문자, 카톡 수신</label></div>
-            <p class="err agree-err" style="display:none">필수 항목에 동의해 주세요</p>
-          </div>
-          <button class="btn" type="submit" data-cta="form_hero">0원, 라이브 자리 잡기</button>
-        </form>
-        <div class="done"><p class="big">신청이 접수됐습니다</p><p>완료 페이지로 이동합니다.</p></div>
-      </div>
+    <div class="hero-cta mobile-form">
+      <button class="btn" type="button" data-cta="hero">0원, 라이브 자리 잡기</button>
+      <p class="btnsub">참가비 0원, 이름과 연락처만 남기시면 됩니다</p>
     </div>
     <div class="winrow">
       <div class="win"><span class="who">10개월 누적 조회수</span><span class="what"><em>7억</em> 회</span></div>
