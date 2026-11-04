@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="sf_v3.css?v=20261009i">
 <link rel="stylesheet" href="sf_story.css?v=20261104a">
 <script src="../config.js"></script>
-<script src="sf-config.js?v=20261104b"></script>
+<script src="sf-config.js?v=20261104c"></script>
 <!--
   쇼츠파이터 정규 과정 결제자용 소개 페이지 (2026-11-04, 라이브 장표 캔바 83~95쪽 기준. JY 지시 "캔바 기준으로 다 맞춰줘")
   흐름: 이 페이지 → apply.html(신청) → apply_done.html(완료) → '정규 과정 소개 다시 보기'로 이 페이지
@@ -209,6 +209,20 @@
   }
   /* 2026-11-04 slide-qa: 손글씨 폰트가 안 받아지면 '배달하던 시절'이 카드 폭(77px)보다 넓어 화면 오른쪽 끝에서 잘림 → 캡션 칸을 양옆으로 넓혀 가운데 정렬 */
   .hp-then figcaption{margin:.25rem -1.1rem 0}
+
+  /* 2026-11-04 JY: 3D 그래픽 더 넣기 (3dicons.co CC0) */
+  .h3d{display:block;width:6.5rem;height:auto;margin:0 auto .6rem;filter:drop-shadow(0 14px 18px rgba(0,0,0,.28));animation:float3d 4s ease-in-out infinite}
+  .h3d.big{width:9rem}
+  .dark .h3d{filter:drop-shadow(0 16px 22px rgba(0,0,0,.6))}
+  @keyframes float3d{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+  @media (prefers-reduced-motion:reduce){.h3d{animation:none}}
+  .bens li{position:relative}
+  .bens .bi{position:absolute;top:.55rem;right:.55rem;width:2.9rem;height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.18))}
+  .bens li:not(.hl) .bi{position:static;width:2.8rem;margin:-.2rem 0 .1rem}
+  .bens li.hl .bi{width:3.6rem;top:.6rem;right:.8rem;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
+  .bens li.hl b{padding-right:3.4rem}
+  .cur .hd{position:relative}
+  .cur .ci{width:2.6rem;height:auto;margin-left:auto;flex:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
 </style>
 </head>
 <body>
@@ -249,6 +263,7 @@
 <!-- 2. 오늘 결제 특전 -->
 <section class="cs dark center" data-section="perk" data-order="2" data-perk-only>
   <div class="cx">
+    <img class="h3d big" src="assets/ico/s/gift-box.png?v=20261104" alt="" loading="lazy" decoding="async">
     <span class="eyebrow">지금 결제하시는 분께만</span>
     <h2>특별한 <span class="g">혜택!</span></h2>
     <div class="tix">
@@ -262,15 +277,15 @@
 <!-- 3. 정규 과정 혜택 -->
 <section class="cs soft" data-section="benefits" data-order="3">
   <div class="cx">
-    <div class="center"><span class="eyebrow">정규 과정 혜택</span>
+    <div class="center"><img class="h3d" src="assets/ico/s/trophy.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="eyebrow">정규 과정 혜택</span>
     <h2>알짜배기<br><span class="g">찐 강의 혜택</span></h2></div>
     <ul class="bens">
-      <li class="hl"><span class="no">혜택 01</span><b>영상 제작 프로그램 아스트라 무료 제공</b><span>강의에서 바로 쓰는 엄부장의 제작 도구</span></li>
-      <li><span class="no">혜택 02</span><b>소재 찾는 꿀팁</b><span>어디서 찾는지부터</span></li>
-      <li><span class="no">혜택 03</span><b>카테고리별 잘 터지는 소재</b><span>분야별로 정리해서</span></li>
-      <li><span class="no">혜택 04</span><b>캡컷 단축키·편집 전자책</b><span>옆에 두고 보는 책</span></li>
-      <li><span class="no">혜택 05</span><b>팀 밀착 코칭</b><span>혼자 막히지 않게</span></li>
-      <li class="hl"><span class="no">혜택 06</span><b>평생 단톡방 유지</b><span>과정이 끝나도 계속 함께합니다</span></li>
+      <li class="hl"><img class="bi" src="assets/ico/s/magic-trick.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="no">혜택 01</span><b>영상 제작 프로그램 아스트라 무료 제공</b><span>강의에서 바로 쓰는 엄부장의 제작 도구</span></li>
+      <li><img class="bi" src="assets/ico/s/bulb.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="no">혜택 02</span><b>소재 찾는 꿀팁</b><span>어디서 찾는지부터</span></li>
+      <li><img class="bi" src="assets/ico/s/fire.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="no">혜택 03</span><b>카테고리별 잘 터지는 소재</b><span>분야별로 정리해서</span></li>
+      <li><img class="bi" src="assets/ico/s/scissor.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="no">혜택 04</span><b>캡컷 단축키·편집 전자책</b><span>옆에 두고 보는 책</span></li>
+      <li><img class="bi" src="assets/ico/s/thumb-up.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="no">혜택 05</span><b>팀 밀착 코칭</b><span>혼자 막히지 않게</span></li>
+      <li class="hl"><img class="bi" src="assets/ico/s/mobile.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="no">혜택 06</span><b>평생 단톡방 유지</b><span>과정이 끝나도 계속 함께합니다</span></li>
     </ul>
   </div>
 </section>
@@ -278,16 +293,16 @@
 <!-- 4. 4주 커리큘럼 (캔바 92쪽) -->
 <section class="cs dark" data-section="curriculum" data-order="4">
   <div class="cx">
-    <div class="center"><span class="eyebrow">4주 커리큘럼</span>
+    <div class="center"><img class="h3d" src="assets/ico/s/rocket.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="eyebrow">4주 커리큘럼</span>
     <h2>캡컷 기초부터<br><span class="g">채널 운영까지</span></h2></div>
     <div class="cur">
-      <div class="cw"><div class="hd"><span class="n">1강</span><span class="tt">캡컷 기초부터 마스터까지</span></div>
+      <div class="cw"><div class="hd"><span class="n">1강</span><span class="tt">캡컷 기초부터 마스터까지</span><img class="ci" src="assets/ico/s/scissor.png?v=20261104" alt="" loading="lazy" decoding="async"></div>
         <ul><li>포인트자막, TTS 센스 한 번에 마스터</li><li>수만 개의 소재 중 S급 소재 찾는 방법</li><li>영드짜하면서 저작권 리스크 낮추는 방법</li><li>엄부장이 준비한 아스트라 프롬프트 제공</li></ul></div>
-      <div class="cw"><div class="hd"><span class="n">2강</span><span class="tt">아스트라 AI 자동화 시작!</span></div>
+      <div class="cw"><div class="hd"><span class="n">2강</span><span class="tt">아스트라 AI 자동화 시작!</span><img class="ci" src="assets/ico/s/magic-trick.png?v=20261104" alt="" loading="lazy" decoding="async"></div>
         <ul><li>같은 카테고리에서 더 확실하게 들어가는 방법</li><li>소재 결 잘 맞추는 방법</li></ul></div>
-      <div class="cw"><div class="hd"><span class="n">3강</span><span class="tt">직접 만드는 건 구시대적 방법입니다</span></div>
+      <div class="cw"><div class="hd"><span class="n">3강</span><span class="tt">직접 만드는 건 구시대적 방법입니다</span><img class="ci" src="assets/ico/s/video-cam.png?v=20261104" alt="" loading="lazy" decoding="async"></div>
         <ul><li>AI를 활용해서 수익 극대화 가능한, 1시간도 일 안 하고 돈 버는 방법</li><li>하루에 영상 많이 치는 '최강의 최적화' 방법</li><li class="y">AI는 핑계를 대고 놀지 않습니다</li></ul></div>
-      <div class="cw"><div class="hd"><span class="n">4강</span><span class="tt">효율적으로 채널을 운영하는 방법</span></div>
+      <div class="cw"><div class="hd"><span class="n">4강</span><span class="tt">효율적으로 채널을 운영하는 방법</span><img class="ci" src="assets/ico/s/chart.png?v=20261104" alt="" loading="lazy" decoding="async"></div>
         <ul><li>제 모든 영업 노하우 공개</li><li>이젠 채널에 자동 업로드까지</li><li>자동 업로드, 자동 운영 인사이트 모두 공개</li><li>자동화하기 좋은 카테고리 모두 소개</li></ul></div>
     </div>
   </div>
@@ -296,7 +311,7 @@
 <!-- 5. 일정 (캔바 93쪽) -->
 <section class="cs soft" data-section="schedule" data-order="5">
   <div class="cx">
-    <div class="center"><span class="eyebrow">4주 강의 일정</span>
+    <div class="center"><img class="h3d" src="assets/ico/s/calendar.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="eyebrow">4주 강의 일정</span>
     <h2>11월 6일 금요일<br><span class="g">첫 수업입니다</span></h2></div>
     <div class="cal">
       <p class="mh">2026년 11월</p>
@@ -500,7 +515,7 @@
 <!-- 7. 반 선택과 가격 -->
 <section class="cs" id="buy" data-section="price" data-order="7">
   <div class="cx">
-    <div class="center"><span class="eyebrow">오늘 결제하면 할인가</span>
+    <div class="center"><img class="h3d" src="assets/ico/s/wallet.png?v=20261104" alt="" loading="lazy" decoding="async"><span class="eyebrow">오늘 결제하면 할인가</span>
     <h2>나에게 맞는<br><span class="g">반을 고르세요</span></h2></div>
     <div class="plans2" id="plans"></div>
     <p class="perk-line" data-perk-box hidden style="margin-top:1.2rem"><span>오늘 결제 특전 마감까지</span><span class="t" data-perk-time></span></p>
@@ -519,7 +534,7 @@
       <details><summary>수업은 어떻게 듣나요?</summary><p>매주 금요일 저녁 7시 30분부터 9시 30분까지 줌 라이브로 진행합니다. 결제가 확인되면 단톡방 입장과 줌 링크를 보내드립니다.</p></details>
       <details><summary>라이브를 놓치면요?</summary><p>실시간 줌 라이브로만 진행하며 다시보기는 제공하지 않습니다. 매주 금요일 저녁 7시 30분을 미리 비워 두세요.</p></details>
       <details><summary>스탠다드반과 프리미엄반은 무엇이 다른가요?</summary><p id="faqDiff"></p></details>
-      <details><summary>환불은 어떻게 되나요?</summary><p>환불규정을 따릅니다. 자세한 기준은 <a href="../refund.html" target="_blank" rel="noopener">환불규정 전문</a>에서 확인하실 수 있습니다.</p></details>
+      <details><summary>환불은 어떻게 되나요?</summary><p>결제 후 첫 수업이 시작되기 전이라면 이유와 관계없이 전액 환불됩니다. 자세한 기준은 <a href="refund.html" target="_blank" rel="noopener">환불규정 전문</a>에서 확인하실 수 있습니다.</p></details>
     </div>
   </div>
 </section>
@@ -527,6 +542,7 @@
 <!-- 9. 마지막 신청 -->
 <section class="cs dark center" data-section="cta_bottom" data-order="9">
   <div class="cx mobile-form">
+    <img class="h3d big" src="assets/ico/s/crown.png?v=20261104" alt="" loading="lazy" decoding="async">
     <h2>11월 6일 금요일,<br><span class="g">첫 수업에서 만나요</span></h2>
     <a class="btn" data-buy="bottom" href="#buy">반 고르고 신청하기</a>
     <p class="note-s" id="bottomSub"></p>
@@ -567,7 +583,7 @@
   var won = function(n){ return Number(n).toLocaleString('ko-KR') + '원'; };
   var manShort = function(n){ return Math.floor(Number(n) / 10000) + '만원'; };   /* 190,833 → 19만원 (내림: 실제보다 크게 쓰지 않는다) */
   var mon = function(p){ return p.MONTHLY || Math.floor(p.PRICE / (CFG.INSTALL_MONTHS || 12)); };
-  var low = PLANS[0];
+  var low = PLANS.reduce(function(a, b){ return b.PRICE < a.PRICE ? b : a; }, PLANS[0]);   /* '월 19만원부터' 는 가장 싼 반 기준 (프리미엄이 맨 앞이어도) */
   var applyUrl = function(id){ var u = (CFG.ORDER_URL || 'apply.html?product=shortsfighter') + '&plan=' + id; return window.SF_carry ? window.SF_carry(u) : u; };
 
   /* 히어로 */
