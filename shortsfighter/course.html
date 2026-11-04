@@ -603,11 +603,11 @@
   });
   $('faqDiff').textContent = PLANS.map(function(pl){ return pl.NAME + ': ' + pl.DESC; }).join(' / ') + '. 오늘 결제하시면 스탠다드반은 1:1 줌 피드백 2회권, 프리미엄반은 3회권을 드립니다.';
 
-  /* 페이지 안 #buy 링크 */
+  /* 2026-11-04 JY: '지금 합류하기'는 가격표로 스크롤하지 말고 신청 페이지로 바로 (반 선택은 신청 페이지 맨 위, 기본 스탠다드반) */
+  var directUrl = (function(){ var u = CFG.ORDER_URL || 'apply.html?product=shortsfighter'; return window.SF_carry ? window.SF_carry(u) : u; })();
   document.querySelectorAll('a[href="#buy"]').forEach(function(a){
-    a.addEventListener('click', function(e){ e.preventDefault(); track('cta_click', { cta_location: a.dataset.buy || a.dataset.cta, cta_type: 'paid', cta_text: a.textContent.trim() }); $('buy').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      /* slide-qa 2026-11-04: 이동 중 지연 이미지가 로드되며 페이지가 늘어나 #buy 보다 600px 위에서 멈추던 것 보정 */
-      setTimeout(function(){ $('buy').scrollIntoView({ behavior: 'auto', block: 'start' }); }, 1100); });
+    a.setAttribute('href', directUrl);
+    a.addEventListener('click', function(){ track('cta_click', { cta_location: a.dataset.buy || a.dataset.cta, cta_type: 'paid', cta_text: a.textContent.trim() }); });
   });
 
   /* 11월 달력 */
