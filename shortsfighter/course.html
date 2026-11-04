@@ -179,8 +179,15 @@
   .fcta .ft{font-size:.75rem;color:#FFB08F;font-weight:900;white-space:nowrap}
   .fcta .ft i{font-style:normal;font-variant-numeric:tabular-nums}
   .fcta .btn{width:auto;flex:none;padding:.95rem 1.3rem;font-size:1.125rem;box-shadow:0 4px 0 var(--green-dd);animation:ctapulse 2.6s ease-in-out infinite}
-  footer{padding-bottom:calc(2.75rem + 6rem)}
-  @media (min-width:768px){ .fcta{left:50%;right:auto;bottom:1rem;transform:translateX(-50%);width:min(36rem,calc(100% - 2rem));border-radius:18px;padding:.75rem .9rem .75rem 1.2rem} .fcta::before{display:none} }
+  footer{padding-bottom:calc(2.75rem + 4rem)}
+  /* 2026-11-04 JY: 플로팅 CTA는 우측 카드 말고 하단 전체 고정 띠로, 화면을 덜 가리게 얇게 */
+  .fcta{padding:.45rem var(--pad) calc(.45rem + env(safe-area-inset-bottom));gap:.6rem}
+  .fcta .fi b{font-size:1rem}
+  .fcta .btn{padding:.7rem 1.1rem;font-size:1rem;box-shadow:0 3px 0 var(--green-dd)}
+  /* 히어로 '지금 합류하기'가 보이는 동안은 띠를 내려 둔다 (PC에서 띠가 히어로 버튼을 덮던 것) */
+  .fcta{transition:transform .25s ease}
+  .fcta.off{transform:translateY(110%)}
+  @media (min-width:768px){ .fcta{padding:.5rem max(1.5rem,calc(50% - 22rem))} .fcta .fi{flex-direction:row;align-items:baseline;gap:.8rem} .fcta .fl,.fcta .ft{font-size:.875rem} .fcta .fi b{font-size:1.125rem} .fcta .btn{padding:.7rem 2rem} }
   @media (min-width:768px){ .hx h1{font-size:3.6rem} .bens li{min-height:6.4rem} }
   /* 2026-11-04 slide-qa: 320px에서 금액이 "월 / 19만원부터"로 3줄 깨짐, 칩 설명 12px, 짧은 줄 고아 */
   .pricebox .mon,.pc .mon{white-space:nowrap}
@@ -199,7 +206,6 @@
     .hero-photo{right:calc(50% - 22rem)}
     /* 2026-11-04 slide-qa: 1280x800 첫 화면에서 가운데 플로팅 바가 히어로 '지금 합류하기'를 덮던 것 → PC는 버튼 폭을 줄이고 플로팅 바를 오른쪽 아래로 */
     .hero-cta .btn{max-width:25rem}
-    .fcta{left:auto;right:1.5rem;transform:none;width:26rem}
   }
   /* 2026-11-04 slide-qa: 손글씨 폰트가 안 받아지면 '배달하던 시절'이 카드 폭(77px)보다 넓어 화면 오른쪽 끝에서 잘림 → 캡션 칸을 양옆으로 넓혀 가운데 정렬 */
   .hp-then figcaption{margin:.25rem -1.1rem 0}
@@ -546,6 +552,14 @@
   <div class="fi"><span class="fl">쇼츠파이터 1기 정규 과정</span><b id="dockMon">월 19만원부터</b><span class="ft" data-perk-box hidden>오늘 특전 마감 <i data-perk-time></i></span></div>
   <a class="btn" data-buy="floating" href="#buy">지금 합류하기</a>
 </div>
+<script>
+(function(){
+  var bar = document.getElementById('fcta'), hb = document.querySelector('[data-buy=hero]');
+  if (!bar || !hb || !('IntersectionObserver' in window)) return;
+  bar.classList.add('off');
+  new IntersectionObserver(function(es){ bar.classList.toggle('off', es[0].isIntersecting); }).observe(hb);
+})();
+</script>
 
 <script src="sf_v3.js?v=20261011a"></script>
 <script>
