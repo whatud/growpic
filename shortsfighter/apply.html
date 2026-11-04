@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수강 신청 | 쇼츠파이터 정규 과정 1기</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/flame.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sf.css?v=20260928d">
+<script src="../config.js"></script>
+<script src="sf-config.js?v=20261104a"></script>
+<!--
+  쇼츠파이터 정규 과정 수강 신청 (결제선생 반자동, 2026-11-04)
+  흐름: 이 페이지 → 쇼츠파이터 신청 서버(Apps Script, form_type course_apply) → 시트 '수강신청' 탭
+        → 10분마다 카드 신청을 결제선생 대량발송 엑셀로 만들어 문지영님·JY님께 메일 → 결제선생에 올려 카톡 결제 링크 발송
+        계좌이체는 엑셀에서 빠지고, 완료 화면에 계좌가 바로 보인다
+  고객 제출 규칙: 서버가 {ok:true, kind:'course'} 로 답해야 완료 페이지로 넘어간다.
+        kind 를 확인하는 이유: 서버에 수강신청 분기를 배포하기 전 주소로 보내면 옛 서버가 무료 신청자 탭에 저장하고 {ok:true} 만 돌려준다.
+  가격은 ../config.js PRODUCTS.shortsfighter.PLANS 가 화면 기준, 서버 PRICES 가 청구 기준. 둘이 다르면 서버가 거절한다.
+-->
+<style>
+  body{padding-bottom:0;background:#F5F6F7}
+  footer{padding-bottom:2.75rem}
+  .ap-hero{background:var(--dark);color:#fff;padding:2rem 0 2.2rem;text-align:center}
+  .ap-hero .step{display:inline-block;background:rgba(255,255,255,.1);color:#D6D6D6;font-weight:700;font-size:.9375rem;padding:.4rem .9rem;border-radius:999px;margin-bottom:.8rem}
+  .ap-hero h1{font-family:var(--title);font-weight:400;font-size:2.1rem;line-height:1.25;letter-spacing:-.03em;word-break:keep-all;margin:0}
+  .ap-hero h1 .g{color:var(--green)}
+  .ap-wrap{max-width:34rem;margin:0 auto;padding:1.25rem var(--pad) 2.5rem}
+  .ap-card{background:#fff;border:1.5px solid var(--rule);border-radius:18px;padding:1.3rem 1.15rem;margin-bottom:1rem}
+  .ap-card h2{font-size:1.1875rem;font-weight:900;margin:0 0 .8rem;letter-spacing:-.02em}
+  .ap-card h2 small{font-size:.875rem;color:var(--ink-3);font-weight:700;margin-left:.3rem}
+  .opt{display:flex;flex-direction:column;gap:.55rem}
+  .opt label{display:flex;align-items:center;gap:.75rem;border:1.5px solid var(--rule);border-radius:12px;padding:.85rem .9rem;cursor:pointer;margin:0;min-height:44px}
+  .opt label.on{border-color:var(--green);background:var(--green-pale)}
+  .opt input{width:1.15rem;height:1.15rem;accent-color:var(--green);flex:none;margin:0}
+  .opt .t{flex:1;min-width:0;font-size:1.0625rem;font-weight:900;line-height:1.35;word-break:keep-all}
+  .opt .t small{display:block;font-size:.875rem;color:var(--ink-2);font-weight:500;margin-top:.15rem;line-height:1.45}
+  .opt .p{flex:none;font-family:var(--title);font-size:1.2rem;color:var(--ink);white-space:nowrap}
+  .opt .p{text-align:right}
+  .opt .p .pm{display:block;font-family:var(--sans);font-size:.8125rem;font-weight:700;color:var(--ink-2);margin-top:.15rem}
+  .fld{margin-bottom:.85rem}
+  .fld label{display:block;font-size:1rem;font-weight:900;margin-bottom:.35rem}
+  .fld input{width:100%;box-sizing:border-box;font:inherit;font-size:1.0625rem;padding:.85rem .9rem;border:1.5px solid var(--rule);border-radius:10px;background:#fff;color:var(--ink);min-height:48px}
+  .fld input:focus{outline:none;border-color:var(--green)}
+  .fld.bad input{border-color:var(--fire)}
+  .fld .err{display:none;color:var(--fire-t);font-size:.875rem;font-weight:700;margin-top:.3rem}
+  .fld.bad .err{display:block}
+  .fld .hint{font-size:.875rem;color:var(--ink-3);margin-top:.3rem;line-height:1.45;word-break:keep-all}
+  .ags{border:1.5px solid var(--rule);border-radius:12px;padding:.8rem .9rem}
+  .ags.bad{border-color:var(--fire)}
+  .ags label{display:flex;align-items:flex-start;gap:.6rem;font-size:.9375rem;font-weight:700;margin:0 0 .5rem;line-height:1.45;cursor:pointer;word-break:keep-all}
+  .ags label:last-child{margin-bottom:0}
+  .ags label.all{font-size:1.0625rem;font-weight:900;padding-bottom:.6rem;margin-bottom:.6rem;border-bottom:1px solid var(--rule)}
+  .ags input{width:1.15rem;height:1.15rem;accent-color:var(--green);flex:none;margin:.12rem 0 0}
+  .ags a{color:var(--ink-2);text-decoration:underline;font-weight:500;margin-left:.2rem;white-space:nowrap}
+  .ags .req{color:var(--green-t)} .ags .opt-t{color:var(--ink-3)}
+  .ags-err{display:none;color:var(--fire-t);font-size:.875rem;font-weight:700;margin-top:.45rem}
+  .ags.bad + .ags-err{display:block}
+  .sum{display:grid;grid-template-columns:auto 1fr;gap:.45rem .8rem;font-size:1rem;margin:0 0 1rem}
+  .sum dt{color:var(--ink-3);font-weight:700} .sum dd{margin:0;font-weight:900;text-align:right;word-break:keep-all}
+  .sum .tot{font-size:1.35rem;color:var(--ink)}
+  .paynote{font-size:.9375rem;color:var(--ink-2);background:var(--green-pale);border-radius:10px;padding:.75rem .85rem;line-height:1.55;margin:0 0 1rem;word-break:keep-all}
+  #submitBtn{width:100%;border:0;cursor:pointer}
+  #submitBtn[disabled]{opacity:.65;cursor:wait;animation:none}
+  .sendfail{display:none;margin-top:1rem;padding:1rem;border-radius:12px;background:#FFF4EF;border:1.5px solid var(--fire)}
+  .sendfail .sf-t{font-size:1.0625rem;font-weight:900;color:var(--fire-t);margin:0 0 .3rem}
+  .sendfail .sf-d{font-size:.9375rem;color:var(--ink-2);line-height:1.55;margin:0 0 .7rem;word-break:keep-all}
+  .sendfail .btn{margin-top:.45rem;width:100%;box-sizing:border-box;border:0;cursor:pointer}
+  .sendfail .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--rule);box-shadow:none;animation:none}
+  .sendfail .sf-mine{font-size:.875rem;color:var(--ink-3);margin:.8rem 0 0;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere;white-space:pre-line}
+  .sendfail .sf-mine b{color:var(--ink)}
+  @media (min-width:1240px){footer .sec-inner{max-width:34rem;margin:0 auto;padding:0 var(--pad)}}
+  .back{display:block;text-align:center;color:var(--ink-3);font-size:.9375rem;font-weight:700;margin-top:.4rem}
+  /* 2026-11-04 slide-qa: 320px 제목 '1기' 홀로 줄바꿈 방지, 터치 영역 44px, 번호 중간 끊김 방지 */
+  .ap-hero h1 .g{white-space:nowrap}
+  .ags label{min-height:44px;box-sizing:border-box;padding:.65rem 0;margin:0}
+  .ags label.all{padding:.65rem 0;margin:0 0 .15rem}
+  .ags a{display:inline-block;padding:.7rem .25rem;margin:-.7rem 0 -.7rem .1rem}
+  .back{padding:.6rem 0}
+  footer .links a{display:inline-block;padding:.6rem 0;margin:-.6rem 0}
+  .nw{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="dot"></span><span>쇼츠파이터 정규 과정 1기 수강 신청</span></div>
+
+<header class="ap-hero">
+  <div class="wrap">
+    <span class="step">수강 신청</span>
+    <h1>쇼츠파이터 <span class="g">정규 과정 1기</span></h1>
+  </div>
+</header>
+
+<main class="ap-wrap">
+  <form id="payForm" novalidate>
+    <section class="ap-card">
+      <h2>1. 반 선택</h2>
+      <div class="opt" id="planPick"></div>
+    </section>
+
+    <section class="ap-card">
+      <h2>2. 결제 방법</h2>
+      <div class="opt" id="methodPick">
+        <label class="on"><input type="radio" name="method" value="card" checked><span class="t">카드 결제<small>신청 후 카카오톡으로 결제선생 결제 링크를 보내드립니다. 할부는 카드사 기준으로 가능합니다.</small></span></label>
+        <label><input type="radio" name="method" value="cash"><span class="t">계좌이체<small>신청을 마치면 다음 화면에 입금 계좌가 나옵니다. 현금영수증 발행 가능합니다.</small></span></label>
+      </div>
+    </section>
+
+    <section class="ap-card">
+      <h2>3. 신청자 정보</h2>
+      <div class="fld" id="fName">
+        <label for="name">이름</label>
+        <input id="name" name="name" autocomplete="name" maxlength="20" placeholder="결제할 분 성함">
+        <p class="err">이름을 적어 주세요.</p>
+      </div>
+      <div class="fld" id="fPhone">
+        <label for="phone">휴대폰 번호</label>
+        <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="13" placeholder="010-0000-0000">
+        <p class="err">휴대폰 번호 11자리를 확인해 주세요.</p>
+        <p class="hint">이 번호의 카카오톡으로 결제 링크와 수업 안내가 갑니다.</p>
+      </div>
+      <div class="ags" id="ags">
+        <label class="all"><input type="checkbox" id="agAll"><span>아래 내용에 모두 동의합니다</span></label>
+        <label><input type="checkbox" class="ag" id="agPrivacy" data-req="1"><span><span class="req">[필수]</span> 개인정보 수집·이용 동의 (이름, 휴대폰 번호 / 수강 신청·결제 안내 / 수강 종료 후 1년 보관)<a href="../privacy.html" target="_blank" rel="noopener">보기</a></span></label>
+        <label><input type="checkbox" class="ag" id="agRefund" data-req="1"><span><span class="req">[필수]</span> 환불규정 확인<a href="../refund.html" target="_blank" rel="noopener">보기</a></span></label>
+        <label><input type="checkbox" class="ag" id="agMarketing"><span><span class="opt-t">[선택]</span> 강의 소식·혜택 안내 수신</span></label>
+      </div>
+      <p class="ags-err">필수 항목에 동의해 주세요.</p>
+    </section>
+
+    <section class="ap-card">
+      <h2>4. 신청 내용 확인</h2>
+      <dl class="sum">
+        <dt>과정</dt><dd id="sCourse">쇼츠파이터 정규 과정 1기</dd>
+        <dt>반</dt><dd id="sPlan"></dd>
+        <dt>결제 방법</dt><dd id="sMethod"></dd>
+        <dt>결제 금액</dt><dd class="tot" id="sAmount"></dd>
+      </dl>
+      <p class="paynote" id="payNote"></p>
+      <button type="submit" class="btn" id="submitBtn">수강 신청하기</button>
+
+      <div class="sendfail" id="sendFail" role="alert">
+        <p class="sf-t" id="failTitle">신청이 아직 접수되지 않았습니다</p>
+        <p class="sf-d" id="failDesc">인터넷 연결이나 회사·학교 보안망 때문에 신청서가 서버에 닿지 않았습니다. 다시 보내기를 눌러 주시고, 계속 안 되면 아래로 연락 주시면 바로 접수해 드립니다.</p>
+        <button type="button" class="btn" id="retryBtn">다시 보내기</button>
+        <a class="btn ghost" id="failContact" href="#" target="_blank" rel="noopener">카카오톡으로 신청하기</a>
+        <a class="btn ghost" id="failCall" href="#">전화로 신청하기</a>
+        <p class="sf-mine" id="failMine"></p>
+        <button type="button" class="btn ghost" id="copyMine">입력한 내용 복사</button>
+      </div>
+    </section>
+  </form>
+  <a class="back" id="backLink" href="course.html">과정 소개로 돌아가기</a>
+</main>
+
+<footer>
+  <div class="sec-inner">
+    <span class="wm"><img loading="lazy" decoding="async" src="assets/flame.svg" alt="">쇼츠파이터<small>by 그로우픽</small></span>
+    <p data-biz></p>
+    <div class="links"><a href="../index.html">그로우픽 홈</a><a href="../terms.html">이용약관</a><a href="../privacy.html">개인정보처리방침</a><a href="../refund.html">환불규정</a></div>
+  </div>
+</footer>
+
+<script src="sf_v3.js?v=20261011a"></script>
+<script>
+(function(){
+  'use strict';
+  var G = window.GP || {}, CFG = window.SF || {}, F = window.GP_FMT;
+  var P = (G.PRODUCTS || []).filter(function(x){ return x.ID === 'shortsfighter'; })[0];
+  var PLANS = (CFG.PLANS && CFG.PLANS.length) ? CFG.PLANS : ((P && P.PLANS) || []);   /* 2026-11-04 캔바 기준 가격은 sf-config.js 에 */
+  var COURSE_ID = (P && P.COURSE_ID) || 'shortsfighter_2';
+  var COURSE_NAME = CFG.COURSE_NAME || '쇼츠파이터 정규 과정 1기';
+  var track = window.SF_track || function(){};
+  var $ = function(id){ return document.getElementById(id); };
+  var q = new URLSearchParams(location.search);
+  var DEMO = q.get('demo') === '1';   /* 미리보기 전용: 서버로 보내지 않고 완료 화면까지 */
+  var BIZ = G.BIZ || {};
+  var PHONE = BIZ.PHONE || G.PHONE || '';
+
+  $('backLink').href = window.SF_carry ? window.SF_carry('course.html') : 'course.html';
+
+  /* 반 선택 */
+  var want = q.get('plan');
+  if (!PLANS.some(function(p){ return p.ID === want; })) want = PLANS.length ? PLANS[0].ID : '';
+  $('planPick').innerHTML = PLANS.map(function(pl){
+    return '<label' + (pl.ID === want ? ' class="on"' : '') + '><input type="radio" name="plan" value="' + pl.ID + '"' + (pl.ID === want ? ' checked' : '') + '>'
+      + '<span class="t">' + pl.NAME + '<small>' + pl.DESC + '</small></span><span class="p">' + F.man(pl.PRICE) + (pl.MONTHLY ? '<small class="pm">12개월 월 ' + Number(pl.MONTHLY).toLocaleString('ko-KR') + '원</small>' : '') + '</span></label>';
+  }).join('');
+
+  function cur(){
+    var pid = (document.querySelector('input[name=plan]:checked') || {}).value;
+    var pl = PLANS.filter(function(p){ return p.ID === pid; })[0] || PLANS[0];
+    var m = (document.querySelector('input[name=method]:checked') || {}).value || 'card';
+    return { plan: pl, method: m };
+  }
+  function sync(){
+    var c = cur();
+    document.querySelectorAll('.opt label').forEach(function(l){ l.classList.toggle('on', l.querySelector('input').checked); });
+    $('sPlan').textContent = c.plan ? c.plan.NAME : '';
+    $('sMethod').textContent = c.method === 'cash' ? '계좌이체' : '카드 (결제선생 카카오톡 링크)';
+    $('sAmount').textContent = c.plan ? F.won(c.plan.PRICE) : '';
+    $('payNote').textContent = c.method === 'cash'
+      ? '신청을 마치면 다음 화면에 입금 계좌와 금액이 나옵니다. 입금이 확인되면 수업 안내를 카카오톡으로 보내드립니다.'
+      : '신청 순서대로 카카오톡으로 결제선생 결제 링크를 보내드립니다. 링크에서 카드로 결제하시면 신청이 확정됩니다.';
+    $('submitBtn').textContent = (c.plan ? c.plan.NAME + ' ' : '') + '수강 신청하기';
+  }
+  $('payForm').addEventListener('change', sync);
+  sync();
+
+  /* 입력 정리 */
+  $('phone').addEventListener('input', function(){
+    var d = this.value.replace(/\D/g, '').slice(0, 11);
+    this.value = d.length > 7 ? d.slice(0,3) + '-' + d.slice(3,7) + '-' + d.slice(7) : d.length > 3 ? d.slice(0,3) + '-' + d.slice(3) : d;
+  });
+  var ags = Array.prototype.slice.call(document.querySelectorAll('.ag'));
+  $('agAll').addEventListener('change', function(){ var v = this.checked; ags.forEach(function(a){ a.checked = v; }); $('ags').classList.remove('bad'); });
+  ags.forEach(function(a){ a.addEventListener('change', function(){ $('agAll').checked = ags.every(function(x){ return x.checked; }); $('ags').classList.remove('bad'); }); });
+  ['name','phone'].forEach(function(id){ $(id).addEventListener('input', function(){ this.closest('.fld').classList.remove('bad'); }); });
+
+  var started = false;
+  $('payForm').addEventListener('focusin', function(){ if (started) return; started = true; track('course_form_start', { form_location: 'apply' }); });
+
+  /* 같은 신청서를 다시 보낼 때는 같은 신청번호를 쓴다 → 서버가 중복 저장하지 않는다 */
+  function applyId(){
+    var k = 'sf_course_apply_id', v = '';
+    try { v = sessionStorage.getItem(k) || ''; } catch(e) {}
+    if (!v) {
+      var t = new Date(), p = function(n){ return ('0' + n).slice(-2); };
+      v = 'SF' + String(t.getFullYear()).slice(2) + p(t.getMonth()+1) + p(t.getDate()) + p(t.getHours()) + p(t.getMinutes()) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+      try { sessionStorage.setItem(k, v); } catch(e) {}
+    }
+    return v;
+  }
+
+  var sending = false, last = null;
+  function validate(){
+    var ok = true, name = $('name').value.trim(), digits = $('phone').value.replace(/\D/g, '');
+    if (name.length < 2) { $('fName').classList.add('bad'); ok = false; }
+    if (!/^01[016789]\d{7,8}$/.test(digits)) { $('fPhone').classList.add('bad'); ok = false; }
+    if (!$('agPrivacy').checked || !$('agRefund').checked) { $('ags').classList.add('bad'); ok = false; }
+    if (!ok) {
+      var first = document.querySelector('.fld.bad, .ags.bad');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      track('course_form_invalid', {});
+    }
+    return ok;
+  }
+
+  function build(){
+    var c = cur(), a = window.SF_attr ? window.SF_attr() : {};
+    var p = {
+      form_type: 'course_apply',
+      apply_id: applyId(),
+      course_id: COURSE_ID, course_name: COURSE_NAME,
+      plan_id: c.plan.ID, plan_name: c.plan.NAME,
+      pay_method: c.method, amount: c.plan.PRICE,
+      name: $('name').value.trim(), phone: $('phone').value.trim(),
+      agree_privacy: 'Y', agree_refund: 'Y', agree_marketing: $('agMarketing').checked ? 'Y' : 'N',
+      page: location.pathname
+    };
+    for (var k in a) if (Object.prototype.hasOwnProperty.call(a, k)) p[k] = a[k];
+    return p;
+  }
+
+  function setBusy(b){
+    sending = b;
+    $('submitBtn').disabled = b; $('retryBtn').disabled = b;
+    if (b) { $('submitBtn').textContent = '보내는 중...'; $('retryBtn').textContent = '보내는 중...'; }
+    else { sync(); $('retryBtn').textContent = '다시 보내기'; }
+  }
+
+  function success(p){
+    try {
+      sessionStorage.setItem('sf_course_done', JSON.stringify({ name: p.name, plan: p.plan_name, method: p.pay_method, amount: p.amount, apply_id: p.apply_id }));
+      sessionStorage.removeItem('sf_course_apply_id');
+    } catch(e) {}
+    /* 전환은 서버 확인 뒤에만. 메타 Lead 는 무료 라이브 신청 전환(SF1_무료특강신청)과 겹치므로 쓰지 않는다 */
+    track('course_apply', { plan: p.plan_id, pay_method: p.pay_method, value: p.amount, currency: 'KRW' });
+    try { if (window.fbq) window.fbq('track', 'InitiateCheckout', { value: p.amount, currency: 'KRW', content_name: COURSE_NAME + ' ' + p.plan_name }); } catch(e) {}
+    setTimeout(function(){ location.href = window.SF_carry ? window.SF_carry('apply_done.html') : 'apply_done.html'; }, 300);
+  }
+
+  /* 화면 표시 전용: 전화번호·신청번호·금액을 nowrap 으로 묶어 줄 중간에서 안 끊기게 (복사 문구 dataset.copy 는 그대로) */
+  function nwText(el, s){
+    var re = /(01\d-\d{3,4}-\d{4}|SF\d{10}-[A-Z0-9]{4}|\d{1,3}(?:,\d{3})+원)/g, i = 0, m;
+    el.textContent = '';
+    while ((m = re.exec(s))) {
+      if (m.index > i) el.appendChild(document.createTextNode(s.slice(i, m.index)));
+      var sp = document.createElement('span'); sp.className = 'nw'; sp.textContent = m[0]; el.appendChild(sp);
+      i = m.index + m[0].length;
+    }
+    if (i < s.length) el.appendChild(document.createTextNode(s.slice(i)));
+  }
+
+  function fail(reason, p){
+    setBusy(false);
+    var slow = reason === 'timeout';
+    $('failTitle').textContent = slow ? '접수 확인이 늦어지고 있습니다' : '신청이 아직 접수되지 않았습니다';
+    $('failDesc').textContent = slow
+      ? '신청서는 보냈지만 서버 응답이 늦습니다. 이미 접수됐을 수 있으니 다시 보내기를 한 번만 눌러 주세요(같은 신청번호라 두 번 들어가지 않습니다). 확실히 하시려면 아래로도 연락 주세요.'
+      : '인터넷 연결이나 회사·학교 보안망 때문에 신청서가 서버에 닿지 않았습니다. 다시 보내기를 눌러 주시고, 계속 안 되면 아래로 연락 주시면 바로 접수해 드립니다.';
+    var mine = '신청번호 ' + p.apply_id + '\n이름 ' + p.name + ' / 연락처 ' + p.phone + '\n' + COURSE_NAME + ' ' + p.plan_name + ' / ' + (p.pay_method === 'cash' ? '계좌이체' : '카드') + ' ' + F.won(p.amount);
+    nwText($('failMine'), '보내려던 내용\n' + mine);
+    $('failMine').dataset.copy = '[쇼츠파이터 수강 신청]\n' + mine;
+    /* 무료 라이브 오픈채팅은 단체방이라 신청 내용(이름·번호)을 올리게 하면 안 된다 → 1:1 채널(KAKAO_CS_URL)이 있을 때만 카톡, 없으면 문자 */
+    var cs = CFG.KAKAO_CS_URL || '';
+    if (cs) { $('failContact').href = cs; $('failContact').textContent = '카카오톡으로 신청하기'; }
+    else if (PHONE) { $('failContact').href = 'sms:' + PHONE.replace(/\D/g, ''); $('failContact').removeAttribute('target'); $('failContact').textContent = '문자로 신청하기'; }
+    else $('failContact').style.display = 'none';
+    $('failCall').style.display = PHONE ? '' : 'none'; if (PHONE) { $('failCall').href = 'tel:' + PHONE.replace(/\D/g, ''); nwText($('failCall'), '전화로 신청하기 ' + PHONE); }
+    $('sendFail').style.display = 'block';
+    $('sendFail').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    /* 실패 기록: GTM 없이 GA4 로 바로 */
+    track('form_error', { cta_type: 'send_fail', form_location: 'course_apply', reason: String(reason).slice(0, 60) });
+  }
+
+  function send(){
+    if (sending) return;
+    var p = build(); last = p;
+    $('sendFail').style.display = 'none';
+    setBusy(true);
+    track('course_submit_try', { plan: p.plan_id, pay_method: p.pay_method });
+    if (DEMO) { setTimeout(function(){ success(p); }, 600); return; }
+    var ep = window.SF_TEST_COURSE_ENDPOINT || CFG.COURSE_ENDPOINT || '';
+    confirmedSubmit({
+      endpoint: ep, payload: p, timeout: 20000,
+      onOk: function(){ success(p); },
+      onFail: function(reason){ fail(reason, p); }
+    });
+  }
+
+  $('payForm').addEventListener('submit', function(e){ e.preventDefault(); if (!validate()) return; send(); });
+  $('retryBtn').addEventListener('click', function(){ track('send_retry', { form_location: 'course_apply' }); send(); });
+  $('copyMine').addEventListener('click', function(){
+    var t = $('failMine').dataset.copy || '';
+    var done = function(){ $('copyMine').textContent = '복사했습니다'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function(){});
+  });
+
+  track('course_apply_view', { plan: want });
+
+  /* 고객 제출 공용 부품 (customer-form-submit 스킬 원본 그대로 + kind 확인 한 줄)
+     서버가 {ok:true, kind:'course'} 로 답해야 성공. 외부 파일로 빼지 않는다 */
+  function confirmedSubmit(o){
+    var finished = false, timer = null, ctrl = null;
+    function end(ok, reason){
+      if(finished) return; finished = true; clearTimeout(timer);
+      try{ ok ? o.onOk() : o.onFail(reason); }catch(e){ if(window.console) console.error(e); }
+    }
+    if(!o.endpoint){ end(false, 'server:no_endpoint'); return; }
+    try{ ctrl = new AbortController(); }catch(e){}
+    timer = setTimeout(function(){ try{ if(ctrl) ctrl.abort(); }catch(e){} end(false, 'timeout'); }, o.timeout || 20000);
+    try{
+      fetch(o.endpoint, {
+        method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' },
+        body: JSON.stringify(o.payload), signal: ctrl ? ctrl.signal : undefined
+      }).then(function(r){ return r.text(); })
+        .then(function(t){
+          var j = null; try{ j = JSON.parse(t); }catch(e){}
+          if(j && j.ok === true && j.kind === 'course') end(true, '');
+          else end(false, 'server:' + ((j && j.error) || (j && j.ok === true ? 'not_course_server' : 'bad_response')));
+        })
+        .catch(function(){ end(false, 'network'); });
+    }catch(e){ end(false, 'network'); }
+  }
+})();
+</script>
+</body>
+</html>

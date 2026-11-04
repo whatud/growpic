@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수강 신청 접수 완료 | 쇼츠파이터 정규 과정 1기</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/flame.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sf.css?v=20260928d">
+<script src="../config.js"></script>
+<script src="sf-config.js?v=20261104a"></script>
+<!-- 신청 내용은 주소창이 아니라 sessionStorage('sf_course_done') 로 넘겨받는다 (개인정보를 URL 에 싣지 않기) -->
+<style>
+  body{padding-bottom:0;background:#F5F6F7}
+  footer{padding-bottom:2.75rem}
+  @media (min-width:1240px){footer .sec-inner{max-width:34rem;margin:0 auto;padding:0 var(--pad)}}
+  .dn-hero{background:var(--dark);color:#fff;padding:2.4rem 0 2.6rem;text-align:center}
+  .dn-hero .check{width:4rem;height:4rem;border-radius:50%;background:var(--green);display:grid;place-items:center;margin:0 auto 1rem;box-shadow:0 0 0 .7rem rgba(3,199,90,.15)}
+  .dn-hero .step{display:inline-block;background:rgba(255,255,255,.1);color:#D6D6D6;font-weight:700;font-size:.9375rem;padding:.4rem .9rem;border-radius:999px;margin-bottom:.8rem}
+  .dn-hero h1{font-family:var(--title);font-weight:400;font-size:2.1rem;line-height:1.3;letter-spacing:-.03em;word-break:keep-all;margin:0 0 .6rem}
+  .dn-hero h1 .g{color:var(--green)}
+  .dn-hero .sub{color:#C8C8C8;font-weight:700;font-size:1.0625rem;line-height:1.6;word-break:keep-all;margin:0}
+  .dn-wrap{max-width:34rem;margin:0 auto;padding:1.25rem var(--pad) 2.5rem}
+  .dn-card{background:#fff;border:1.5px solid var(--rule);border-radius:18px;padding:1.3rem 1.15rem;margin-bottom:1rem}
+  .dn-card h2{font-size:1.1875rem;font-weight:900;margin:0 0 .8rem}
+  .sum{display:grid;grid-template-columns:auto 1fr;gap:.5rem .8rem;font-size:1rem;margin:0}
+  .sum dt{color:var(--ink-3);font-weight:700} .sum dd{margin:0;font-weight:900;text-align:right;word-break:break-all}
+  .sum .big{font-size:1.3rem}
+  .bank{background:var(--green-pale);border-radius:12px;padding:1rem;margin:.2rem 0 .9rem}
+  .bank .acc{font-size:1.35rem;font-weight:900;letter-spacing:-.01em;margin:.2rem 0;word-break:keep-all}
+  .bank p{margin:0;font-size:.9375rem;color:var(--ink-2);line-height:1.55;word-break:keep-all}
+  .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--rule);box-shadow:none;animation:none;width:100%;box-sizing:border-box;cursor:pointer}
+  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+  .steps li{display:flex;gap:.8rem;align-items:flex-start}
+  .steps .n{flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--green);color:#04170D;font-weight:900;display:grid;place-items:center;font-size:.9375rem}
+  .steps b{display:block;font-size:1.0625rem;font-weight:900;line-height:1.4;word-break:keep-all}
+  .steps p{margin:.15rem 0 0;font-size:.9375rem;color:var(--ink-2);line-height:1.55;word-break:keep-all}
+  .help{font-size:.9375rem;color:var(--ink-2);line-height:1.6;word-break:keep-all;margin:0}
+  .help a{color:var(--ink);font-weight:900}
+  .copied{display:none;text-align:center;color:var(--green-t);font-weight:900;margin-top:.5rem}
+  .nodata{display:none}
+  /* 2026-11-04 slide-qa: 한글 단어 중간 끊김(break-all) 방지, 번호·금액 nowrap, 터치 영역 44px */
+  .sum dd{word-break:keep-all;overflow-wrap:anywhere}
+  #dId,#dAmount,#cashAmount{white-space:nowrap}
+  .help a{display:inline-block;padding:.7rem 0;margin:-.7rem 0}
+  footer .links a{display:inline-block;padding:.6rem 0;margin:-.6rem 0}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="dot"></span><span>쇼츠파이터 정규 과정 1기 수강 신청</span></div>
+
+<header class="dn-hero">
+  <div class="wrap">
+    <div class="check" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#04170D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <span class="step">수강 신청 접수 완료</span>
+    <h1 id="dTitle"><span id="dName"></span>신청이 <span class="g">접수됐습니다</span></h1>
+    <p class="sub" id="dSub"></p>
+  </div>
+</header>
+
+<main class="dn-wrap">
+  <!-- 계좌이체 -->
+  <section class="dn-card" id="cashBox" hidden>
+    <h2>입금 안내</h2>
+    <div class="bank">
+      <p id="bankName"></p>
+      <p class="acc" id="bankAcc"></p>
+      <p id="bankHolder"></p>
+    </div>
+    <dl class="sum">
+      <dt>입금 금액</dt><dd class="big" id="cashAmount"></dd>
+      <dt>입금자명</dt><dd id="cashPayer"></dd>
+    </dl>
+    <button type="button" class="btn ghost" id="copyAcc" style="margin-top:1rem">계좌번호 복사</button>
+    <p class="copied" id="copied">계좌번호를 복사했습니다</p>
+    <p class="help" style="margin-top:.9rem">입금자명이 신청자 이름과 다르면 확인이 늦어질 수 있습니다. 현금영수증 발행 가능하며, 세금계산서는 VAT 10% 별도입니다.</p>
+  </section>
+
+  <section class="dn-card">
+    <h2>신청 내용</h2>
+    <dl class="sum">
+      <dt>과정</dt><dd>쇼츠파이터 정규 과정 1기</dd>
+      <dt>반</dt><dd id="dPlan"></dd>
+      <dt>결제 방법</dt><dd id="dMethod"></dd>
+      <dt>결제 금액</dt><dd id="dAmount"></dd>
+      <dt>신청번호</dt><dd id="dId"></dd>
+    </dl>
+  </section>
+
+  <section class="dn-card">
+    <h2>다음 순서</h2>
+    <ol class="steps" id="dSteps"></ol>
+  </section>
+
+  <a class="btn ghost" id="backCourse" href="course.html" style="display:block;text-align:center;margin:0 0 1rem">정규 과정 소개 다시 보기</a>
+
+  <section class="dn-card">
+    <p class="help" id="dHelp"></p>
+  </section>
+</main>
+
+<footer>
+  <div class="sec-inner">
+    <span class="wm"><img loading="lazy" decoding="async" src="assets/flame.svg" alt="">쇼츠파이터<small>by 그로우픽</small></span>
+    <div class="links"><a href="../index.html">그로우픽 홈</a><a href="../terms.html">이용약관</a><a href="../privacy.html">개인정보처리방침</a><a href="../refund.html">환불규정</a></div>
+    <p data-biz></p>
+  </div>
+</footer>
+
+<script src="sf_v3.js?v=20261011a"></script>
+<script>
+(function(){
+  'use strict';
+  var G = window.GP || {}, CFG = window.SF || {}, F = window.GP_FMT;
+  var $ = function(id){ return document.getElementById(id); };
+  var track = window.SF_track || function(){};
+  var BANK = (G.PAY && G.PAY.BANK) || {};
+  var PHONE = (G.BIZ && G.BIZ.PHONE) || '';
+  var d = null;
+  try { d = JSON.parse(sessionStorage.getItem('sf_course_done') || 'null'); } catch(e) {}
+
+  var cash = d && d.method === 'cash';
+  var eta = CFG.LINK_ETA_TEXT || '';
+  if (d && d.name) $('dName').textContent = d.name + '님, ';
+  $('dPlan').textContent = d ? d.plan : '-';
+  $('dMethod').textContent = d ? (cash ? '계좌이체' : '카드 (결제선생 카카오톡 링크)') : '-';
+  $('dAmount').textContent = d ? F.won(d.amount) : '-';
+  $('dId').textContent = d ? d.apply_id : '-';
+
+  if (cash) {
+    $('dSub').textContent = '아래 계좌로 입금해 주시면 확인 후 수업 안내를 보내드립니다.';
+    $('cashBox').hidden = false;
+    $('bankName').textContent = BANK.NAME || '';
+    $('bankAcc').textContent = BANK.NUMBER || '';
+    $('bankHolder').textContent = BANK.HOLDER ? '예금주 ' + BANK.HOLDER : '';
+    $('cashAmount').textContent = F.won(d.amount);
+    $('cashPayer').textContent = d.name;
+    $('copyAcc').addEventListener('click', function(){
+      var t = (BANK.NAME || '') + ' ' + (BANK.NUMBER || '');
+      var ok = function(){ $('copied').style.display = 'block'; track('copy_account', {}); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, function(){});
+    });
+    $('dSteps').innerHTML =
+      '<li><span class="n">1</span><div><b>위 계좌로 입금</b><p>입금자명은 신청자 이름으로 해 주세요.</p></div></li>' +
+      '<li><span class="n">2</span><div><b>입금 확인</b><p>확인되는 대로 카카오톡으로 연락드립니다.</p></div></li>' +
+      '<li><span class="n">3</span><div><b>수업 안내</b><p>단톡방 입장과 첫 강의 일정을 보내드립니다.</p></div></li>';
+  } else {
+    $('dSub').textContent = '카카오톡으로 결제선생 결제 링크를 보내드립니다' + (eta ? ' (' + eta + ')' : '') + '.';
+    $('dSteps').innerHTML =
+      '<li><span class="n">1</span><div><b>카카오톡 결제 링크 받기</b><p>신청하신 번호의 카카오톡으로 결제선생 청구서가 옵니다' + (eta ? ' (' + eta + ')' : '') + '.</p></div></li>' +
+      '<li><span class="n">2</span><div><b>링크에서 카드 결제</b><p>할부는 카드사 기준으로 고르실 수 있습니다. 금액이 커서 카드 앱(앱카드)으로 결제하시면 한도 걱정이 적습니다.</p></div></li>' +
+      '<li><span class="n">3</span><div><b>수업 안내</b><p>결제가 확인되면 단톡방 입장과 첫 강의 일정을 보내드립니다.</p></div></li>';
+  }
+
+  /* 무료 라이브 오픈채팅(단체방)은 결제 문의 창구로 쓰지 않는다. 1:1 채널(KAKAO_CS_URL)이 생기면 그걸로 */
+  var help = '문의가 있으시면 ';
+  if (CFG.KAKAO_CS_URL) help += '<a href="' + CFG.KAKAO_CS_URL + '" target="_blank" rel="noopener">카카오톡 상담</a>' + (PHONE ? ' 또는 ' : '');
+  if (PHONE) help += '<a href="tel:' + PHONE.replace(/\D/g, '') + '" style="white-space:nowrap">' + PHONE + '</a>';
+  help += '로 신청번호와 함께 연락 주세요.';
+  $('dHelp').innerHTML = help;
+
+  if (!d) {
+    $('dTitle').textContent = '신청 내용을 불러오지 못했습니다';
+    $('dSub').textContent = '이미 접수된 신청이라면 걱정하지 않으셔도 됩니다. 확인이 필요하시면 아래 연락처로 문의해 주세요.';
+  }
+  if (window.SF_carry) $('backCourse').href = window.SF_carry('course.html');
+  track('course_apply_done_view', { pay_method: d ? d.method : 'unknown' });
+})();
+</script>
+</body>
+</html>

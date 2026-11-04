@@ -1,0 +1,29 @@
+/* index_v5.html <style> 사본 (course.html 이야기 구간용, _build_course_story.py 가 만든다) */
+
+/* v4: 히어로 버튼 하나 */
+.hero-cta{position:relative;margin:.4rem 0 .4rem}
+.hero-cta .btn{width:100%;font-size:1.1875rem;padding:1.05rem 1rem}
+.hero-cta .btnsub{margin-top:.6rem;text-align:center;font-size:.875rem;font-weight:700}
+.anim-on .hero-cta{animation:v3rise .7s cubic-bezier(.2,.7,.2,1) .44s both}
+/* v5: 45세 이상도 읽히게 어두운 바닥 회색 글씨 밝게 */
+.hero .kick{color:#E2E2E2;font-size:1rem;text-shadow:0 1px 6px rgba(0,0,0,.85)}
+.hero .sub{color:#DADADA;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.hero .btnsub,.sec.dark .sec-inner > .btnsub{color:#C4C4C4}
+.win .who{color:#C8C8C8}
+.sec.dark .lead,.mega .sub,.stat .v{color:#CFCFCF}
+.sec.dark .disclaimer{color:#B0B0B0}
+.disclaimer{color:var(--ink-2)}
+@media (max-width:479px){ .hero .kick{font-size:.9375rem} }
+/* v5: 처음이어도 되나요 */
+.safe h2{margin-bottom:1.1rem}
+.safe .sq{background:#fff;border:1.5px solid var(--rule);border-radius:16px;padding:1.15rem 1.15rem 1.2rem;margin-bottom:.8rem}
+.safe .sq .q{display:flex;gap:.55rem;align-items:flex-start;font-size:1.1875rem;font-weight:900;line-height:1.4;letter-spacing:-.03em;color:var(--ink);margin:0 0 .45rem;word-break:keep-all}
+.safe .sq .q i{flex:none;font-style:normal;color:#fff;background:var(--green);border-radius:999px;font-size:.875rem;line-height:1;padding:.32rem .55rem;margin-top:.12rem}
+.safe .sq .a{font-size:1.0625rem;line-height:1.65;color:#333D4B;font-weight:500;margin:0;word-break:keep-all}
+.safe .sq .a b{color:var(--ink);font-weight:900}
+/* v5: 수강생 카드 위로, 인증 카톡은 펼치기 */
+.rv-top .review details{border:0;margin-top:.8rem}
+.rv-top .review summary{font-size:.9375rem;font-weight:900;color:var(--green-t);padding:.2rem 0}
+.rv-top .review summary::after{color:var(--green-t)}
+.rv-top .review .shot{margin-top:.6rem}
+.rv-top .more{display:block;text-align:center;font-size:1rem;font-weight:900;color:var(--green-t);margin-top:1rem;text-decoration:underline;text-underline-offset:3px}

@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>쇼츠파이터 정규 과정 1기 | 월 19만원부터, 11월 6일 개강</title>
+<meta name="description" content="쇼츠파이터 엄부장의 4주 정규 과정. 매주 금요일 줌 라이브, 강의 후 24시간 안에 다시보기. 12개월 할부 시 월 19만원부터.">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="그로우픽">
+<meta property="og:title" content="쇼츠파이터 정규 과정 1기">
+<meta property="og:description" content="4주 줌 라이브 + 아스트라 무료 제공. 12개월 할부 시 월 19만원부터.">
+<meta property="og:url" content="https://growpick.kr/shortsfighter/course.html">
+<meta property="og:image" content="https://growpick.kr/shortsfighter/assets/og_course.png?v=20261104">
+<link rel="icon" href="assets/flame.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sf.css?v=20261005a">
+<link rel="stylesheet" href="sf_v3.css?v=20261009i">
+<link rel="stylesheet" href="sf_story.css?v=20261104a">
+<script src="../config.js"></script>
+<script src="sf-config.js?v=20261104b"></script>
+<!--
+  쇼츠파이터 정규 과정 결제자용 소개 페이지 (2026-11-04, 라이브 장표 캔바 83~95쪽 기준. JY 지시 "캔바 기준으로 다 맞춰줘")
+  흐름: 이 페이지 → apply.html(신청) → apply_done.html(완료) → '정규 과정 소개 다시 보기'로 이 페이지
+  반·가격·월 할부금·특전 마감은 sf-config.js 의 PLANS / PERK_DEADLINE 한 곳에서 읽는다
+  옛 판(9/28~10/9, 일반반 229 / 프리미엄 289)은 _backup/course_20261104_before_canva.html
+-->
+<style>
+  body{background:#fff}
+  .cx{max-width:34rem;margin:0 auto;padding:0 var(--pad)}
+  .cs{padding:3.2rem 0}
+  .cs.dark{background:var(--dark);color:#fff}
+  .cs.soft{background:#F5F6F7}
+  .cs .eyebrow{display:inline-block;font-size:.9375rem;font-weight:900;color:var(--green-t);background:var(--green-pale);padding:.35rem .8rem;border-radius:999px;margin-bottom:.9rem}
+  .cs.dark .eyebrow{background:rgba(3,199,90,.15);color:var(--green)}
+  .cs h2{font-size:2.1rem;font-weight:900;line-height:1.28;letter-spacing:-.05em;margin:0 0 1.4rem;word-break:keep-all}
+  .cs h2 .g{color:var(--green-t)} .cs.dark h2 .g{color:var(--green)}
+  .center{text-align:center}
+
+  /* 히어로 */
+  .hx{background:radial-gradient(120% 80% at 50% 0%,#10281D 0%,var(--dark) 60%);color:#fff;padding:2.2rem 0 2.6rem;text-align:center;overflow:hidden}
+  .hx .badge{display:inline-block;background:rgba(255,255,255,.1);color:#E0E0E0;font-size:.9375rem;font-weight:900;padding:.45rem .95rem;border-radius:999px;margin-bottom:1rem}
+  .hx .badge b{color:var(--green)}
+  .hx .kick{font-size:1.25rem;font-weight:900;color:#D6D6D6;margin:0 0 .3rem;letter-spacing:-.04em}
+  .hx h1{font-size:3.1rem;font-weight:900;line-height:1.15;letter-spacing:-.06em;margin:0 0 .9rem;word-break:keep-all}
+  .hx h1 .g{color:var(--green);text-shadow:0 0 22px rgba(3,199,90,.45)}
+  .hx .story{font-size:1.0625rem;color:#BDBDBD;font-weight:700;line-height:1.6;margin:0 0 1.3rem;word-break:keep-all}
+  .hx .kick{display:flex;align-items:center;justify-content:center;gap:.6rem}
+  .hx .av{width:3.4rem;height:3.4rem;border-radius:50%;object-fit:cover;object-position:50% 8%;border:2px solid var(--green);flex:none;background:#222}
+  .pricebox{background:#fff;color:var(--ink);border-radius:20px;padding:1.3rem 1.1rem 1.2rem;margin-top:0;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .pricebox .lab{font-size:1rem;font-weight:900;color:var(--ink-2);margin:0}
+  .pricebox .mon{font-size:3.4rem;font-weight:900;letter-spacing:-.06em;line-height:1.1;margin:.15rem 0 .2rem;color:var(--ink)}
+  .pricebox .mon small{font-size:1.5rem;letter-spacing:-.04em}
+  .pricebox .mon .g{color:var(--green-t)}
+  .pricebox .tot{font-size:1rem;font-weight:700;color:var(--ink-2);margin:0 0 1rem;line-height:1.55;word-break:keep-all}
+  .pricebox .tot s{color:var(--ink-3)}
+  .pricebox .tot b{color:var(--ink)}
+  .pricebox .fee{display:block;font-size:.875rem;color:var(--ink-3);font-weight:500}
+  .perk-line{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:.9rem 0 0;font-size:.9375rem;font-weight:900;color:var(--fire-t)}
+  .perk-line .t{font-variant-numeric:tabular-nums;background:var(--fire-pale);padding:.15rem .55rem;border-radius:6px}
+  .hx .perk-line{color:#FFB08F} .hx .perk-line .t{background:rgba(255,90,31,.16)}
+
+  /* 당일 특전 */
+  .tix{display:flex;flex-direction:column;gap:.8rem}
+  .tk{display:flex;align-items:center;gap:.9rem;border:2px solid rgba(255,255,255,.18);border-radius:16px;padding:1rem 1rem;background:#1B1B1B}
+  .tk.pre{border-color:#E9C46A;background:linear-gradient(135deg,#2A2410,#1B1B1B)}
+  .tk .who{flex:none;font-size:.875rem;font-weight:900;line-height:1.35;text-align:center;border-radius:10px;padding:.55rem .6rem;background:var(--fire);color:#fff;min-width:5.6rem}
+  .tk.pre .who{background:#E9C46A;color:#2A2000}
+  .tk .what{font-size:1.25rem;font-weight:900;line-height:1.35;word-break:keep-all}
+  .tk .what em{font-style:normal;color:var(--green)}
+  .tk.pre .what em{color:#F2D27A}
+  .note-s{font-size:.9375rem;color:#A8A8A8;margin:1rem 0 0;line-height:1.6;word-break:keep-all;text-align:center}
+
+  /* 정규 과정 혜택 6 */
+  .bens{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+  .bens li{background:#fff;border:1.5px solid var(--rule);border-radius:16px;padding:1rem .9rem;display:flex;flex-direction:column;gap:.35rem;min-height:7.2rem}
+  .bens .no{font-size:.8125rem;font-weight:900;color:var(--green-t)}
+  .bens b{font-size:1.125rem;font-weight:900;line-height:1.35;letter-spacing:-.04em;word-break:keep-all}
+  .bens span{font-size:.9375rem;color:var(--ink-2);line-height:1.5;font-weight:500;word-break:keep-all}
+  .bens li.hl{grid-column:1 / -1;background:var(--dark);color:#fff;border-color:var(--dark)}
+  .bens li.hl .no{color:var(--green)} .bens li.hl span{color:#BDBDBD}
+  .bens li.hl b{font-size:1.375rem}
+
+  /* 커리큘럼 */
+  .cur{display:flex;flex-direction:column;gap:.8rem}
+  .cw{background:#1B1B1B;border:1.5px solid var(--rule-dark);border-radius:16px;padding:1.1rem 1.05rem}
+  .cw .hd{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+  .cw .n{flex:none;background:var(--green);color:#04170D;font-weight:900;font-size:1rem;border-radius:8px;padding:.25rem .6rem}
+  .cw .tt{font-size:1.1875rem;font-weight:900;line-height:1.35;letter-spacing:-.04em;word-break:keep-all}
+  .cw ul{margin:0;padding:0 0 0 1.1rem}
+  .cw li{font-size:1rem;color:#D0D0D0;line-height:1.6;font-weight:500;word-break:keep-all;margin-bottom:.15rem}
+  .cw li.y{color:#F2D27A;font-weight:900}
+
+  /* 일정 */
+  .cal{background:#fff;border:1.5px solid var(--rule);border-radius:18px;padding:1rem .8rem 1.1rem}
+  .cal .mh{text-align:center;font-weight:900;font-size:1.125rem;margin:0 0 .7rem}
+  .cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center}
+  .cal-g .w{font-size:.8125rem;font-weight:900;color:var(--ink-3);padding-bottom:.2rem}
+  .cal-g .d{font-size:1rem;font-weight:700;padding:.45rem 0;border-radius:10px;line-height:1.1;min-height:2.6rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .cal-g .d.sun{color:#D93A00}
+  .cal-g .d.on{background:var(--green);color:#04170D;font-weight:900}
+  .cal-g .d small{font-size:.6875rem;font-weight:900}
+  .sched{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+  .sched li{display:flex;align-items:center;gap:.8rem;background:#fff;border:1.5px solid var(--rule);border-radius:12px;padding:.75rem .9rem;font-size:1rem;font-weight:700;word-break:keep-all}
+  .sched .wk{flex:none;font-weight:900;color:var(--green-t);min-width:3.2rem}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem}
+  .facts div{background:var(--dark);color:#fff;border-radius:14px;padding:.9rem .85rem;font-size:.9375rem;font-weight:700;line-height:1.45;word-break:keep-all}
+  .facts b{display:block;font-size:1.125rem;font-weight:900;color:var(--green);margin-bottom:.15rem}
+
+  /* 수강생 성과 */
+  .proof{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .proof img{width:100%;height:auto;border-radius:12px;display:block;border:1.5px solid var(--rule-dark)}
+  .proof .wide{grid-column:1 / -1}
+
+  /* 반 선택 */
+  .plans2{display:flex;flex-direction:column;gap:1rem}
+  .pc{border:2px solid var(--rule);border-radius:20px;padding:1.3rem 1.15rem;background:#fff;position:relative}
+  .pc.pick{border-color:var(--green);box-shadow:0 0 0 4px rgba(3,199,90,.12)}
+  .pc .rib{position:absolute;top:-.85rem;right:1rem;background:var(--green);color:#04170D;font-size:.8125rem;font-weight:900;padding:.3rem .7rem;border-radius:999px}
+  .pc .nm{font-size:1.375rem;font-weight:900;margin:0 0 .2rem;letter-spacing:-.04em}
+  .pc .ds{font-size:.9375rem;color:var(--ink-2);margin:0 0 .8rem;font-weight:500;word-break:keep-all}
+  .pc .mon{font-size:2.9rem;font-weight:900;letter-spacing:-.06em;line-height:1.1;margin:0}
+  .pc .mon small{font-size:1.3rem}
+  .pc .sub{font-size:.9375rem;color:var(--ink-2);font-weight:700;margin:.35rem 0 0;line-height:1.55;word-break:keep-all}
+  .pc .sub s{color:var(--ink-3)} .pc .sub b{color:var(--ink)}
+  .pc .bonus{margin:.9rem 0 1rem;background:var(--fire-pale);color:var(--fire-t);border-radius:10px;padding:.6rem .8rem;font-size:.9375rem;font-weight:900;word-break:keep-all}
+  .fee-note{font-size:.875rem;color:var(--ink-3);text-align:center;margin:1rem 0 0;line-height:1.55;word-break:keep-all}
+
+  /* FAQ, 환불 */
+  .faq details{border-bottom:1px solid var(--rule);padding:.2rem 0}
+  .faq summary{cursor:pointer;font-size:1.0625rem;font-weight:900;padding:.9rem 0;list-style:none;line-height:1.45;word-break:keep-all;min-height:44px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";float:right;color:var(--green-t);font-size:1.3rem;line-height:1}
+  .faq details[open] summary::after{content:"−"}
+  .faq p{margin:0 0 1rem;font-size:1rem;color:var(--ink-2);line-height:1.65;word-break:keep-all}
+  .faq a{color:var(--ink);text-decoration:underline}
+  .disc{font-size:.875rem;color:#8B8B8B;text-align:center;margin:1.2rem 0 0;line-height:1.6;word-break:keep-all}
+
+  /* 히어로 사진 (첫 화면 크게) */
+  .hx{padding:0 0 2.6rem;position:relative}
+  .hx-photo{max-width:30rem;margin:0 auto;padding:1.2rem var(--pad) 0}
+  .hx-photo .hxp{border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#9A9A9A,#BEBEBE);aspect-ratio:619/860;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .hx-photo img{display:block;width:100%;height:auto}
+  .hx-name{display:block;text-align:center;color:#fff;margin-top:.9rem;line-height:1.35}
+  .hx-name b{font-size:1.5rem;font-weight:900;letter-spacing:-.04em}
+  .hx-name b em{font-style:normal;font-size:1.0625rem;color:#CFCFCF;font-weight:700;margin-left:.35rem}
+  .hx-name small{display:block;font-size:.875rem;color:#BDBDBD;font-weight:700;margin-top:.15rem}
+  .hx-body{position:relative;z-index:3;margin-top:.4rem}
+  .creds{list-style:none;margin:0 0 1.3rem;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem}
+  .creds li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:.65rem .3rem;display:flex;flex-direction:column;gap:.15rem}
+  .creds b{font-size:1.125rem;font-weight:900;color:var(--green);letter-spacing:-.04em;white-space:nowrap}
+  .creds span{font-size:.75rem;color:#CFCFCF;font-weight:700;line-height:1.3;word-break:keep-all}
+
+  /* 히어로 가격 (무료 랜딩 히어로 안에 월 금액 크게) */
+  .hero .hx-price{position:relative;z-index:2;margin:.2rem 0 .9rem}
+  .hero .hx-price .hp-l{font-size:.9375rem;font-weight:700;color:#D6D6D6;margin:0;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+  .hero .hx-price .hp-m{font-size:2.3rem;font-weight:900;letter-spacing:-.05em;line-height:1.15;margin:.1rem 0;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.7);white-space:nowrap}
+  .hero .hx-price .hp-m b{color:var(--green);font-size:2.9rem;text-shadow:0 0 22px rgba(3,199,90,.45)}
+  .hero .hx-price .hp-s{font-size:.9375rem;font-weight:700;color:#CFCFCF;margin:0;line-height:1.5;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+  .hero .hx-price .hp-s s{color:#9A9A9A}
+  .hero .perk-line{justify-content:flex-start;color:#FFB08F}
+  .hero .perk-line .t{background:rgba(255,90,31,.18)}
+  @media (max-width:359px){ .hero .hx-price .hp-m{font-size:1.9rem} .hero .hx-price .hp-m b{font-size:2.35rem} .hero .hx-price .hp-s{font-size:.8125rem;letter-spacing:-.02em} }
+  /* 결제 안심 */
+  .trust{list-style:none;margin:1.3rem 0 0;padding:1rem;border:1.5px solid var(--rule);border-radius:16px;background:#F9FAFB;display:flex;flex-direction:column;gap:.7rem}
+  .trust li{display:flex;gap:.7rem;align-items:flex-start;font-size:.9375rem;line-height:1.5;color:var(--ink-2);font-weight:500;word-break:keep-all}
+  .trust li b{display:block;color:var(--ink);font-weight:900;font-size:1rem}
+  .trust .ic{flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--green-pale);color:var(--green-t);display:grid;place-items:center;font-weight:900;font-size:.9375rem}
+  .trust a{color:var(--ink);text-decoration:underline}
+
+  /* 상시 플로팅 CTA */
+  .fcta{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;align-items:center;gap:.7rem;background:rgba(18,18,18,.97);padding:.7rem var(--pad) calc(.7rem + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(0,0,0,.25)}
+  .fcta::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--green)}
+  .fcta .fi{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+  .fcta .fl{font-size:.75rem;color:#BDBDBD;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fcta .fi b{font-size:1.125rem;font-weight:900;color:var(--green);letter-spacing:-.04em;white-space:nowrap}
+  .fcta .ft{font-size:.75rem;color:#FFB08F;font-weight:900;white-space:nowrap}
+  .fcta .ft i{font-style:normal;font-variant-numeric:tabular-nums}
+  .fcta .btn{width:auto;flex:none;padding:.95rem 1.3rem;font-size:1.125rem;box-shadow:0 4px 0 var(--green-dd);animation:ctapulse 2.6s ease-in-out infinite}
+  footer{padding-bottom:calc(2.75rem + 6rem)}
+  @media (min-width:768px){ .fcta{left:50%;right:auto;bottom:1rem;transform:translateX(-50%);width:min(36rem,calc(100% - 2rem));border-radius:18px;padding:.75rem .9rem .75rem 1.2rem} .fcta::before{display:none} }
+  @media (min-width:768px){ .hx h1{font-size:3.6rem} .bens li{min-height:6.4rem} }
+  /* 2026-11-04 slide-qa: 320px에서 금액이 "월 / 19만원부터"로 3줄 깨짐, 칩 설명 12px, 짧은 줄 고아 */
+  .pricebox .mon,.pc .mon{white-space:nowrap}
+  @media (max-width:359px){ .pricebox .mon{font-size:2.6rem} .pricebox .mon small{font-size:1.2rem} .pc .mon{font-size:2.5rem} .creds li{padding:.6rem .2rem} }
+  .creds span{font-size:.8125rem}
+  .note-s,.fee-note,.lt-photos figcaption{text-wrap:balance}
+  /* 공용 sf.css 가 1240px 이상에서 .mobile-form 을 숨겨 PC 하단 CTA 구간이 통째로 비던 것 복구 */
+  @media (min-width:1240px){ .cs .cx.mobile-form{display:block} }
+  @media (min-width:1240px){
+    .sec-inner,footer .sec-inner{max-width:34rem;margin:0 auto;padding:0 var(--pad)}
+    .mega .sec-inner{text-align:center}
+    .hx{padding:1.5rem 0 3.4rem}
+    .hx-photo{max-width:24rem}
+    /* 무료 랜딩 히어로는 PC에서 오른쪽 신청폼 자리를 비워 왼쪽으로 쏠려 있다 → 이 페이지는 폼이 없으니 글+사진 덩어리를 가운데로 */
+    .hero .wrap{margin-left:calc(50% - 21rem)}
+    .hero-photo{right:calc(50% - 22rem)}
+    /* 2026-11-04 slide-qa: 1280x800 첫 화면에서 가운데 플로팅 바가 히어로 '지금 합류하기'를 덮던 것 → PC는 버튼 폭을 줄이고 플로팅 바를 오른쪽 아래로 */
+    .hero-cta .btn{max-width:25rem}
+    .fcta{left:auto;right:1.5rem;transform:none;width:26rem}
+  }
+  /* 2026-11-04 slide-qa: 손글씨 폰트가 안 받아지면 '배달하던 시절'이 카드 폭(77px)보다 넓어 화면 오른쪽 끝에서 잘림 → 캡션 칸을 양옆으로 넓혀 가운데 정렬 */
+  .hp-then figcaption{margin:.25rem -1.1rem 0}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="dot"></span><span>쇼츠파이터 정규 과정 1기 | 11월 6일(금) 개강</span></div>
+
+<!-- 1. 히어로: 월 할부금 크게, 총액은 서브 -->
+<header class="hero" data-section="hero" data-order="1">
+  <span class="glow"></span>
+  <div class="hero-photo" aria-hidden="true">
+    <img width="619" height="1379" class="hp-main" src="assets/real/profile.jpg?v=1791077086" alt="" fetchpriority="high">
+    <figure class="hp-then"><img width="1104" height="1472" src="assets/real/delivery_s.jpg?v=20261011" alt=""><figcaption>배달하던 시절</figcaption></figure>
+  </div>
+  <div class="wrap">
+    <div class="brand">
+      <span class="wm"><img src="assets/flame.svg?v=1790520972" alt="">쇼츠파이터<small>1기 정규 과정</small></span>
+    </div>
+    <span class="eye">11월 6일 (금) 첫 수업 | 4주 줌 라이브</span>
+    <p class="kick">연이은 사업 실패로 15억 빚더미에서</p>
+    <h1 class="h1-v3">엄부장의<br>월 천만원<br><span class="g">프로젝트</span></h1>
+    <p class="hero-claim"><span class="hc-a">15억 빚더미</span><span class="hc-to" aria-hidden="true"></span><span class="hc-b">월 <em>4,000</em>만원</span></p>
+    <div class="hx-price">
+      <p class="hp-l">오늘 결제하면 12개월 할부 시</p>
+      <p class="hp-m">월 <b id="heroMon">19만원</b>부터</p>
+      <p class="hp-s" id="heroTot"></p>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" data-buy="hero" href="#buy">지금 합류하기</a>
+      <p class="perk-line" data-perk-box hidden><span>오늘 결제 특전 마감까지</span><span class="t" data-perk-time></span></p>
+    </div>
+    <div class="winrow">
+      <div class="win"><span class="who">10개월 누적 조회수</span><span class="what"><em>7억</em> 회</span></div>
+      <div class="win"><span class="who">수익창출 승인</span><span class="what">채널 <em>7개</em></span></div>
+      <div class="win"><span class="who">가장 잘된 영상</span><span class="what"><em>1,080만</em> 회</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 2. 오늘 결제 특전 -->
+<section class="cs dark center" data-section="perk" data-order="2" data-perk-only>
+  <div class="cx">
+    <span class="eyebrow">지금 결제하시는 분께만</span>
+    <h2>특별한 <span class="g">혜택!</span></h2>
+    <div class="tix">
+      <div class="tk"><span class="who">당일 결제자<br>한정</span><span class="what">1:1 줌 피드백 <em>2회권</em> 증정</span></div>
+      <div class="tk pre"><span class="who">프리미엄<br>결제자 한정</span><span class="what">1:1 줌 피드백 <em>3회권</em> 증정</span></div>
+    </div>
+    <p class="note-s"><span data-perk-label>11월 4일(수) 밤 12시</span>까지 신청하신 분께 드립니다.</p>
+  </div>
+</section>
+
+<!-- 3. 정규 과정 혜택 -->
+<section class="cs soft" data-section="benefits" data-order="3">
+  <div class="cx">
+    <div class="center"><span class="eyebrow">정규 과정 혜택</span>
+    <h2>알짜배기<br><span class="g">찐 강의 혜택</span></h2></div>
+    <ul class="bens">
+      <li class="hl"><span class="no">혜택 01</span><b>영상 제작 프로그램 아스트라 무료 제공</b><span>강의에서 바로 쓰는 엄부장의 제작 도구</span></li>
+      <li><span class="no">혜택 02</span><b>소재 찾는 꿀팁</b><span>어디서 찾는지부터</span></li>
+      <li><span class="no">혜택 03</span><b>카테고리별 잘 터지는 소재</b><span>분야별로 정리해서</span></li>
+      <li><span class="no">혜택 04</span><b>캡컷 단축키·편집 전자책</b><span>옆에 두고 보는 책</span></li>
+      <li><span class="no">혜택 05</span><b>팀 밀착 코칭</b><span>혼자 막히지 않게</span></li>
+      <li class="hl"><span class="no">혜택 06</span><b>평생 단톡방 유지</b><span>과정이 끝나도 계속 함께합니다</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. 4주 커리큘럼 (캔바 92쪽) -->
+<section class="cs dark" data-section="curriculum" data-order="4">
+  <div class="cx">
+    <div class="center"><span class="eyebrow">4주 커리큘럼</span>
+    <h2>캡컷 기초부터<br><span class="g">채널 운영까지</span></h2></div>
+    <div class="cur">
+      <div class="cw"><div class="hd"><span class="n">1강</span><span class="tt">캡컷 기초부터 마스터까지</span></div>
+        <ul><li>포인트자막, TTS 센스 한 번에 마스터</li><li>수만 개의 소재 중 S급 소재 찾는 방법</li><li>영드짜하면서 저작권 리스크 낮추는 방법</li><li>엄부장이 준비한 아스트라 프롬프트 제공</li></ul></div>
+      <div class="cw"><div class="hd"><span class="n">2강</span><span class="tt">아스트라 AI 자동화 시작!</span></div>
+        <ul><li>같은 카테고리에서 더 확실하게 들어가는 방법</li><li>소재 결 잘 맞추는 방법</li></ul></div>
+      <div class="cw"><div class="hd"><span class="n">3강</span><span class="tt">직접 만드는 건 구시대적 방법입니다</span></div>
+        <ul><li>AI를 활용해서 수익 극대화 가능한, 1시간도 일 안 하고 돈 버는 방법</li><li>하루에 영상 많이 치는 '최강의 최적화' 방법</li><li class="y">AI는 핑계를 대고 놀지 않습니다</li></ul></div>
+      <div class="cw"><div class="hd"><span class="n">4강</span><span class="tt">효율적으로 채널을 운영하는 방법</span></div>
+        <ul><li>제 모든 영업 노하우 공개</li><li>이젠 채널에 자동 업로드까지</li><li>자동 업로드, 자동 운영 인사이트 모두 공개</li><li>자동화하기 좋은 카테고리 모두 소개</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 일정 (캔바 93쪽) -->
+<section class="cs soft" data-section="schedule" data-order="5">
+  <div class="cx">
+    <div class="center"><span class="eyebrow">4주 강의 일정</span>
+    <h2>11월 6일 금요일<br><span class="g">첫 수업입니다</span></h2></div>
+    <div class="cal">
+      <p class="mh">2026년 11월</p>
+      <div class="cal-g" id="calGrid" role="img" aria-label="11월 수업 일정: 6일, 13일, 20일, 27일 금요일"></div>
+    </div>
+    <ul class="sched" id="schedList"></ul>
+    <div class="facts">
+      <div><b>매주 금요일</b>줌 라이브<br><span style="white-space:nowrap">저녁 7시 30분</span> <span style="white-space:nowrap">~ 9시 30분</span></div>
+      <div><b>다시보기</b>강의 후 24시간 안에<br>VOD 제공</div>
+    </div>
+  </div>
+</section>
+
+<!--STORY:START-->
+<!-- from index_v5: mega -->
+<section class="mega" data-section="mega" data-order="5">
+  <div class="sec-inner">
+    <p class="lab">10개월, 채널 전부 합쳐서</p>
+    <p class="num gl-w">7억<span>회</span></p>
+    <p class="sub">조회수 7억.<br><b>얼굴은 단 한 번도 안 나왔습니다.</b></p>
+    <figure class="ev">
+      <img width="1200" height="675" loading="lazy" decoding="async" src="assets/real/top_views.jpg?v=1791520875" alt="엄부장 채널 인기 영상 조회수">
+      <figcaption class="ev-label">10개월 누적 조회수<br><em>7억 회</em></figcaption>
+    </figure>
+  </div>
+</section>
+<!-- from index_v5: po_fail -->
+<section class="po" id="po-fail" data-section="po_fail" data-order="6">
+  <span class="lume"></span>
+  <img class="obj main" src="assets/ico/fire_dynamic.png?v=1790520971" alt="" width="324" height="421" loading="lazy">
+  <div class="po-in">
+    <div class="po-bub">처음부터 잘된 건 아닙니다</div>
+    <p class="po-t">채널 <span class="f">20개</span>를 만들어<br><span class="f">13개</span>를 날렸습니다</p>
+    <p class="po-sub">해외 틱톡 영상부터 올렸습니다.<br>저작권 경고가 쏟아졌습니다.</p>
+  </div>
+</section>
+<!-- from index_v5: channels20 -->
+<section class="sec dark" data-section="channels20" data-order="7">
+  <div class="sec-inner rv">
+    <div class="grid20" aria-label="채널 20개 중 13개는 사라지고 7개만 남았다">
+      <div class="cells">
+        <div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+        <div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+        <div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c x"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div><div class="c ok"><svg viewBox="0 0 24 24" fill="none" stroke="#03C75A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+      </div>
+      <div class="legend"><span class="x"><i></i><span class="cnt">13</span>날린 채널</span><span class="ok"><i></i><span class="cnt">7</span>승인된 채널</span></div>
+    </div>
+    <div class="note warn">문제는 영상이 아니었습니다.<br><b>소재였습니다.</b></div>
+  </div>
+</section>
+<!-- from index_v5: discovery -->
+<section class="sec" data-section="discovery" data-order="8">
+  <div class="sec-inner rv">
+    <span class="eyebrow">날린 13개가 남긴 것</span>
+    <h2>좌절 대신<br><span class="g">분석</span>했습니다</h2>
+    <p class="lead">왜 날아갔는지 하나씩 뜯어보고<br>계속 실험했습니다.<br><b>그렇게 저만의 성공 공식을 찾았습니다.</b></p>
+    <div class="stats">
+      <div class="stat"><span class="k">2주<small>~2개월</small></span><span class="v">새 채널이<br>승인되기까지</span></div>
+      <div class="stat"><span class="k">7개</span><span class="v">수익창출<br>승인된 채널</span></div>
+      <div class="stat"><span class="k">3개</span><span class="v">지금<br>돌리는 채널</span></div>
+    </div>
+    <figure class="ev">
+      <img width="1102" height="709" loading="lazy" decoding="async" src="assets/real/monetize.jpg?v=1791077086" alt="유튜브 수익 창출 승인 화면">
+      <figcaption class="ev-label">이렇게 승인받은 채널<br><em>7개</em></figcaption>
+    </figure>
+  </div>
+</section>
+<!-- from index_v5: po_now -->
+<section class="po light" id="po-now" data-section="po_now" data-order="9">
+  <span class="lume"></span>
+  <img class="obj main" src="assets/ico/money_dynamic.png?v=1790520972" alt="" width="440" height="287" loading="lazy">
+  <div class="po-in">
+    <div class="po-bub">배달을 그만둔 지 <span class="hi">1년</span></div>
+    <p class="po-t">월 최고 수익<br><span class="g">4,000만원</span></p>
+    <p class="po-sub">얼굴 없이, 집에서, 채널 3개로.</p>
+  </div>
+</section>
+<!-- from index_v5: after -->
+<section class="sec dark" data-section="after" data-order="10">
+  <div class="sec-inner rv">
+    <div class="stats">
+      <div class="stat"><span class="k">4,000<small>만</small></span><span class="v">월 최고 수익<br>(원)</span></div>
+      <div class="stat"><span class="k">1,080<small>만</small></span><span class="v">가장 잘된<br>영상 조회수</span></div>
+      <div class="stat"><span class="k">80<small>명</small></span><span class="v">지금까지<br>함께한 수강생</span></div>
+    </div>
+    <figure class="ev">
+      <img width="1200" height="401" loading="lazy" decoding="async" src="assets/real/studio_rev_mark.jpg?v=1791515864" alt="유튜브 스튜디오 28일 예상 수익 화면">
+      <figcaption class="ev-label">1채널 하나, 28일 수익<br><em>1,719만원</em></figcaption>
+    </figure>
+    <p class="strip-cap">2채널, 3채널의 최근 28일 수익과 1채널 정보 화면입니다.</p>
+    <div class="strip wide"><img width="1000" height="334" loading="lazy" decoding="async" src="assets/real/ch2_rev_mark.jpg?v=1791515867" alt="2채널 28일 수익 화면"><img width="1000" height="380" loading="lazy" decoding="async" src="assets/real/ch3_rev_mark.jpg?v=1791515872" alt="3채널 28일 수익 화면"><img width="1000" height="1239" loading="lazy" decoding="async" src="assets/real/ch1_views.jpg?v=1791077436" alt="1채널 정보 화면"></div>
+    <p class="disclaimer">위 숫자는 강사 본인 채널 기준입니다. 개인의 성과는 노력과 환경에 따라 달라질 수 있습니다.</p>
+    <p class="ask" style="margin-top:2.5rem">여기까지 읽으면 이런 생각이 드실 겁니다.</p>
+    <p class="big-q">강사니까<br>된 거 아닙니까?</p>
+    <p class="lead">위에서 본 수강생들은 대부분<br><b>회사 다니면서</b> 했습니다.<br>단톡방 인증을 그대로 보여드립니다.</p>
+  </div>
+</section>
+<!-- from index_v5: story_letter -->
+<section class="sec letter-sec" data-section="story_letter" data-order="12">
+  <div class="sec-inner rv">
+    <article class="letter">
+      <p class="lt-hi">안녕하세요, 엄부장입니다.</p>
+      <p>저는 평범한 <mark>쌍둥이 아빠이자 남편</mark>입니다.<br>가족을 먹여 살리려고 안 해 본 일이 없습니다.</p>
+      <p>IT 회사 팬텍에서 7~8년을 일했습니다.<br>회사가 망했습니다.</p>
+      <p>낚시터를 차렸습니다. 첫해에는 한 달에<br>1,000만원도 벌었습니다. 근처에 낚시터가<br>세 곳 더 생기고 남는 게 없어졌습니다.<br>빚만 남아 엉엉 울었습니다.</p>
+      <p>아버지가 2,300만원으로 트럭을 사 주셨습니다.<br>택배를 했고, 새벽배송을 했습니다.<br>눈 많이 온 새벽에는 들개 대여섯 마리가<br>떼로 다녀 차 뒤에 숨어 있곤 했습니다.</p>
+      <p>치킨집도 했습니다.<br>2만원어치를 팔면 1,500원이 남았습니다.</p>
+      <p>그다음은 오토바이 배달이었습니다.<br>하루 20만원을 벌었습니다.</p>
+      <div class="lt-photos">
+        <figure class="polaroid p1"><img loading="lazy" decoding="async" width="1000" height="1334" src="assets/real/dl_1.jpg?v=1791077435" alt="배달하던 검정 오토바이"><figcaption>매일 타던 오토바이</figcaption></figure>
+        <figure class="polaroid p2"><img loading="lazy" decoding="async" width="1000" height="1333" src="assets/real/selfie_helmet.jpg?v=1791522353" alt="배달 나가기 전 헬멧 쓴 엄부장"><figcaption>배달 나가기 전</figcaption></figure>
+      </div>
+      <p>몸으로 뛰는 일은 한계가 있었습니다.<br>버는 만큼 몸이 닳았고,<br><mark>아이들과 보내는 시간은 점점 줄었습니다.</mark><br>아내가 많이 마음 아파했습니다.</p>
+      <p>아내에게 영상 편집을 배웠습니다.<br>두 달을 거의 매일 밤새웠습니다.<br>그리고 제 채널을 시작했습니다.</p>
+      <p>채널을 <mark>20개</mark> 만들었고, <mark>13개</mark>를 날렸습니다.<br>날아갈 때마다 좌절하기보다<br>왜 날아갔는지 분석했습니다.<br>계속 실험했고, 저만의 성공 공식을 찾았습니다.</p>
+      <p class="lt-end">배달을 그만둔 지 1년,<br>월 최고 수익 <mark>4,000만원</mark>.<br>지난달에 시작한 채널은<br>지금 <mark>1,596만원</mark>을 벌고 있습니다.</p>
+      <p>지금의 삶에서 딱 조금만 더 나은 삶,<br>결코 불가능하지 않습니다.</p>
+      <p class="lt-end">저를 보고 용기를 내시면 좋겠습니다.</p>
+      <p class="lt-sign">엄부장 드림</p>
+    </article>
+  </div>
+</section>
+<!-- from index_v5: diff -->
+<section class="sec dark" data-section="diff" data-order="13">
+  <div class="sec-inner rv">
+    <span class="eyebrow">솔직히 말씀드리겠습니다</span>
+    <h2>쇼츠 강의는 많습니다<br>그런데 <span class="g">소재</span>는<br>안 알려줍니다</h2>
+    <p class="lead dk">만드는 법은 다들 알려줍니다.<br><b>뭘 올려야 안 잘리는지는 말하지 않습니다.</b></p>
+    <div class="vs" role="table" aria-label="다른 쇼츠 강의와 엄부장 비교">
+      <div class="vs-h" role="row"><span role="columnheader">다른 쇼츠 강의</span><span role="columnheader">엄부장</span></div>
+      <div class="vs-r" role="row"><span class="o" role="cell">편집 프로그램 쓰는 법</span><span class="m" role="cell">소재 고르는 법부터</span></div>
+      <div class="vs-r" role="row"><span class="o" role="cell">조회수 터뜨리는 법</span><span class="m" role="cell">정지 안 당하는 법이 먼저</span></div>
+      <div class="vs-r" role="row"><span class="o" role="cell">버튼 한 번이면 된다</span><span class="m" role="cell">사람 손이 들어가야 됩니다</span></div>
+      <div class="vs-r" role="row"><span class="o" role="cell">소재는 알아서 찾으세요</span><span class="m" role="cell">검색 화면 띄워놓고 같이 찾습니다</span></div>
+    </div>
+    <p class="ask" style="margin-top:2.5rem">처음 시작한 분들이 그만두는 이유</p>
+    <p class="big-q">재사용, 저작권으로<br><span class="f">정지</span>당해서</p>
+    <p class="lead dk">조회수가 터지는 것보다<br>정지 안 당하는 게 먼저입니다.<br><b>그 기준을 채널 13개 날리며 모았습니다.</b></p>
+  </div>
+</section>
+<!-- from index_v5: reviews_top -->
+<section class="sec rv-top" data-section="reviews_top" data-order="4">
+  <div class="sec-inner rv">
+    <span class="eyebrow">2026년 5월 시작, 1~3개월 뒤</span>
+    <h2>먼저 시작한 분들도<br><span class="g">처음</span>이었습니다</h2>
+    <div class="review">
+      <div class="head"><span class="pill" style="margin:0">50대 회사원</span><span class="who">박OO님</span></div>
+      <div class="nums"><div><b>8천만</b><span>조회수</span></div><div><b>2.5만</b><span>구독자</span></div><div><b>600만</b><span>월 수익(원)</span></div></div>
+      <p class="say">부업 강의를 많이 들었는데 제대로 알려주는 데가 하나도 없었어요.</p>
+      <details><summary>인증 카톡 보기</summary><img width="630" height="1400" loading="lazy" decoding="async" class="shot" src="assets/real/rv_park1_mark.jpg?v=1791515878" alt="박OO님 수익 인증 카톡"></details>
+    </div>
+    <div class="review">
+      <div class="head"><span class="pill" style="margin:0">50대 학원 영어강사</span><span class="who">김OO님</span></div>
+      <div class="nums"><div><b>8천만</b><span>조회수</span></div><div><b>3만</b><span>구독자</span></div><div><b>700만</b><span>월 수익(원)</span></div></div>
+      <p class="say">강사 월급으로는 턱없이 부족했어요. 다른 부업 강의는 성과가 너무 안 났고요.</p>
+      <details><summary>인증 카톡 보기</summary><img width="630" height="1400" loading="lazy" decoding="async" class="shot" src="assets/real/rv_kim1_mark.jpg?v=1791515884" alt="김OO님 수익 인증 카톡"></details>
+    </div>
+    <div class="review">
+      <div class="head"><span class="pill" style="margin:0">30대 공무원</span><span class="who">정OO님</span></div>
+      <p class="say">부업 강의 몇 개 들어봤지만 성과가 하나도 없었고 돈만 날렸어요.</p>
+      <details><summary>인증 카톡 보기</summary><img width="630" height="1400" loading="lazy" decoding="async" class="shot" src="assets/real/pf_11_mark.jpg?v=1791515892" alt="정OO님 예상 수익 인증 카톡"></details>
+    </div>
+    <div class="review">
+      <div class="head"><span class="pill" style="margin:0">5월 시작</span><span class="who">황OO님</span></div>
+      <div class="nums"><div><b>7천만</b><span>조회수</span></div><div><b>2.4만</b><span>구독자</span></div><div><b>500만</b><span>월 수익(원)</span></div></div>
+    </div>
+    <p class="disclaimer">조회수, 구독자, 월 수익은 수강생 본인이 알려준 값입니다. 개인의 성과는 노력과 환경에 따라 달라질 수 있습니다.</p>
+  </div>
+</section>
+<!-- from index_v5: reviews -->
+<section class="sec soft" data-section="reviews" data-order="11">
+  <div class="sec-inner rv">
+    <span class="eyebrow">단톡방에 올라온 인증</span>
+    <h2>카톡 그대로<br>보여드립니다</h2>
+    <p class="strip-cap">단톡방에 올라온 인증입니다.</p>
+    <div class="proofgrid"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_3_mark_c.jpg?v=1791515897" alt="수강생 통장 입금 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_5_mark.jpg?v=1791515904" alt="수강생 2주 만에 조회수 200만 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_12_mark.jpg?v=1791515911" alt="수강생 구독자 1,001명 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_2.jpg?v=1791515711" alt="수강생 수익창출 조건 달성 카톡"></div>
+    <p class="strip-cap">더 있습니다. 옆으로 넘겨 보세요.</p>
+    <div class="strip tall"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_4.jpg?v=1791515728" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_6.jpg?v=1791515747" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_7.jpg?v=1791515757" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_8.jpg?v=1791515766" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_10.jpg?v=1791515784" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_13.jpg?v=1791515808" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_14.jpg?v=1791515814" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_15.jpg?v=1791515820" alt="수강생 인증 카톡"><img width="630" height="1400" loading="lazy" decoding="async" src="assets/real/pf_16.jpg?v=1791515827" alt="수강생 인증 카톡"></div>
+    <p class="disclaimer">조회수, 구독자, 월 수익은 수강생 본인이 알려준 값입니다. 카톡은 실제 수강생 단톡방 대화이며 이름과 사진은 가렸습니다. 개인의 성과는 노력과 환경에 따라 달라질 수 있습니다.</p>
+  </div>
+</section>
+<!-- from index_v5: who -->
+<section class="sec dark" data-section="who" data-order="15">
+  <div class="sec-inner rv">
+    <h2>이런 분들께<br><span class="g">추천드립니다</span></h2>
+    <ul class="points">
+      <li><span class="pn">01</span><div><b>부업 강의 몇 개 들었는데 결과가 없던 분</b>왜 안 되는지는 아무도 안 알려줬습니다.</div></li>
+      <li><span class="pn">02</span><div><b>쇼츠 20개쯤 올렸는데 안 터지는 분</b>원인은 거의 소재, 아니면 썸네일입니다.</div></li>
+      <li><span class="pn">03</span><div><b>몸으로 버는 돈에 한계를 느끼는 분</b>저도 배달하다 시작했습니다.</div></li>
+    </ul>
+    <div class="nos">
+      <p class="nos-h">이건 없어도 됩니다</p>
+      <div class="nos-row"><span>얼굴 공개</span><span>편집 경험</span><span>촬영 장비</span></div>
+      <p class="nos-d">대신 <b>알려드린 대로</b> 하셔야 합니다.</p>
+    </div>
+  </div>
+</section>
+<!--STORY:END-->
+
+<!-- 7. 반 선택과 가격 -->
+<section class="cs" id="buy" data-section="price" data-order="7">
+  <div class="cx">
+    <div class="center"><span class="eyebrow">오늘 결제하면 할인가</span>
+    <h2>나에게 맞는<br><span class="g">반을 고르세요</span></h2></div>
+    <div class="plans2" id="plans"></div>
+    <p class="perk-line" data-perk-box hidden style="margin-top:1.2rem"><span>오늘 결제 특전 마감까지</span><span class="t" data-perk-time></span></p>
+    <p class="fee-note">월 금액은 12개월 할부 기준이며 카드사 할부 수수료는 별도입니다.<br>계좌이체도 가능하고, 현금영수증 발행 가능합니다.</p>
+    <ul class="trust" id="trust">
+      <li><span class="ic">1</span><div><b>사업자 정보를 공개합니다</b><span id="trustBiz"></span></div></li>
+      <li><span class="ic">2</span><div><b>카드 번호를 이 페이지에 적지 않습니다</b>신청 후 결제선생 공식 청구서가 카카오톡으로 가고, 그 안에서 결제합니다.</div></li>
+      <li><span class="ic">3</span><div><b>환불 기준을 미리 알려드립니다</b><a href="../refund.html" target="_blank" rel="noopener">환불규정 전문 보기</a></div></li>
+      <li><span class="ic">4</span><div><b>사람이 직접 답합니다</b><span id="trustCs"></span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8. 결제 방법, 환불, FAQ -->
+<section class="cs soft" data-section="faq" data-order="8">
+  <div class="cx">
+    <div class="center"><span class="eyebrow">결제 전에 확인하세요</span>
+    <h2>자주 묻는 질문</h2></div>
+    <div class="faq">
+      <details><summary>결제는 어떻게 하나요?</summary><p>신청서를 내시면 카드 결제를 고르신 분께는 카카오톡으로 결제선생 결제 링크를 보내드립니다. 계좌이체를 고르시면 신청 완료 화면에 입금 계좌가 바로 나옵니다.</p></details>
+      <details><summary>할부가 되나요?</summary><p>카드 결제 링크에서 할부 개월을 고르실 수 있습니다. 할부 가능 여부와 수수료는 카드사 기준입니다. 금액이 커서 카드 앱(앱카드)으로 결제하시면 한도 걱정이 적습니다.</p></details>
+      <details><summary>수업은 어떻게 듣나요?</summary><p>매주 금요일 저녁 7시 30분부터 9시 30분까지 줌 라이브로 진행합니다. 결제가 확인되면 단톡방 입장과 줌 링크를 보내드립니다.</p></details>
+      <details><summary>라이브를 놓치면요?</summary><p>강의가 끝나고 24시간 안에 다시보기(VOD)를 드립니다.</p></details>
+      <details><summary>스탠다드반과 프리미엄반은 무엇이 다른가요?</summary><p id="faqDiff"></p></details>
+      <details><summary>환불은 어떻게 되나요?</summary><p>그로우픽 환불규정을 따릅니다. 자세한 기준은 <a href="../refund.html" target="_blank" rel="noopener">환불규정 전문</a>에서 확인하실 수 있습니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. 마지막 신청 -->
+<section class="cs dark center" data-section="cta_bottom" data-order="9">
+  <div class="cx mobile-form">
+    <h2>11월 6일 금요일,<br><span class="g">첫 수업에서 만나요</span></h2>
+    <a class="btn" data-buy="bottom" href="#buy">반 고르고 신청하기</a>
+    <p class="note-s" id="bottomSub"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="sec-inner">
+    <span class="wm"><img loading="lazy" decoding="async" src="assets/flame.svg" alt="">쇼츠파이터<small>by 그로우픽</small></span>
+    <div class="links"><a href="../index.html">그로우픽 홈</a><a href="../terms.html">이용약관</a><a href="../privacy.html">개인정보처리방침</a><a href="../refund.html">환불규정</a></div>
+    <p data-biz></p>
+  </div>
+</footer>
+
+<!-- 상시 플로팅 CTA (2026-11-04 JY: "지금 합류하기 상시 플로팅, 그게 제일 중요") -->
+<div class="fcta" id="fcta">
+  <div class="fi"><span class="fl">쇼츠파이터 1기 정규 과정</span><b id="dockMon">월 19만원부터</b><span class="ft" data-perk-box hidden>오늘 특전 마감 <i data-perk-time></i></span></div>
+  <a class="btn" data-buy="floating" href="#buy">지금 합류하기</a>
+</div>
+
+<script src="sf_v3.js?v=20261011a"></script>
+<script>
+(function(){
+  'use strict';
+  var CFG = window.SF || {}, F = window.GP_FMT;
+  var G = window.GP || {};
+  var P = (G.PRODUCTS || []).filter(function(x){ return x.ID === 'shortsfighter'; })[0];
+  var PLANS = (CFG.PLANS && CFG.PLANS.length) ? CFG.PLANS : ((P && P.PLANS) || []);
+  if (!PLANS.length) return;
+  var track = window.SF_track || function(){};
+  var $ = function(id){ return document.getElementById(id); };
+  var won = function(n){ return Number(n).toLocaleString('ko-KR') + '원'; };
+  var manShort = function(n){ return Math.floor(Number(n) / 10000) + '만원'; };   /* 190,833 → 19만원 (내림: 실제보다 크게 쓰지 않는다) */
+  var mon = function(p){ return p.MONTHLY || Math.floor(p.PRICE / (CFG.INSTALL_MONTHS || 12)); };
+  var low = PLANS[0];
+  var applyUrl = function(id){ var u = (CFG.ORDER_URL || 'apply.html?product=shortsfighter') + '&plan=' + id; return window.SF_carry ? window.SF_carry(u) : u; };
+
+  /* 히어로 */
+  $('heroMon').textContent = manShort(mon(low));
+  $('heroTot').innerHTML = '월 ' + won(mon(low)) + ' × 12개월 | 총 <b>' + F.man(low.PRICE) + '</b> <s>' + F.man(low.LIST) + '</s><br>카드사 할부 수수료 별도';
+  $('dockMon').textContent = '월 ' + manShort(mon(low)) + '부터';
+  var B = G.BIZ || {};
+  $('trustBiz').textContent = '그로우픽 | 상호 ' + (B.COMPANY || '') + ' | 대표 ' + (B.CEO || '') + ' | 사업자등록번호 ' + (B.BIZ_NO || '') + ' | 통신판매업 ' + (B.SALES_NO || '');
+  $('trustCs').textContent = '고객센터 ' + (B.PHONE || '') + (B.CS_HOURS ? ' (' + B.CS_HOURS + ')' : '');
+  $('bottomSub').textContent = '12개월 할부 시 월 ' + manShort(mon(low)) + '부터 | 총 ' + F.man(low.PRICE) + '부터';
+
+  /* 반 카드: 월 금액이 주인공, 총액·정가는 아래 작게 */
+  $('plans').innerHTML = PLANS.map(function(pl){
+    var pick = pl.ID === 'premium';
+    return '<div class="pc' + (pick ? ' pick' : '') + '">' + (pick ? '<span class="rib">1:1 피드백 더 많이</span>' : '') +
+      '<p class="nm">' + pl.NAME + '</p><p class="ds">' + pl.DESC + '</p>' +
+      '<p class="mon">월 ' + manShort(mon(pl)) + '</p>' +
+      '<p class="sub">12개월 할부 시 월 ' + won(mon(pl)) + ' | 하루 ' + won(pl.DAILY || Math.floor(mon(pl) / 30)) + '<br>총 <b>' + F.man(pl.PRICE) + '</b>' + (pl.LIST > pl.PRICE ? ' <s>' + F.man(pl.LIST) + '</s>' : '') + '</p>' +
+      (pl.BONUS ? '<p class="bonus" data-perk-only>오늘 결제 특전: ' + pl.BONUS + ' 증정</p>' : '') +
+      '<a class="btn' + (pick ? '' : '') + '" data-cta="plan_' + pl.ID + '" data-cta-type="paid" href="' + applyUrl(pl.ID) + '">' + pl.NAME + ' 신청하기</a>' +
+      '</div>';
+  }).join('');
+  $('plans').querySelectorAll('a.btn').forEach(function(a){
+    a.addEventListener('click', function(){ track('cta_click', { cta_location: a.dataset.cta, cta_type: 'paid', cta_text: a.textContent.trim() }); });
+  });
+  $('faqDiff').textContent = PLANS.map(function(pl){ return pl.NAME + ': ' + pl.DESC; }).join(' / ') + '. 오늘 결제하시면 스탠다드반은 1:1 줌 피드백 2회권, 프리미엄반은 3회권을 드립니다.';
+
+  /* 페이지 안 #buy 링크 */
+  document.querySelectorAll('a[href="#buy"]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); track('cta_click', { cta_location: a.dataset.buy || a.dataset.cta, cta_type: 'paid', cta_text: a.textContent.trim() }); $('buy').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      /* slide-qa 2026-11-04: 이동 중 지연 이미지가 로드되며 페이지가 늘어나 #buy 보다 600px 위에서 멈추던 것 보정 */
+      setTimeout(function(){ $('buy').scrollIntoView({ behavior: 'auto', block: 'start' }); }, 1100); });
+  });
+
+  /* 11월 달력 */
+  var days = (CFG.CLASS_DAYS || []).map(function(d){ return Number(d.slice(8, 10)); });
+  var first = new Date(2026, 10, 1).getDay(), html = ['일','월','화','수','목','금','토'].map(function(w){ return '<span class="w">' + w + '</span>'; }).join('');
+  for (var i = 0; i < first; i++) html += '<span class="d"></span>';
+  for (var d = 1; d <= 30; d++) {
+    var k = days.indexOf(d), sun = new Date(2026, 10, d).getDay() === 0;
+    html += '<span class="d' + (sun ? ' sun' : '') + (k >= 0 ? ' on' : '') + '">' + d + (k >= 0 ? '<small>' + (k + 1) + '강</small>' : '') + '</span>';
+  }
+  $('calGrid').innerHTML = html;
+  $('schedList').innerHTML = days.map(function(dd, i){ return '<li><span class="wk">' + (i + 1) + '주차</span>11월 ' + dd + '일 (금) ' + (i + 1) + '강</li>'; }).join('');
+
+  /* 오늘 결제 특전 카운트다운 (지나면 숨김. 거짓 희소성 방지: 마감 뒤에 다시 늘어나지 않는다) */
+  if (CFG.PERK_DEADLINE_LABEL) document.querySelectorAll('[data-perk-label]').forEach(function(e){ e.textContent = CFG.PERK_DEADLINE_LABEL; });
+  var end = new Date(CFG.PERK_DEADLINE || '').getTime();
+  var boxes = document.querySelectorAll('[data-perk-box]'), times = document.querySelectorAll('[data-perk-time]');
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  (function tick(){
+    var left = end - Date.now();
+    /* 마감이 지나면 카운트다운과 '오늘 결제 특전'(특전 구간·반 카드 특전 줄·FAQ 문장)을 함께 내린다: 지난 날짜가 걸린 채 남지 않게 */
+    if (!(left > 0)) { boxes.forEach(function(b){ b.hidden = true; }); document.querySelectorAll('[data-perk-only]').forEach(function(e){ e.style.display = 'none'; }); $('faqDiff').textContent = PLANS.map(function(pl){ return pl.NAME + ': ' + pl.DESC; }).join(' / ') + '.'; return; }
+    boxes.forEach(function(b){ b.hidden = false; });
+    var h = Math.floor(left / 36e5), m = Math.floor(left / 6e4) % 60, s = Math.floor(left / 1e3) % 60;
+    times.forEach(function(t){ t.textContent = pad(h) + ':' + pad(m) + ':' + pad(s); });
+    setTimeout(tick, 1000);
+  })();
+
+  track('view_item', { item_name: 'shortsfighter_course', value: low.PRICE, currency: 'KRW' });
+})();
+</script>
+</body>
+</html>
