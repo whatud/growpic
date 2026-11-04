@@ -40,6 +40,8 @@
   .opt .t small{display:block;font-size:.875rem;color:var(--ink-2);font-weight:500;margin-top:.15rem;line-height:1.45}
   .opt .p{flex:none;font-family:var(--title);font-size:1.2rem;color:var(--ink);white-space:nowrap}
   .opt .p{text-align:right}
+  .cardnote{margin:.8rem 0 0;font-size:.875rem;color:var(--ink-2);line-height:1.6}
+  .opt .p .pmb{display:block;font-size:1.625rem;font-weight:900;letter-spacing:-.04em;line-height:1.1;color:var(--green-t,#01803C)}
   .opt .p .pm{display:block;font-family:var(--sans);font-size:.8125rem;font-weight:700;color:var(--ink-2);margin-top:.15rem}
   .fld{margin-bottom:.85rem}
   .fld label{display:block;font-size:1rem;font-weight:900;margin-bottom:.35rem}
@@ -99,18 +101,12 @@
     <section class="ap-card">
       <h2>1. 반 선택</h2>
       <div class="opt" id="planPick"></div>
+      <input type="radio" name="method" value="card" checked hidden>
+      <p class="paynote cardnote">카드 결제는 신청 후 카카오톡으로 결제 링크가 갑니다. 할부는 카드사 기준입니다.<br>계좌이체를 원하시면 카카오톡 1:1로 문의해 주세요.</p>
     </section>
 
     <section class="ap-card">
-      <h2>2. 결제 방법</h2>
-      <div class="opt" id="methodPick">
-        <label class="on"><input type="radio" name="method" value="card" checked><span class="t">카드 결제<small>신청 후 카카오톡으로 결제선생 결제 링크를 보내드립니다. 할부는 카드사 기준으로 가능합니다.</small></span></label>
-        <label><input type="radio" name="method" value="cash"><span class="t">계좌이체<small>신청을 마치면 다음 화면에 입금 계좌가 나옵니다. 현금영수증 발행 가능합니다.</small></span></label>
-      </div>
-    </section>
-
-    <section class="ap-card">
-      <h2>3. 신청자 정보</h2>
+      <h2>2. 신청자 정보</h2>
       <div class="fld" id="fName">
         <label for="name">이름</label>
         <input id="name" name="name" autocomplete="name" maxlength="20" placeholder="결제할 분 성함">
@@ -129,16 +125,6 @@
         <label><input type="checkbox" class="ag" id="agMarketing"><span><span class="opt-t">[선택]</span> 강의 소식·혜택 안내 수신</span></label>
       </div>
       <p class="ags-err">필수 항목에 동의해 주세요.</p>
-    </section>
-
-    <section class="ap-card">
-      <h2>4. 신청 내용 확인</h2>
-      <dl class="sum">
-        <dt>과정</dt><dd id="sCourse">쇼츠파이터 정규 과정 1기</dd>
-        <dt>반</dt><dd id="sPlan"></dd>
-        <dt>결제 방법</dt><dd id="sMethod"></dd>
-        <dt>결제 금액</dt><dd class="tot" id="sAmount"></dd>
-      </dl>
       <p class="paynote" id="payNote"></p>
       <button type="submit" class="btn" id="submitBtn">수강 신청하기</button>
 
@@ -185,7 +171,9 @@
   if (!PLANS.some(function(p){ return p.ID === want; })) want = PLANS.length ? PLANS[0].ID : '';
   $('planPick').innerHTML = PLANS.map(function(pl){
     return '<label' + (pl.ID === want ? ' class="on"' : '') + '><input type="radio" name="plan" value="' + pl.ID + '"' + (pl.ID === want ? ' checked' : '') + '>'
-      + '<span class="t">' + pl.NAME + '<small>' + pl.DESC + '</small></span><span class="p">' + F.man(pl.PRICE) + (pl.MONTHLY ? '<small class="pm">12개월 월 ' + Number(pl.MONTHLY).toLocaleString('ko-KR') + '원</small>' : '') + '</span></label>';
+      + '<span class="t">' + pl.NAME + '<small>' + pl.DESC + '</small></span><span class="p">'
+      + (pl.MONTHLY ? '<b class="pmb">월 ' + Math.floor(pl.MONTHLY / 10000) + '만원</b><small class="pm">12개월 할부 | 총 ' + F.man(pl.PRICE) + '</small>' : F.man(pl.PRICE))
+      + '</span></label>';   /* 2026-11-04 JY: 월 금액을 크게, 총액은 작게 (190,833 → 19만원 내림) */
   }).join('');
 
   function cur(){
@@ -197,13 +185,8 @@
   function sync(){
     var c = cur();
     document.querySelectorAll('.opt label').forEach(function(l){ l.classList.toggle('on', l.querySelector('input').checked); });
-    $('sPlan').textContent = c.plan ? c.plan.NAME : '';
-    $('sMethod').textContent = c.method === 'cash' ? '계좌이체' : '카드 (결제선생 카카오톡 링크)';
-    $('sAmount').textContent = c.plan ? F.won(c.plan.PRICE) : '';
-    $('payNote').textContent = c.method === 'cash'
-      ? '신청을 마치면 다음 화면에 입금 계좌와 금액이 나옵니다. 입금이 확인되면 수업 안내를 카카오톡으로 보내드립니다.'
-      : '신청 순서대로 카카오톡으로 결제선생 결제 링크를 보내드립니다. 링크에서 카드로 결제하시면 신청이 확정됩니다.';
-    $('submitBtn').textContent = (c.plan ? c.plan.NAME + ' ' : '') + '수강 신청하기';
+    $('payNote').textContent = '';
+    $('submitBtn').textContent = c.plan ? c.plan.NAME + ' 신청하기 | 월 ' + Math.floor(c.plan.MONTHLY / 10000) + '만원' : '수강 신청하기';
   }
   $('payForm').addEventListener('change', sync);
   sync();
