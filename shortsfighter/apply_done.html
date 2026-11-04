@@ -95,6 +95,7 @@
   .mk-warn small{display:block;font-size:.875rem;font-weight:600;color:#8A4A33;margin-top:.15rem}
   @media (max-width:374px){ .mk-h{font-size:1.5rem} .mk-zoom{padding:.85rem .75rem;gap:.6rem} .mk-zoom img{width:3rem;height:3rem} .jflow{font-size:.75rem} .jflow span{padding:.35rem .45rem} }
   .kq{display:block;text-align:center;background:#FEE500!important;border-color:#FEE500!important;color:#191919!important;font-weight:900}
+  .kq-h{display:block;text-align:center;font-size:1rem;font-weight:900;color:var(--ink);margin:0 0 .7rem}
   .kq-n{display:block;text-align:center;font-size:.875rem;color:var(--ink-3);margin-top:.5rem}
 </style>
 </head>
@@ -157,17 +158,6 @@
   </section>
 
   <section class="dn-card">
-    <h2>신청 내용</h2>
-    <dl class="sum">
-      <dt>과정</dt><dd>쇼츠파이터 정규 과정 1기</dd>
-      <dt>반</dt><dd id="dPlan"></dd>
-      <dt>결제 방법</dt><dd id="dMethod"></dd>
-      <dt>결제 금액</dt><dd id="dAmount"></dd>
-      <dt>신청번호</dt><dd id="dId"></dd>
-    </dl>
-  </section>
-
-  <section class="dn-card">
     <h2>다음 순서</h2>
     <ol class="steps" id="dSteps"></ol>
   </section>
@@ -181,7 +171,7 @@
 
 <footer>
   <div class="sec-inner">
-    <div class="links"><a href="../privacy.html" target="_blank" rel="noopener">개인정보처리방침</a><a href="mailto:nany418@naver.com">nany418@naver.com</a></div>
+    <div class="links"><a href="../privacy.html" target="_blank" rel="noopener">개인정보처리방침</a><a href="refund.html" target="_blank" rel="noopener">환불규정</a><a href="mailto:nany418@naver.com">nany418@naver.com</a></div>
   </div>
 </footer>
 
@@ -200,10 +190,10 @@
   var cash = d && d.method === 'cash';
   var eta = CFG.LINK_ETA_TEXT || '';
   if (d && d.name) $('dName').textContent = d.name + '님, ';
-  $('dPlan').textContent = d ? d.plan : '-';
-  $('dMethod').textContent = d ? (cash ? '계좌이체' : '카드 (결제선생 카카오톡 링크)') : '-';
-  $('dAmount').textContent = d ? F.won(d.amount) : '-';
-  $('dId').textContent = d ? d.apply_id : '-';
+  if ($('dPlan')) $('dPlan').textContent = d ? d.plan : '-';
+  if ($('dMethod')) $('dMethod').textContent = d ? (cash ? '계좌이체' : '카드 (결제선생 카카오톡 링크)') : '-';
+  if ($('dAmount')) $('dAmount').textContent = d ? F.won(d.amount) : '-';
+  if ($('dId')) $('dId').textContent = d ? d.apply_id : '-';
 
   if (cash) {
     $('dSub').textContent = '아래 계좌로 입금해 주시면 확인 후 수업 안내를 보내드립니다.';
@@ -240,7 +230,7 @@
   }
 
   /* 무료 라이브 오픈채팅(단체방)은 결제 문의 창구로 쓰지 않는다. 1:1 채널(KAKAO_CS_URL)이 생기면 그걸로 */
-  var help = '<a class="btn ghost kq" href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener" data-cta="kakao_done">카카오톡 1:1 채팅 문의하기</a><span class="kq-n">문의하실 때 신청번호를 함께 알려 주세요.</span>';
+  var help = '<span class="kq-h">결제 관련 문의가 있다면?</span><a class="btn ghost kq" href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener" data-cta="kakao_done">카카오톡 1:1 채팅 문의하기</a>';
   $('dHelp').innerHTML = help;
 
   if (!d) {

@@ -41,6 +41,8 @@
   .opt .p{flex:none;font-family:var(--title);font-size:1.2rem;color:var(--ink);white-space:nowrap}
   .opt .p{text-align:right}
   .paynote:empty{display:none}
+  .rf-note{font-size:.8125rem;color:var(--ink-3);margin:.2rem 0 .6rem;line-height:1.5;text-align:center}
+  .rf-note a{color:var(--ink-2)}
   .cardnote{margin:.8rem 0 0;font-size:.875rem;color:var(--ink-2);line-height:1.6}
   .opt .p .pmb{display:block;font-size:1.625rem;font-weight:900;letter-spacing:-.04em;line-height:1.1;color:var(--green-t,#01803C)}
   .opt .p .pm{display:block;font-family:var(--sans);font-size:.8125rem;font-weight:700;color:var(--ink-2);margin-top:.15rem}
@@ -122,11 +124,11 @@
       <div class="ags" id="ags">
         <label class="all"><input type="checkbox" id="agAll"><span>아래 내용에 모두 동의합니다</span></label>
         <label><input type="checkbox" class="ag" id="agPrivacy" data-req="1"><span><span class="req">[필수]</span> 개인정보 수집·이용 동의 (이름, 휴대폰 번호 / 수강 신청·결제 안내 / 수강 종료 후 1년 보관)<a href="../privacy.html" target="_blank" rel="noopener">보기</a></span></label>
-        <label><input type="checkbox" class="ag" id="agRefund" data-req="1"><span><span class="req">[필수]</span> 환불규정 확인<a href="refund.html" target="_blank" rel="noopener">보기</a></span></label>
         <label><input type="checkbox" class="ag" id="agMarketing"><span><span class="opt-t">[선택]</span> 강의 소식·혜택 안내 수신</span></label>
       </div>
       <p class="ags-err">필수 항목에 동의해 주세요.</p>
       <p class="paynote" id="payNote"></p>
+      <p class="rf-note">신청하시면 <a href="refund.html" target="_blank" rel="noopener">환불규정</a>에 동의한 것으로 봅니다. 첫 수업 전에는 전액 환불됩니다.</p>
       <button type="submit" class="btn" id="submitBtn">수강 신청하기</button>
 
       <div class="sendfail" id="sendFail" role="alert">
@@ -145,7 +147,7 @@
 
 <footer>
   <div class="sec-inner">
-    <div class="links"><a href="../privacy.html" target="_blank" rel="noopener">개인정보처리방침</a><a href="mailto:nany418@naver.com">nany418@naver.com</a></div>
+    <div class="links"><a href="../privacy.html" target="_blank" rel="noopener">개인정보처리방침</a><a href="refund.html" target="_blank" rel="noopener">환불규정</a><a href="mailto:nany418@naver.com">nany418@naver.com</a></div>
   </div>
 </footer>
 
@@ -222,7 +224,7 @@
     var ok = true, name = $('name').value.trim(), digits = $('phone').value.replace(/\D/g, '');
     if (name.length < 2) { $('fName').classList.add('bad'); ok = false; }
     if (!/^01[016789]\d{7,8}$/.test(digits)) { $('fPhone').classList.add('bad'); ok = false; }
-    if (!$('agPrivacy').checked || !$('agRefund').checked) { $('ags').classList.add('bad'); ok = false; }
+    if (!$('agPrivacy').checked) { $('ags').classList.add('bad'); ok = false; }
     if (!ok) {
       var first = document.querySelector('.fld.bad, .ags.bad');
       if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
