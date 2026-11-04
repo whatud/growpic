@@ -260,8 +260,8 @@
       sessionStorage.removeItem('sf_course_apply_id');
     } catch(e) {}
     /* 전환은 서버 확인 뒤에만. 메타 Lead 는 무료 라이브 신청 전환(SF1_무료특강신청)과 겹치므로 쓰지 않는다 */
-    track('course_apply', { plan: p.plan_id, pay_method: p.pay_method, value: p.amount, currency: 'KRW' });
-    try { if (window.fbq) window.fbq('track', 'InitiateCheckout', { value: p.amount, currency: 'KRW', content_name: COURSE_NAME + ' ' + p.plan_name }); } catch(e) {}
+    if (!DEMO) track('course_apply', { plan: p.plan_id, pay_method: p.pay_method, value: p.amount, currency: 'KRW' });   /* 미리보기(demo=1)는 전환에 안 잡히게 */
+    if (!DEMO) try { if (window.fbq) window.fbq('track', 'InitiateCheckout', { value: p.amount, currency: 'KRW', content_name: COURSE_NAME + ' ' + p.plan_name }); } catch(e) {}
     setTimeout(function(){ location.href = window.SF_carry ? window.SF_carry('apply_done.html') : 'apply_done.html'; }, 300);
   }
 
