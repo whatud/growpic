@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="sf_v3.css?v=20261009i">
 <link rel="stylesheet" href="sf_story.css?v=20261104a">
 <script src="../config.js"></script>
-<script src="sf-config.js?v=20261104c"></script>
+<script src="sf-config.js?v=20261104d"></script>
 <!--
   쇼츠파이터 정규 과정 결제자용 소개 페이지 (2026-11-04, 라이브 장표 캔바 83~95쪽 기준. JY 지시 "캔바 기준으로 다 맞춰줘")
   흐름: 이 페이지 → apply.html(신청) → apply_done.html(완료) → '정규 과정 소개 다시 보기'로 이 페이지
@@ -519,7 +519,7 @@
     <h2>나에게 맞는<br><span class="g">반을 고르세요</span></h2></div>
     <div class="plans2" id="plans"></div>
     <p class="perk-line" data-perk-box hidden style="margin-top:1.2rem"><span>오늘 결제 특전 마감까지</span><span class="t" data-perk-time></span></p>
-    <p class="fee-note">월 금액은 12개월 할부 기준이며 카드사 할부 수수료는 별도입니다.<br>계좌이체를 원하시면 카카오톡 1:1로 문의해 주세요.</p>
+    <p class="fee-note">월 금액은 12개월 할부 기준이며 카드사 할부 수수료는 별도입니다.<br>계좌이체를 원하시면 <a href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener">카카오톡 1:1</a>로 문의해 주세요.</p>
   </div>
 </section>
 
@@ -529,7 +529,7 @@
     <div class="center"><span class="eyebrow">결제 전에 확인하세요</span>
     <h2>자주 묻는 질문</h2></div>
     <div class="faq">
-      <details><summary>결제는 어떻게 하나요?</summary><p>신청서를 내시면 카카오톡으로 결제선생 카드 결제 링크를 보내드립니다. 계좌이체를 원하시면 카카오톡 1:1로 문의해 주세요.</p></details>
+      <details><summary>결제는 어떻게 하나요?</summary><p>신청서를 내시면 카카오톡으로 결제선생 카드 결제 링크를 보내드립니다. 계좌이체를 원하시면 <a href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener">카카오톡 1:1</a>로 문의해 주세요.</p></details>
       <details><summary>할부가 되나요?</summary><p>카드 결제 링크에서 할부 개월을 고르실 수 있습니다. 할부 가능 여부와 수수료는 카드사 기준입니다.</p></details>
       <details><summary>수업은 어떻게 듣나요?</summary><p>매주 금요일 저녁 7시 30분부터 9시 30분까지 줌 라이브로 진행합니다. 결제가 확인되면 단톡방 입장과 줌 링크를 보내드립니다.</p></details>
       <details><summary>라이브를 놓치면요?</summary><p>실시간 줌 라이브로만 진행하며 다시보기는 제공하지 않습니다. 매주 금요일 저녁 7시 30분을 미리 비워 두세요.</p></details>
@@ -647,5 +647,10 @@
   track('view_item', { item_name: 'shortsfighter_course', value: low.PRICE, currency: 'KRW' });
 })();
 </script>
+
+<!-- 2026-11-04 JY: 1:1 채팅 문의 플로팅 -->
+<style>.kchat{position:fixed;right:1rem;bottom:calc(5.4rem + env(safe-area-inset-bottom));z-index:80;width:3.25rem;height:3.25rem;border-radius:50%;background:#FEE500;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.28);text-decoration:none}.kchat span{position:absolute;bottom:-1.15rem;left:50%;transform:translateX(-50%);font-size:.6875rem;font-weight:900;color:#191F28;background:#fff;border-radius:999px;padding:.05rem .45rem;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.15)}</style>
+<a class="kchat" href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener" aria-label="카카오톡 1:1 채팅 문의" data-cta="kakao_float"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#3C1E1E" d="M12 3.2c-5.1 0-9.2 3.2-9.2 7.2 0 2.6 1.7 4.8 4.3 6.1l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.4 0 .7.1 1.1.1 5.1 0 9.2-3.2 9.2-7.2S17.1 3.2 12 3.2z"/></svg><span>1:1 문의</span></a>
+<style>.fcta.off~.kchat,.kchat.low{bottom:calc(1rem + env(safe-area-inset-bottom))}</style>
 </body>
 </html>

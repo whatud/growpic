@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="sf.css?v=20260928d">
 <script src="../config.js"></script>
-<script src="sf-config.js?v=20261104c"></script>
+<script src="sf-config.js?v=20261104d"></script>
 <!-- 신청 내용은 주소창이 아니라 sessionStorage('sf_course_done') 로 넘겨받는다 (개인정보를 URL 에 싣지 않기) -->
 <style>
   body{padding-bottom:0;background:#F5F6F7}
@@ -94,6 +94,8 @@
   .mk-warn p{margin:0;font-size:1rem;font-weight:800;color:#B33A12;line-height:1.5;word-break:keep-all}
   .mk-warn small{display:block;font-size:.875rem;font-weight:600;color:#8A4A33;margin-top:.15rem}
   @media (max-width:374px){ .mk-h{font-size:1.5rem} .mk-zoom{padding:.85rem .75rem;gap:.6rem} .mk-zoom img{width:3rem;height:3rem} .jflow{font-size:.75rem} .jflow span{padding:.35rem .45rem} }
+  .kq{display:block;text-align:center;background:#FEE500!important;border-color:#FEE500!important;color:#191919!important;font-weight:900}
+  .kq-n{display:block;text-align:center;font-size:.875rem;color:var(--ink-3);margin-top:.5rem}
 </style>
 </head>
 <body>
@@ -238,10 +240,7 @@
   }
 
   /* 무료 라이브 오픈채팅(단체방)은 결제 문의 창구로 쓰지 않는다. 1:1 채널(KAKAO_CS_URL)이 생기면 그걸로 */
-  var help = '문의가 있으시면 ';
-  if (CFG.KAKAO_CS_URL) help += '<a href="' + CFG.KAKAO_CS_URL + '" target="_blank" rel="noopener">카카오톡 상담</a>' + (PHONE ? ' 또는 ' : '');
-  if (PHONE) help += '<a href="tel:' + PHONE.replace(/\D/g, '') + '" style="white-space:nowrap">' + PHONE + '</a>';
-  help += '로 신청번호와 함께 연락 주세요.';
+  var help = '<a class="btn ghost kq" href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener" data-cta="kakao_done">카카오톡 1:1 채팅 문의하기</a><span class="kq-n">문의하실 때 신청번호를 함께 알려 주세요.</span>';
   $('dHelp').innerHTML = help;
 
   if (!d) {
@@ -252,5 +251,9 @@
   track('course_apply_done_view', { pay_method: d ? d.method : 'unknown' });
 })();
 </script>
+
+<!-- 2026-11-04 JY: 1:1 채팅 문의 플로팅 -->
+<style>.kchat{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom));z-index:80;width:3.25rem;height:3.25rem;border-radius:50%;background:#FEE500;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.28);text-decoration:none}.kchat span{position:absolute;bottom:-1.15rem;left:50%;transform:translateX(-50%);font-size:.6875rem;font-weight:900;color:#191F28;background:#fff;border-radius:999px;padding:.05rem .45rem;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.15)}</style>
+<a class="kchat" href="https://open.kakao.com/o/sLvY8XKf" target="_blank" rel="noopener" aria-label="카카오톡 1:1 채팅 문의" data-cta="kakao_float"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#3C1E1E" d="M12 3.2c-5.1 0-9.2 3.2-9.2 7.2 0 2.6 1.7 4.8 4.3 6.1l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.4 0 .7.1 1.1.1 5.1 0 9.2-3.2 9.2-7.2S17.1 3.2 12 3.2z"/></svg><span>1:1 문의</span></a>
 </body>
 </html>

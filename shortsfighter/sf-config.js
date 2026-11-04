@@ -52,7 +52,7 @@ window.SF = {
   /* 수강 신청 저장 서버. ⚠️ 서버에 수강신청 분기(apps_script_shortsfighter_v2.gs)를 '새 버전'으로 배포한 뒤에만 FORM_ENDPOINT 와 같은 주소를 넣는다.
      비어 있으면 신청 버튼이 실패 화면(카톡·전화 안내)을 띄운다. 옛 서버로 보내면 무료 신청자 탭에 섞이므로 순서를 지킬 것 */
   COURSE_ENDPOINT: 'https://script.google.com/macros/s/AKfycbxDC1s8K_dqJBWCYf8czFi7vuH0gdLrxj5ZhsKV4SxXSmiG0Qu282RxvuogvBl_Oq4XcA/exec',   /* 2026-11-04 15:00 서버 v2(버전 2) 배포 확인 후 연결 */
-  KAKAO_CS_URL: '',                   /* 결제 문의용 1:1 카카오 채널 주소. 비우면 전화·문자로 안내 (무료 라이브 오픈채팅은 단체방이라 쓰지 않음) */
+  KAKAO_CS_URL: 'https://open.kakao.com/o/sLvY8XKf',                   /* 결제 문의용 1:1 카카오 채널 주소. 비우면 전화·문자로 안내 (무료 라이브 오픈채팅은 단체방이라 쓰지 않음) */
   LINK_ETA_TEXT: '',                  /* 결제 링크 도착 예상. 예: '30분 안에'. 비우면 시간 약속 문구를 쓰지 않는다 */
   OPENCHAT_URL: 'https://open.kakao.com/o/gURd2wRi',   /* 2026-10-09 JY: 11.4 엄부장의 쇼츠파이터 무료 라이브 오픈채팅. 비우면 완료 페이지에서 버튼이 숨는다 */
   TEACHER_CHANNEL_URL: '',            /* 엄부장 유튜브 채널. 비우면 완료 페이지에서 버튼이 숨는다 */
